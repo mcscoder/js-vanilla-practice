@@ -25,5 +25,8 @@
       "prettier --write",
       "eslint --fix"
     ]
+  },
+  "dependencies": {
+    "sass": "^1.69.7"
   }
 }
