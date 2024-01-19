@@ -1,7 +1,7 @@
 import {
-  AlbumsIcon,
-  DashboardIcon,
-  DocumentTextIcon,
+  albumsIcon,
+  dashboardIcon,
+  documentTextIcon,
   routePaths,
 } from "@/constants";
 import { NavLink } from "..";
@@ -10,9 +10,9 @@ export const NavSidebar = () => {
   return /*html*/ `
     <div class="primary-sidebar">
       <nav>
-        ${NavLink(DashboardIcon, "dashboard", routePaths.home)}
-        ${NavLink(AlbumsIcon, "all products", routePaths.products)}
-        ${NavLink(DocumentTextIcon, "order list", routePaths.orders)}
+        ${NavLink(dashboardIcon, "dashboard", routePaths.home)}
+        ${NavLink(albumsIcon, "all products", routePaths.products)}
+        ${NavLink(documentTextIcon, "order list", routePaths.orders)}
       </nav>
     </div>
   `;
