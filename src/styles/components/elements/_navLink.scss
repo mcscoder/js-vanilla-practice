@@ -4,6 +4,14 @@
   justify-content: start;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background-color: $blue;
   border-radius: 0.5rem;
+
+  &-active {
+    background-color: $blue;
+    color: white;
+  }
+
+  img {
+    color: white;
+  }
 }

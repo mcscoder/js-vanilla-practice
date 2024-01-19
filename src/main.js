@@ -1,7 +1,4 @@
 import "./main.scss";
-import { navigate } from "./routes";
-import { DefaultLayout } from "./view";
+import { Router } from "./routes";
 
-document.querySelector("#app").innerHTML = DefaultLayout();
-
-navigate();
+new Router();
