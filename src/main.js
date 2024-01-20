@@ -1,4 +1,5 @@
 import "./main.scss";
-import { Router } from "./routes";
+import { DefaultLayout } from "./view";
 
-new Router();
+// initialize UI
+document.querySelector("#app").appendChild(new DefaultLayout().render());
