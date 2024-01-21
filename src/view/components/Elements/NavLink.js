@@ -70,7 +70,9 @@ export class NavLink {
   // 1. prevent page reloading to achieve SPA
   // 2. handle active navigation link
   handlePopState() {
-    this.updateNavLinkClassName();
+    this.navLink.className = this.getNavLinkClassName(
+      this.navLink.getAttribute("href")
+    );
   }
 
   render() {
