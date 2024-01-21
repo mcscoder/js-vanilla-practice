@@ -1,3 +1,4 @@
+import { anchorAttributes } from "@/constants";
 import { Router } from "@/routes";
 
 export class Main {
@@ -24,8 +25,7 @@ export class Main {
 
   // handles link clicks to reinitialize the main content
   handleLinkClick(event) {
-    const target = event.target.closest(".link");
-    if (target) {
+    if (event.target.hasAttribute(anchorAttributes.navLink)) {
       this.initMainContent();
     }
   }

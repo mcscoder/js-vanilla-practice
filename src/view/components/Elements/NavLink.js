@@ -1,3 +1,5 @@
+import { anchorAttributes } from "@/constants";
+
 export class NavLink {
   constructor(startIcon, label, to) {
     this.startIcon = startIcon;
@@ -6,6 +8,7 @@ export class NavLink {
 
     // navigation link
     this.navLink = document.createElement("a");
+    this.navLink.setAttribute(anchorAttributes.navLink, "");
     this.navLink.href = this.to;
     this.navLink.className = this.getNavLinkClassName(
       this.navLink.getAttribute("href")
