@@ -1,0 +1,18 @@
+.category-toggle-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  &-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include font-heading($text-xl);
+  }
+
+  &-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

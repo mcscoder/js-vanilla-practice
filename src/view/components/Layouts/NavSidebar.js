@@ -2,22 +2,36 @@ import {
   albumsIcon,
   dashboardIcon,
   documentTextIcon,
+  logoIcon,
   routePaths,
 } from "@/constants";
-import { NavLink } from "..";
+import { CategoryToggle, NavLink } from "..";
 
 export class NavSidebar {
   constructor() {
     // sidebar container element
-    this.sidebarContainer = document.createElement("div");
+    this.sidebarContainer = document.createElement("span");
     this.sidebarContainer.className = "primary-sidebar";
+
+    // logo container element
+    this.logoContainer = document.createElement("span");
+    this.logoContainer.className = "center";
+    this.logoContainer.innerHTML = logoIcon;
+
+    // add logo element
+    this.sidebarContainer.appendChild(this.logoContainer);
 
     // navigation links container element
     this.navLinkContainer = document.createElement("nav");
+    this.navLinkContainer.className = "nav-container";
     this.sidebarContainer.appendChild(this.navLinkContainer);
 
     // initializes navigation links
     this.initNavigationLink();
+
+    // category toggle
+    this.categoryToggle = new CategoryToggle().render();
+    this.sidebarContainer.appendChild(this.categoryToggle);
   }
 
   // initializes navigation links with predefined data
