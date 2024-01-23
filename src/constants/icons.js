@@ -13,6 +13,7 @@ import arrowUp from "@/assets/icons/arrowUp.svg";
 import bagHandle from "@/assets/icons/bagHandle.svg";
 import search from "@/assets/icons/search.svg";
 import chevronDown from "@/assets/icons/chevronDown.svg";
+import chevronUp from "@/assets/icons/chevronUp.svg";
 
 const loadSvg = async (filePath) => {
   try {
@@ -40,6 +41,7 @@ export const [
   bagHandleIcon,
   searchIcon,
   chevronDownIcon,
+  chevronUpIcon,
 ] = await Promise.all([
   loadSvg(albums),
   loadSvg(dashboard),
@@ -56,4 +58,5 @@ export const [
   loadSvg(bagHandle),
   loadSvg(search),
   loadSvg(chevronDown),
+  loadSvg(chevronUp),
 ]);

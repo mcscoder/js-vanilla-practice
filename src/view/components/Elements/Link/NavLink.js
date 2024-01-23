@@ -37,7 +37,7 @@ export class NavLink {
   // the link is active if its pathname matches the current URL pathname
   getNavLinkClassName(navLinkPathname) {
     const currentPath = window.location.pathname;
-    return `nav-link link ${navLinkPathname === currentPath ? "nav-link-active" : ""}`;
+    return `nav-link ${navLinkPathname === currentPath ? "nav-link-active" : ""}`;
   }
 
   // update the class name for navigation link based on URL pathname

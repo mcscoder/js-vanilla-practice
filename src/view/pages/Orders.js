@@ -1,6 +1,6 @@
 export class Orders {
   constructor() {
-    this.orders = document.createElement("div");
+    this.orders = document.createElement("span");
     this.orders.textContent = "orders";
   }
 

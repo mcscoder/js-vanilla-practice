@@ -1,6 +1,6 @@
 export class Home {
   constructor() {
-    this.home = document.createElement("div");
+    this.home = document.createElement("span");
     this.home.textContent = "home";
   }
 

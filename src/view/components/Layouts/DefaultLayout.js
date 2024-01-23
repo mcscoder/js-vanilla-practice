@@ -3,7 +3,7 @@ import { NavSidebar, Header, Footer, Main } from ".";
 export class DefaultLayout {
   constructor() {
     // Global container
-    this.globalContainer = document.createElement("div");
+    this.globalContainer = document.createElement("span");
     this.globalContainer.className = "global-container";
 
     // Navigation sidebar
@@ -11,7 +11,7 @@ export class DefaultLayout {
     this.globalContainer.append(this.navSidebar.render());
 
     // Content container
-    this.contentContainer = document.createElement("div");
+    this.contentContainer = document.createElement("span");
     this.contentContainer.className = "content-container";
     this.globalContainer.append(this.contentContainer);
 
