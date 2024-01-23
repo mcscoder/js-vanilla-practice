@@ -1,3 +1,12 @@
+/*
+1. category:
+	1.1: normal
+	1.2: active
+2. order details
+3. product details
+4. notifications
+*/
+
 // tag class names
 export const tagVariants = {
   category: {
