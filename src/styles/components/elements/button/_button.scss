@@ -1,0 +1,41 @@
+.btn {
+  @include font-button;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  border: 1px solid transparent;
+
+  &-sm {
+    padding: 0.5rem 1rem;
+  }
+
+  &-md {
+    padding: 0.75rem 1rem;
+  }
+
+  &-lg {
+    padding: 1rem 1rem;
+  }
+
+  &-primary {
+    background-color: $dark-gray;
+    border-color: $dark-gray;
+    color: $dark-gray;
+  }
+
+  &-secondary {
+    background-color: $blue;
+    border-color: $blue;
+    color: $blue;
+  }
+
+  &-filled {
+    color: white;
+  }
+
+  &-outlined {
+    background-color: transparent;
+  }
+}
