@@ -11,7 +11,7 @@ export class DefaultLayout {
     this.globalContainer.append(this.navSidebar.render());
 
     // Content container
-    this.contentContainer = document.createElement("span");
+    this.contentContainer = document.createElement("div");
     this.contentContainer.className = "content-container";
     this.globalContainer.append(this.contentContainer);
 
@@ -19,11 +19,11 @@ export class DefaultLayout {
     this.header = new Header();
     this.main = new Main();
     this.footer = new Footer();
-    this.contentContainer.append(
-      this.header.render(),
-      this.main.render(),
-      this.footer.render()
-    );
+
+    this.mainContainer = document.createElement("div");
+    this.mainContainer.className = "main-container";
+    this.mainContainer.append(this.main.render(), this.footer.render());
+    this.contentContainer.append(this.header.render(), this.mainContainer);
   }
 
   render() {
