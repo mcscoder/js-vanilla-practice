@@ -14,5 +14,9 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 1rem;
     }
+
+    &-3 {
+      display: flex;
+    }
   }
 }

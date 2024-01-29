@@ -22,14 +22,22 @@ export const buttonSizes = {
  * use @param buttonSizes as argument for @param sizes in @constructor
  * leave startIcon or endIcon or label null if its doesn't need
  * example:
- * const button = new Button("A button", startIcon, endIcon, buttonVariants.primary.filled, buttonSizes.md, onClick)
+ * const button = new Button("A button", startIcon, endIcon, buttonVariants.primary.filled, buttonSizes.md, "button-class-name", onClick)
  * const buttonElement = button.render();
  */
 export class Button {
-  constructor(label, startIcon, endIcon, variant, sizes, onClick = () => {}) {
+  constructor(
+    label,
+    startIcon,
+    endIcon,
+    variant,
+    size,
+    className,
+    onClick = () => {}
+  ) {
     // button element
     this.button = document.createElement("button");
-    this.button.className = `btn ${variant} ${sizes}`;
+    this.button.className = Button.getClassName(variant, size, className);
     this.button.addEventListener("click", onClick);
 
     // label
@@ -46,6 +54,11 @@ export class Button {
     startIcon && this.button.append(this.startIcon.firstChild);
     label && this.button.append(this.buttonLabel);
     endIcon && this.button.append(this.endIcon.firstChild);
+  }
+
+  static getClassName(variant, size, ...classes) {
+    const className = ["btn", variant, size, ...classes];
+    return className.join(" ");
   }
 
   render() {

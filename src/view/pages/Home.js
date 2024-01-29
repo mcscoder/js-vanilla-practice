@@ -1,5 +1,5 @@
 import { routePaths } from "@/constants";
-import { Breadcrumb, OrderStatCard } from "..";
+import { Breadcrumb, OrderStatCard, SaleGraph } from "..";
 
 export class Home {
   constructor() {
@@ -34,9 +34,16 @@ export class Home {
       new OrderStatCard("Total Orders", 126.5, 34.7, "Oct 2023").render(),
       new OrderStatCard("Total Orders", 126.5, 34.7, "Oct 2023").render(),
       new OrderStatCard("Total Orders", 126.5, 34.7, "Oct 2023").render()
-    ),
-      // add elements to container
-      this.container.append(this.container1, this.container2);
+    );
+
+    // container 3 element. this will cover sale graph and best sellers
+    this.container3 = document.createElement("div");
+    this.container3.className = "dashboard-container-3";
+
+    this.container3.append(new SaleGraph(1).render());
+
+    // add elements to container
+    this.container.append(this.container1, this.container2, this.container3);
   }
 
   render() {
