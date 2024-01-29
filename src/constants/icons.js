@@ -10,6 +10,7 @@ import threeDotsHorizontal from "@/assets/icons/threeDotsHorizontal.svg";
 import addCircle from "@/assets/icons/addCircle.svg";
 import threeDotsVertical from "@/assets/icons/threeDotsVertical.svg";
 import arrowUp from "@/assets/icons/arrowUp.svg";
+import arrowDown from "@/assets/icons/arrowDown.svg";
 import bagHandle from "@/assets/icons/bagHandle.svg";
 import search from "@/assets/icons/search.svg";
 import chevronDown from "@/assets/icons/chevronDown.svg";
@@ -42,6 +43,7 @@ export const [
   searchIcon,
   chevronDownIcon,
   chevronUpIcon,
+  arrowDownIcon,
 ] = await Promise.all([
   loadSvg(albums),
   loadSvg(dashboard),
@@ -59,4 +61,5 @@ export const [
   loadSvg(search),
   loadSvg(chevronDown),
   loadSvg(chevronUp),
+  loadSvg(arrowDown),
 ]);

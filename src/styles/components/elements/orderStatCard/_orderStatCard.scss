@@ -1,0 +1,54 @@
+.order_stat {
+  &-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    &-1 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &-2 {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    &-3 {
+      display: flex;
+      justify-content: end;
+    }
+  }
+
+  &-title {
+    @include font-heading($text-sm);
+  }
+
+  &-icon_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    background-color: $blue;
+    padding: 0.5rem;
+  }
+
+  &-total_value {
+    @include font-heading($text-base);
+    flex: 1;
+  }
+
+  &-percentage_container {
+    @include font($text-sm, $font-semibold);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  &-comparison {
+    @include font($text-xs, $font-semibold);
+    color: rgba($color: $dark-gray, $alpha: 0.7);
+  }
+}
