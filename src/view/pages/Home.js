@@ -1,5 +1,26 @@
 import { routePaths } from "@/constants";
-import { Breadcrumb, OrderStatCard, SaleGraph } from "..";
+import { Breadcrumb, OrderStatCard, ProductStatCard, SaleGraph } from "..";
+
+const productStatItems = [
+  {
+    imgURL: "https://www.mobafire.com/images/champion/square/yasuo.png",
+    title: "Yasuo hasagi",
+    currentPrice: 124.5,
+    sales: 123,
+  },
+  {
+    imgURL: "https://www.mobafire.com/images/champion/square/yasuo.png",
+    title: "Yasuo hasagi",
+    currentPrice: 124.5,
+    sales: 123,
+  },
+  {
+    imgURL: "https://www.mobafire.com/images/champion/square/yasuo.png",
+    title: "Yasuo hasagi",
+    currentPrice: 124.5,
+    sales: 123,
+  },
+];
 
 export class Home {
   constructor() {
@@ -40,7 +61,18 @@ export class Home {
     this.container3 = document.createElement("div");
     this.container3.className = "dashboard-container-3";
 
-    this.container3.append(new SaleGraph(1).render());
+    // sale graph element
+    this.saleGraph = new SaleGraph(1).render();
+    this.saleGraph.classList.add("flex-2");
+
+    // best seller stat element
+    this.bestSellerStat = new ProductStatCard(
+      "Best seller",
+      productStatItems
+    ).render();
+    this.bestSellerStat.classList.add("flex-1");
+
+    this.container3.append(this.saleGraph, this.bestSellerStat);
 
     // add elements to container
     this.container.append(this.container1, this.container2, this.container3);

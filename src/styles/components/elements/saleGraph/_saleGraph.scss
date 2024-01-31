@@ -1,8 +1,4 @@
 .sale_graph {
-  &-section {
-    flex: 2;
-  }
-
   &-container {
     display: flex;
     flex-direction: column;
@@ -19,6 +15,10 @@
     &-2 {
       display: flex;
     }
+  }
+
+  &-title {
+    @include font-heading($text-xl);
   }
 
   &-button_container {

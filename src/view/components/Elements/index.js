@@ -6,3 +6,4 @@ export * from "./Breadcrumb";
 export * from "./OrderStatCard";
 export * from "./SaleGraph";
 export * from "./Chart";
+export * from "./ProductStatCard";

@@ -28,11 +28,37 @@ export class SaleGraph {
     this.container2 = document.createElement("div");
     this.container2.className = "sale_graph-container-2";
 
-    // initializes chart element
-    this.initChart(Chart.MonthlyChart([50, 100, 50, 75, 60, 310]));
+    // this.container2.addEventListener("resize", () => {
+    //   const activeButton = document.querySelector("sale_graph-button-active");
+    //   const type = activeButton.getAttribute(chartViewOptionAttribute);
+
+    //   this.initChart(
+    //     Chart.InitChart(
+    //       [50, 100, 50, 75, 60, 310],
+    //       type,
+    //       this.container2.clientWidth,
+    //       300
+    //     )
+    //   );
+    // });
 
     // add elements to global container
     this.container.append(this.container1, this.container2);
+
+    // initializes chart element
+    // use setTimeout will move this to the end of call stack
+    // it mean chart will be execute after all of synchronous code executed
+    // purpose: to set chart width == container width
+    // dang, how genius i am
+    setTimeout(() => {
+      this.initChart(
+        Chart.MonthlyChart(
+          [50, 100, 50, 75, 60, 310],
+          this.container2.clientWidth,
+          250
+        )
+      );
+    }, 0);
   }
 
   initButtons() {
@@ -66,7 +92,7 @@ export class SaleGraph {
           ? buttonVariants.secondary.filled
           : buttonVariants.secondary.outlined,
         buttonSizes.sm,
-        "sale_graph-button",
+        `sale_graph-button ${this.activeButton === index ? "sale_graph-button-active" : ""}`,
         this.onClickChartOption.bind(this)
       );
       const buttonElement = button.render();
@@ -97,14 +123,21 @@ export class SaleGraph {
     event.target.className = Button.getClassName(
       buttonVariants.secondary.filled,
       buttonSizes.sm,
-      "sale_graph-button"
+      "sale_graph-button sale_graph-button-active"
     );
 
     // retrieve the chart type previously set during button initialization.
     const type = event.target.getAttribute(chartViewOptionAttribute);
 
     /** re-initializes chart view based on @var type */
-    this.initChart(Chart.InitChart([50, 100, 50, 75, 60, 310], type));
+    this.initChart(
+      Chart.InitChart(
+        [50, 100, 50, 75, 60, 310],
+        type,
+        this.container2.clientWidth,
+        250
+      )
+    );
   }
 
   // initializes chart view
@@ -114,7 +147,6 @@ export class SaleGraph {
 
   render() {
     const sectionElement = new ContentSection(this.container).render();
-    sectionElement.classList.add("sale_graph-section");
     return sectionElement;
   }
 }

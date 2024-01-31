@@ -43,21 +43,24 @@ export const getXSegment = (chartType, index) => {
 };
 
 export class Chart {
-  static WeeklyChart(data = []) {
-    return Chart.InitChart(data, CHART_TYPES.WEEKLY);
+  static WeeklyChart(data = [], width = 680, height = 250) {
+    return Chart.InitChart(data, CHART_TYPES.WEEKLY, width, height);
   }
 
-  static MonthlyChart(data = []) {
-    return Chart.InitChart(data, CHART_TYPES.MONTHLY);
+  static MonthlyChart(data = [], width = 680, height = 250) {
+    return Chart.InitChart(data, CHART_TYPES.MONTHLY, width, height);
   }
 
-  static YearlyChart(data = []) {
-    return Chart.InitChart(data, CHART_TYPES.YEARLY);
+  static YearlyChart(data = [], width = 680, height = 250) {
+    return Chart.InitChart(data, CHART_TYPES.YEARLY, width, height);
   }
 
-  static InitChart(array = [], chartType) {
-    const [GRAPH_WIDTH, GRAPH_HEIGHT] = [680, 250];
+  static InitChart(array = [], chartType, width = 680, height = 250) {
     const padding = 8;
+    const [GRAPH_WIDTH, GRAPH_HEIGHT] = [
+      width - padding * 2,
+      height - padding * 2,
+    ];
     const [LEFT, RIGHT] = [padding, GRAPH_WIDTH + padding];
     const [TOP, BOTTOM] = [padding, GRAPH_HEIGHT + padding];
 
