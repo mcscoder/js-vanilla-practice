@@ -1,5 +1,11 @@
 import { routePaths } from "@/constants";
-import { Breadcrumb, OrderStatCard, ProductStatCard, SaleGraph } from "..";
+import {
+  Breadcrumb,
+  OrderStatCard,
+  OrdersTable,
+  ProductStatCard,
+  SaleGraph,
+} from "..";
 
 const productStatItems = [
   {
@@ -74,8 +80,15 @@ export class Home {
 
     this.container3.append(this.saleGraph, this.bestSellerStat);
 
+    this.recentOrdersTable = new OrdersTable("Recent Orders");
+
     // add elements to container
-    this.container.append(this.container1, this.container2, this.container3);
+    this.container.append(
+      this.container1,
+      this.container2,
+      this.container3,
+      this.recentOrdersTable.render()
+    );
   }
 
   render() {

@@ -34,3 +34,10 @@ body {
   letter-spacing: 0.25px;
   text-transform: uppercase;
 }
+
+@mixin google-link-style {
+  color: $link;
+  &:hover {
+    text-decoration: underline;
+  }
+}

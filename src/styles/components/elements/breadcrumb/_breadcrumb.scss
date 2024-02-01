@@ -10,7 +10,7 @@
   }
 
   &-attributes {
-    @include font($text-base, $font-normal);
+    @include font($text-base, $font-semibold);
     display: flex;
     gap: 0.25rem;
   }
