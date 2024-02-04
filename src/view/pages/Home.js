@@ -1,10 +1,97 @@
+import { routePaths } from "@/constants";
+import {
+  Breadcrumb,
+  OrderStatCard,
+  OrdersTable,
+  ProductStatCard,
+  SaleGraph,
+} from "..";
+
+const productStatItems = [
+  {
+    imgURL: "https://www.mobafire.com/images/champion/square/yasuo.png",
+    title: "Yasuo hasagi",
+    currentPrice: 124.5,
+    sales: 123,
+  },
+  {
+    imgURL: "https://www.mobafire.com/images/champion/square/yasuo.png",
+    title: "Yasuo hasagi",
+    currentPrice: 124.5,
+    sales: 123,
+  },
+  {
+    imgURL: "https://www.mobafire.com/images/champion/square/yasuo.png",
+    title: "Yasuo hasagi",
+    currentPrice: 124.5,
+    sales: 123,
+  },
+];
+
 export class Home {
   constructor() {
-    this.home = document.createElement("span");
-    this.home.textContent = "home";
+    this.container = document.createElement("div");
+    this.container.className = "dashboard-container";
+
+    // container 1 element. this will cover breadcrumb and calendar
+    this.container1 = document.createElement("div");
+    this.container1.className = "dashboard-container-1";
+
+    // breadcrumb element
+    this.breadcrumb = new Breadcrumb(routePaths.home).render();
+
+    // add elements to container 1
+    this.container1.append(this.breadcrumb);
+
+    // container 2 element. this will cover order's stat elements
+    this.container2 = document.createElement("div");
+    this.container2.className = "dashboard-container-2";
+
+    // order stat
+    this.totalOrder = new OrderStatCard(
+      "Total Orders",
+      126.5,
+      34.7,
+      "Oct 2023"
+    ).render();
+
+    // add elements to container 2. this will cover card order stat
+    this.container2.append(
+      this.totalOrder,
+      new OrderStatCard("Total Orders", 126.5, 34.7, "Oct 2023").render(),
+      new OrderStatCard("Total Orders", 126.5, 34.7, "Oct 2023").render(),
+      new OrderStatCard("Total Orders", 126.5, 34.7, "Oct 2023").render()
+    );
+
+    // container 3 element. this will cover sale graph and best sellers
+    this.container3 = document.createElement("div");
+    this.container3.className = "dashboard-container-3";
+
+    // sale graph element
+    this.saleGraph = new SaleGraph(1).render();
+    this.saleGraph.classList.add("flex-2");
+
+    // best seller stat element
+    this.bestSellerStat = new ProductStatCard(
+      "Best seller",
+      productStatItems
+    ).render();
+    this.bestSellerStat.classList.add("flex-1");
+
+    this.container3.append(this.saleGraph, this.bestSellerStat);
+
+    this.recentOrdersTable = new OrdersTable("Recent Orders");
+
+    // add elements to container
+    this.container.append(
+      this.container1,
+      this.container2,
+      this.container3,
+      this.recentOrdersTable.render()
+    );
   }
 
   render() {
-    return this.home;
+    return this.container;
   }
 }

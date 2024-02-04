@@ -7,6 +7,10 @@
   gap: 0.25rem;
   border: 1px solid transparent;
 
+  * {
+    pointer-events: none;
+  }
+
   &-sm {
     padding: 0.5rem 1rem;
   }

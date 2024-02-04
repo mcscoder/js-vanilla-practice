@@ -1,0 +1,25 @@
+.breadcrumb {
+  &-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  &-title {
+    @include font-heading($text-2xl);
+  }
+
+  &-attributes {
+    @include font($text-base, $font-semibold);
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  &-link {
+    color: revert;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
