@@ -1,0 +1,19 @@
+.all_products {
+  &-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    &-1 {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    // product grid
+    &-2 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+  }
+}
