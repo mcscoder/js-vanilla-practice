@@ -9,3 +9,4 @@ export * from "./Chart";
 export * from "./ProductStatCard";
 export * from "./OrdersTable";
 export * from "./ProductCard";
+export * from "./Pagination";

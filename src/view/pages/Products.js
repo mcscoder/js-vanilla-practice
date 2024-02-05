@@ -2,6 +2,7 @@ import { addCircleIcon, routePaths } from "@/constants";
 import {
   Breadcrumb,
   Button,
+  Pagination,
   ProductCard,
   buttonSizes,
   buttonVariants,
@@ -35,11 +36,15 @@ export class Products {
       this.addNewProductBtn.render()
     );
 
-    // container 2. (product grid). cover all of product card
+    // container 2. cover all of product grid and pagination
     this.container2 = document.createElement("div");
     this.container2.className = "all_products-container-2";
 
-    this.container2.append(
+    // container 2.1. cover product grid
+    this.container2_1 = document.createElement("div");
+    this.container2_1.className = "all_products-container-2-1";
+
+    this.container2_1.append(
       ProductCard.render(
         "https://www.mobafire.com/images/champion/square/yasuo.png",
         "Yasuo hasagi",
@@ -95,6 +100,12 @@ export class Products {
         559
       )
     );
+
+    // pagination element
+    this.pagination = new Pagination(25, 3, () => {}, 2);
+
+    // add elements to container 2
+    this.container2.append(this.container2_1, this.pagination.render());
 
     // add elements to global container
     this.container.append(this.container1, this.container2);
