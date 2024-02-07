@@ -9,7 +9,8 @@ import {
 } from "..";
 
 export class Products {
-  constructor() {
+  constructor({ categoryId }) {
+    console.log(categoryId);
     this.container = document.createElement("div");
     this.container.className = "all_products-container";
 

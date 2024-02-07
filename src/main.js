@@ -1,5 +1,7 @@
 import "./main.scss";
-import { DefaultLayout } from "./view";
+import { Router } from "./routes";
 
 // initialize UI
-document.querySelector("#app").appendChild(new DefaultLayout().render());
+// document.querySelector("#app").appendChild(new DefaultLayout().render());
+// Router.routeToMatchingComponent();
+new Router();

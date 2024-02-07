@@ -45,7 +45,7 @@ export class NavSidebar {
       {
         startIcon: albumsIcon,
         label: "all products",
-        to: routePaths.products,
+        to: `${routePaths.products}/1`,
       },
       {
         startIcon: documentTextIcon,
