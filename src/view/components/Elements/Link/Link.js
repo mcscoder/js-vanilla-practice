@@ -1,4 +1,5 @@
 import { anchorAttributes } from "@/constants";
+import { Router } from "@/routes";
 
 /** USAGE
  * const link = new Link(to);
@@ -20,7 +21,7 @@ export class Link {
   // purpose: prevent page reloading to achieve SPA
   handleLinkClick(event) {
     event.preventDefault();
-    window.history.pushState(null, null, this.link.getAttribute("href"));
+    Router.pushState(this.link.getAttribute("href"));
   }
 
   render() {

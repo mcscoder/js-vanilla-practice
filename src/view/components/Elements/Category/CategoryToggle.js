@@ -47,22 +47,22 @@ export class CategoryToggle {
   initCategoryLinkItems() {
     const categoryLinkItems = [
       {
-        to: "#",
+        to: "1",
         label: "Category 1",
         categoryQuantity: 23,
       },
       {
-        to: "#",
+        to: "2",
         label: "Category 2",
         categoryQuantity: 23,
       },
       {
-        to: "#",
+        to: "3",
         label: "Category 3",
         categoryQuantity: 23,
       },
       {
-        to: "#",
+        to: "4",
         label: "Category 4",
         categoryQuantity: 23,
       },

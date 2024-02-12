@@ -2,18 +2,17 @@ import { anchorAttributes } from "@/constants";
 import { Router } from "@/routes";
 
 export class NavLink {
-  constructor(startIcon, label, to) {
+  constructor(startIcon, label, to, componentPaths = []) {
     this.startIcon = startIcon;
     this.label = label;
     this.to = to;
+    this.componentPaths = componentPaths;
 
     // navigation link
     this.navLink = document.createElement("a");
     this.navLink.setAttribute(anchorAttributes.navLink, "");
     this.navLink.href = this.to;
-    this.navLink.className = this.getNavLinkClassName(
-      this.navLink.getAttribute("href")
-    );
+    this.navLink.className = this.getNavLinkClassName();
 
     // navigation link icon
     this.navLinkIcon = document.createElement("span");
@@ -39,22 +38,16 @@ export class NavLink {
 
   // return the class name for navigation link based on URL pathname
   // the link is active if its pathname matches the current URL pathname
-  getNavLinkClassName(navLinkPathname) {
-    const currentPath = window.location.pathname;
-    return `nav-link ${Router.matchPath(navLinkPathname, currentPath, false) ? "nav-link-active" : ""}`;
+  getNavLinkClassName() {
+    const isActive = this.componentPaths.find((path) => {
+      return Router.matchPath(location.pathname, path, false);
+    });
+    return `nav-link ${isActive ? "nav-link-active" : ""}`;
   }
 
   // update the class name for navigation link based on URL pathname
   updateNavLinkClassName() {
-    const navLinks = document.querySelectorAll(".nav-link");
-    navLinks.forEach((navLink) => {
-      navLink.className = this.getNavLinkClassName(
-        navLink.getAttribute("href")
-      );
-    });
-    this.navLink.className = this.getNavLinkClassName(
-      this.navLink.getAttribute("href")
-    );
+    this.navLink.className = this.getNavLinkClassName();
   }
 
   // handle navigation link click

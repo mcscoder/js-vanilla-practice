@@ -13,33 +13,43 @@ export class Router {
 
   static routeToMatchingComponent() {
     const app = document.querySelector("#app");
+    const { childNode } = Router.findRoute();
+
+    if (childNode) {
+      return app.replaceChildren(childNode);
+    }
+
+    return app.replaceChildren("Not Found");
+  }
+
+  static findRoute() {
+    let [childNode, componentPath, params] = [null, null, null];
     const urlPath = window.location.pathname;
     for (const route1 of routes) {
       if (route1.children) {
         for (const route2 of route1.children) {
-          const componentPath = `${route1.path}${route2.path}`;
+          componentPath = `${route1.path}${route2.path}`;
           if (Router.matchPath(urlPath, componentPath)) {
-            const params = Router.extractParams(urlPath, componentPath);
-            let childNode;
+            params = Router.extractParams(urlPath, componentPath);
             if (Object.keys(params).length !== 0) {
-              childNode = new route2.component(params);
+              childNode = new route2.component();
             } else {
               childNode = new route2.component();
             }
-            return app.replaceChildren(
-              route1.component.render(childNode.render())
-            );
+            childNode = route1.component.render(childNode.render());
+            return { childNode, componentPath, params };
           }
         }
       } else {
-        const componentPath = route1.path;
+        componentPath = route1.path;
         if (Router.matchPath(urlPath, componentPath)) {
-          const childNode = new route1.component();
-          return app.replaceChildren(childNode.render());
+          childNode = new route1.component().render();
+          params = Router.extractParams(urlPath, componentPath);
+          return { childNode, componentPath, params };
         }
       }
     }
-    return app.replaceChildren("Not Found");
+    return { childNode, componentPath, params };
   }
 
   /**
@@ -71,17 +81,17 @@ export class Router {
 
   /**
    * @param {string} url
-   * @param {string} routePath
+   * @param {string} path
    */
-  static extractParams(path, routePath) {
-    const pathSegments = path.split("/");
-    const routeSegments = routePath.split("/");
+  static extractParams(url, path) {
+    const urlSegments = url.split("/");
+    const routeSegments = path.split("/");
     const params = {};
 
     for (let i = 0; i < routeSegments.length; i++) {
       if (routeSegments[i].startsWith(":")) {
         const paramKey = routeSegments[i].slice(1);
-        params[paramKey] = pathSegments[i];
+        params[paramKey] = urlSegments[i];
       }
     }
 
