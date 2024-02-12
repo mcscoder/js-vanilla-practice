@@ -5,31 +5,33 @@ import {
   threeDotsHorizontalIcon,
 } from "@/constants";
 import { Button, buttonSizes, buttonVariants } from "..";
+import { Router } from "@/routes";
 
 export class Pagination {
   /**
    * @param {number} total - The total number of items to be paginated.
    * @param {number} limit - The number of items to be displayed per page.
    * @param {function} [navigateTo = (page) => {}] - Callback function to handle page navigation.
-   * @param {number} [page = 0] - The initial page to be displayed (default is 0).
    */
   constructor(
     total,
     limit,
     navigateTo = (page) => {
       page;
-    },
-    page = 0
+    }
   ) {
     this.total = total;
     this.limit = limit;
     this.navigateTo = navigateTo;
 
-    /**
-     * The current page index
-     * @type {number}
-     */
-    this.currentPageIndex = page;
+    this.currentPageIndex = Number(
+      Router.getSearchParam(paginationURLSearchParamKey)
+    );
+    if (!this.currentPageIndex) {
+      this.currentPageIndex = 0;
+      Router.setSearchParam(paginationURLSearchParamKey, 0);
+    }
+    console.log(this.currentPageIndex);
 
     /**
      * Calculates the total number of pages based on the total number of items and the limit per page.
@@ -111,7 +113,7 @@ export class Pagination {
       buttonVariants.primary.outlined,
       buttonSizes.sm,
       "",
-      this.onClickNextButton.call(this)
+      this.onClickNextButton.bind(this)
     );
   }
 
@@ -156,22 +158,13 @@ export class Pagination {
 
   /** @private */
   onClickNavigationButton(pageIndex) {
+    if (pageIndex > this.totalPage - 1) {
+      return;
+    }
+    this.nextButton.button.disabled = pageIndex === this.totalPage - 1;
     this.currentPageIndex = pageIndex;
 
-    // Get the current URL
-    let url = new URL(window.location);
-
-    // Create a new URLSearchParams object based on the current URL's search parameters
-    let searchParams = new URLSearchParams(url.search);
-
-    // Set a search parameter
-    searchParams.set(paginationURLSearchParamKey, pageIndex);
-
-    // Update the URL's search property with the modified search parameters
-    url.search = searchParams.toString();
-
-    // Replace the current URL with the updated one
-    window.history.pushState(null, null, url);
+    Router.setSearchParam(paginationURLSearchParamKey, pageIndex);
 
     // callback
     this.navigateTo(this.currentPageIndex);
@@ -192,7 +185,9 @@ export class Pagination {
   }
 
   /** @private */
-  onClickNextButton() {}
+  onClickNextButton() {
+    this.onClickNavigationButton(this.currentPageIndex + 1);
+  }
 
   render() {
     return this.container;

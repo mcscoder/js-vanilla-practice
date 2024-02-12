@@ -103,7 +103,7 @@ export class Products {
     );
 
     // pagination element
-    this.pagination = new Pagination(25, 3, () => {}, 2);
+    this.pagination = new Pagination(25, 3, () => {});
 
     // add elements to container 2
     this.container2.append(this.container2_1, this.pagination.render());

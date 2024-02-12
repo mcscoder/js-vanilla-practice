@@ -102,4 +102,32 @@ export class Router {
     window.history.pushState(null, null, url);
     window.dispatchEvent(new CustomEvent("urlChanged"));
   }
+
+  static setSearchParam(key, value) {
+    // Get the current URL
+    let url = new URL(window.location);
+
+    // Create a new URLSearchParams object based on the current URL's search parameters
+    let searchParams = new URLSearchParams(url.search);
+
+    // Set a search parameter
+    searchParams.set(key, value);
+
+    // Update the URL's search property with the modified search parameters
+    url.search = searchParams.toString();
+
+    // Replace the current URL with the updated one
+    window.history.pushState(null, null, url);
+  }
+
+  static getSearchParam(key) {
+    // Get the current URL
+    let url = new URL(window.location);
+
+    // Create a new URLSearchParams object based on the current URL's search parameters
+    let searchParams = new URLSearchParams(url.search);
+
+    // Set a search parameter
+    return searchParams.get(key);
+  }
 }
