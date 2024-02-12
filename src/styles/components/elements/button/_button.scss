@@ -11,6 +11,10 @@
     pointer-events: none;
   }
 
+  &:disabled {
+    opacity: 0.4;
+  }
+
   &-sm {
     padding: 0.5rem 1rem;
   }

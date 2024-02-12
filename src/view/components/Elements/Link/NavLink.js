@@ -1,18 +1,18 @@
 import { anchorAttributes } from "@/constants";
+import { Router } from "@/routes";
 
 export class NavLink {
-  constructor(startIcon, label, to) {
+  constructor(startIcon, label, to, componentPaths = []) {
     this.startIcon = startIcon;
     this.label = label;
     this.to = to;
+    this.componentPaths = componentPaths;
 
     // navigation link
     this.navLink = document.createElement("a");
     this.navLink.setAttribute(anchorAttributes.navLink, "");
     this.navLink.href = this.to;
-    this.navLink.className = this.getNavLinkClassName(
-      this.navLink.getAttribute("href")
-    );
+    this.navLink.className = this.getNavLinkClassName();
 
     // navigation link icon
     this.navLinkIcon = document.createElement("span");
@@ -29,50 +29,33 @@ export class NavLink {
     // handle click event to prevent page reloading
     this.navLink.addEventListener("click", this.handleNavLinkClick.bind(this));
 
-    // handle active navigation link when forward or backward
-    window.addEventListener("popstate", this.handlePopState.bind(this));
+    // handle active navigation link
+    window.addEventListener(
+      "urlChanged",
+      this.updateNavLinkClassName.bind(this)
+    );
   }
 
   // return the class name for navigation link based on URL pathname
   // the link is active if its pathname matches the current URL pathname
-  getNavLinkClassName(navLinkPathname) {
-    const currentPath = window.location.pathname;
-    return `nav-link ${navLinkPathname === currentPath ? "nav-link-active" : ""}`;
+  getNavLinkClassName() {
+    const isActive = this.componentPaths.find((path) => {
+      return Router.matchPath(location.pathname, path, false);
+    });
+    return `nav-link ${isActive ? "nav-link-active" : ""}`;
   }
 
   // update the class name for navigation link based on URL pathname
   updateNavLinkClassName() {
-    const navLinks = document.querySelectorAll(".nav-link");
-    navLinks.forEach((navLink) => {
-      navLink.className = this.getNavLinkClassName(
-        navLink.getAttribute("href")
-      );
-    });
+    this.navLink.className = this.getNavLinkClassName();
   }
 
   // handle navigation link click
   // purpose:
   // 1. prevent page reloading to achieve SPA
-  // 2. handle active navigation link
   handleNavLinkClick(event) {
     event.preventDefault();
-    // remove `bind(this)` in `this.navLink.addEventListener("click", this.handleNavLinkClick.bind(this));`
-    // and uncomment line below to see the effect
-    // console.log(this.getAttribute("href")); // uncomment this line
-    // if `bind(this)` is present, this will refer to its class
-    // otherwise, in this case it will refer to the event dom
-    window.history.pushState(null, null, this.navLink.getAttribute("href"));
-    this.updateNavLinkClassName();
-  }
-
-  // handle window forward or backward
-  // purpose:
-  // 1. prevent page reloading to achieve SPA
-  // 2. handle active navigation link
-  handlePopState() {
-    this.navLink.className = this.getNavLinkClassName(
-      this.navLink.getAttribute("href")
-    );
+    Router.pushState(this.navLink.getAttribute("href"));
   }
 
   render() {

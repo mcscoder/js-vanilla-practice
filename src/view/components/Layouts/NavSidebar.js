@@ -3,7 +3,6 @@ import {
   dashboardIcon,
   documentTextIcon,
   logoIcon,
-  routePaths,
 } from "@/constants";
 import { CategoryToggle, NavLink } from "..";
 
@@ -40,23 +39,31 @@ export class NavSidebar {
       {
         startIcon: dashboardIcon,
         label: "dashboard",
-        to: routePaths.home,
+        to: "/",
+        componentPaths: ["/"],
       },
       {
         startIcon: albumsIcon,
         label: "all products",
-        to: routePaths.products,
+        to: `/products`,
+        componentPaths: ["/products", "/products/:categoryId"],
       },
       {
         startIcon: documentTextIcon,
         label: "order list",
-        to: routePaths.orders,
+        to: "/orders",
+        componentPaths: ["/orders"],
       },
     ];
 
     // add navigation link items to the container
     navigationLinkItems.forEach((item) => {
-      const navLink = new NavLink(item.startIcon, item.label, item.to);
+      const navLink = new NavLink(
+        item.startIcon,
+        item.label,
+        item.to,
+        item.componentPaths
+      );
       this.navLinkContainer.append(navLink.render());
     });
   }

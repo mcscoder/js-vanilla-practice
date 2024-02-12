@@ -1,41 +1,11 @@
-import { anchorAttributes } from "@/constants";
-import { Router } from "@/routes";
-
 export class Main {
   constructor() {
     // main content element
-    this.main = document.createElement("main");
-    this.main.id = "main";
-
-    // main content initialization
-    this.router = new Router();
-    this.initMainContent();
-
-    // event listeners for link clicks and window navigation
-    document.addEventListener("click", this.handleLinkClick.bind(this));
-    window.addEventListener("popstate", this.handlePopState.bind(this));
-  }
-
-  // initializes the main content based on the current URL path
-  initMainContent() {
-    const currentPath = window.location.pathname;
-    this.mainContent = this.router.getRouteComponent(currentPath).render();
-    this.main.replaceChildren(this.mainContent);
-  }
-
-  // handles link clicks to reinitialize the main content
-  handleLinkClick(event) {
-    if (event.target.hasAttribute(anchorAttributes.navLink)) {
-      this.initMainContent();
-    }
-  }
-
-  // handles window forward or backward navigation to reinitialize the main content
-  handlePopState() {
-    this.initMainContent();
+    this.container = document.createElement("main");
+    this.container.id = "main";
   }
 
   render() {
-    return this.main;
+    return this.container;
   }
 }
