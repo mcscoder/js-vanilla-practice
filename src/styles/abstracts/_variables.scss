@@ -5,6 +5,13 @@ $gray: #e7e7e3;
 $link: #1a0dab;
 $yellow: #ffa52f;
 
+// shadow
+$box-shadow: 0 0 5px 0
+  rgba(
+    $color: #000000,
+    $alpha: 0.1,
+  );
+
 // Font
 $font-primary: "Open Sans", sans-serif;
 $font-secondary: "Rubik", sans-serif;
