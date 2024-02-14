@@ -103,48 +103,49 @@ export class Router {
     window.dispatchEvent(new CustomEvent("urlChanged"));
   }
 
+  /**
+   * @callback ActionCallback
+   * @param {URLSearchParams} searchParams - The URLSearchParams object representing the search parameters.
+   * @returns {void}
+   */
+
+  /**
+   * @param {ActionCallback} [action]
+   */
+  static urlSearchParams(
+    action = (searchParams) => {
+      searchParams;
+    }
+  ) {
+    const url = new URL(window.location);
+
+    const searchParams = new URLSearchParams(url.search);
+    action(searchParams);
+
+    if (url.search !== searchParams.toString()) {
+      console.log("something");
+      url.search = searchParams.toString();
+      window.history.pushState(null, null, url);
+    }
+  }
+
   static setSearchParam(key, value) {
-    // Get the current URL
-    let url = new URL(window.location);
-
-    // Create a new URLSearchParams object based on the current URL's search parameters
-    let searchParams = new URLSearchParams(url.search);
-
-    // Set a search parameter
-    searchParams.set(key, value);
-
-    // Update the URL's search property with the modified search parameters
-    url.search = searchParams.toString();
-
-    // Replace the current URL with the updated one
-    window.history.pushState(null, null, url);
+    Router.urlSearchParams((searchParams) => {
+      searchParams.set(key, value);
+    });
   }
 
   static getSearchParam(key) {
-    // Get the current URL
-    let url = new URL(window.location);
-
-    // Create a new URLSearchParams object based on the current URL's search parameters
-    let searchParams = new URLSearchParams(url.search);
-
-    // Set a search parameter
-    return searchParams.get(key);
+    let searchParamValue;
+    Router.urlSearchParams((searchParams) => {
+      searchParamValue = searchParams.get(key);
+    });
+    return searchParamValue;
   }
 
   static deleteSearchParam(key) {
-    // Get the current URL
-    let url = new URL(window.location);
-
-    // Create a new URLSearchParams object based on the current URL's search parameters
-    let searchParams = new URLSearchParams(url.search);
-
-    // Set a search parameter
-    searchParams.delete(key);
-
-    // Update the URL's search property with the modified search parameters
-    url.search = searchParams.toString();
-
-    // Replace the current URL with the updated one
-    window.history.pushState(null, null, url);
+    Router.urlSearchParams((searchParams) => {
+      searchParams.delete(key);
+    });
   }
 }
