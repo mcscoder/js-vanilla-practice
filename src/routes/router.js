@@ -130,4 +130,21 @@ export class Router {
     // Set a search parameter
     return searchParams.get(key);
   }
+
+  static deleteSearchParam(key) {
+    // Get the current URL
+    let url = new URL(window.location);
+
+    // Create a new URLSearchParams object based on the current URL's search parameters
+    let searchParams = new URLSearchParams(url.search);
+
+    // Set a search parameter
+    searchParams.delete(key);
+
+    // Update the URL's search property with the modified search parameters
+    url.search = searchParams.toString();
+
+    // Replace the current URL with the updated one
+    window.history.pushState(null, null, url);
+  }
 }
