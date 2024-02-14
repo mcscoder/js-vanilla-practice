@@ -1,0 +1,61 @@
+.select {
+  &-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: white;
+    border: 1px solid rgba($color: #000000, $alpha: 0.1);
+    border-radius: 0.5rem;
+    width: 220px;
+    box-shadow: $box-shadow;
+    @include font($text-sm, $font-semibold);
+  }
+
+  &-icon {
+    display: flex;
+    transition-duration: 300ms;
+
+    &-expanded {
+      transform: rotate(180deg);
+    }
+  }
+
+  &-option {
+    &-container {
+      position: absolute;
+      top: 110%;
+      left: 0;
+      right: 0;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding: 1rem;
+      border: 1px solid rgba($color: #000000, $alpha: 0.1);
+      border-radius: 0.5rem;
+      box-shadow: $box-shadow;
+    }
+
+    &-button {
+      padding: 1rem;
+      border-radius: 0.5rem;
+      transition-duration: 300ms;
+      @include font($text-sm, $font-medium);
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.1) !important;
+      }
+
+      &-current {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    &-container:hover &-button {
+      background-color: transparent;
+    }
+  }
+}
