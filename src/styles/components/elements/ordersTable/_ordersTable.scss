@@ -92,15 +92,19 @@
               border-radius: 999px;
 
               &-0 {
-                background-color: $blue;
+                background-color: $bg-delivered;
               }
 
               &-1 {
-                background-color: orange;
+                background-color: $bg-canceled;
               }
 
               &-2 {
-                background-color: green;
+                background-color: $bg-transport;
+              }
+
+              &-3 {
+                background-color: $bg-pending;
               }
             }
           }

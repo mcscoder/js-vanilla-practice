@@ -1,5 +1,10 @@
-// 0: Delivered | 1: Canceled | 2: Transport
-export const deliveryStatusTypes = ["Delivered", "Canceled", "Transport"];
+// 0: Delivered | 1: Canceled | 2: Transport | 3: Pending
+export const deliveryStatusTypes = [
+  "Delivered",
+  "Canceled",
+  "Transport",
+  "Pending",
+];
 
 export class DeliveryStatus {
   static render(status) {
