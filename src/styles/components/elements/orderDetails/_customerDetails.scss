@@ -93,5 +93,9 @@
       align-items: center;
       gap: 0.5rem;
     }
+
+    &-input_container {
+      grid-column: 2 span;
+    }
   }
 }

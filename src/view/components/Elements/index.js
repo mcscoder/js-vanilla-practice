@@ -12,3 +12,4 @@ export * from "./ProductCard";
 export * from "./Pagination";
 export * from "./OptionsBox";
 export * from "./OrderDetails";
+export * from "./Input";

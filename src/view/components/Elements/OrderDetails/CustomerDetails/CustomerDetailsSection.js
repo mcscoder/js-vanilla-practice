@@ -2,6 +2,7 @@ import { bagHandleIcon, printerIcon, userIcon } from "@/constants";
 import {
   Button,
   CustomerInformation,
+  InputContainer,
   OptionsBox,
   PaymentMethod,
   Tag,
@@ -136,12 +137,25 @@ export class CustomerDetailsSection {
     // payment info
     this.paymentInfo = new PaymentMethod(0, "5555500830030331", "MAI CONG SON");
 
+    // note text for customer
+    this.noteForCustomer = new InputContainer(
+      "textarea",
+      "Note",
+      "noteForCustomer",
+      "Type some notes",
+      "MAX_HEIGHT"
+    );
+    this.noteForCustomer.container.classList.add(
+      "customer_details-information-input_container"
+    );
+
     // add elements to container 2.2
     this.container2_2.append(
       this.customerInf.render(),
       this.orderInfo.render(),
       this.deliveryInfo.render(),
-      this.paymentInfo.render()
+      this.paymentInfo.render(),
+      this.noteForCustomer.render()
     );
 
     // add elements to container 2
