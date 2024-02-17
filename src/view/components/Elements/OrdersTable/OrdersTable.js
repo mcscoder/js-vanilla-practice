@@ -1,14 +1,9 @@
-import { threeDotsVerticalIcon } from "@/constants";
-import {
-  Button,
-  TableBody,
-  TableHeader,
-  buttonSizes,
-  buttonVariants,
-} from "..";
+import { CustomerName, DeliveryStatus, Link, ListTable } from "..";
 import { ContentSection } from "../..";
+import { formatINR } from "@/utils";
 
-export const tableHeadingItems = [
+/** @type {string[]} */
+export const headerTextItems = [
   "Product", // iPhone 15 vjp pro max xs smartest
   "Order ID", // #1234
   "Date", // Nov 8th,2023
@@ -105,52 +100,72 @@ export const tableBodyItems = [
 ];
 
 export class OrdersTable {
+  /**
+   * @param {string} title
+   */
   constructor(title) {
-    // container
-    this.container = document.createElement("div");
-    this.container.className = "order_table-container";
+    // leading class name: order_table
 
-    // container 1. cover title and right side three dots vertical button
-    this.container1 = document.createElement("div");
-    this.container1.className = "order_table-container-1";
+    /** @type {(string|HTMLElement)[][]} */
+    this.bodyItems = [];
 
-    // title element
-    this.titleElement = document.createElement("h3");
-    this.titleElement.className = "order_table-title";
-    this.titleElement.textContent = title;
+    tableBodyItems.forEach(
+      ({ product, orderId, date, customerName, status, amount }) => {
+        // 1. product name link
+        const productLink = new Link("#");
+        productLink.link.textContent = product;
 
-    // right side three dots button
-    this.optionButton = new Button(
-      null,
-      threeDotsVerticalIcon,
-      null,
-      buttonVariants.iconOnly,
-      buttonSizes,
-      "order_table-option_button",
-      () => {}
+        // 2. order id link
+        const orderIdLink = new Link("#");
+        orderIdLink.link.text = orderId;
+
+        // 3. date
+        // date. temp code for designing UI
+        // will be refactor later because date now is not string anymore
+        // date will be a number or any date format depends on database format
+        // that should be convert to expected format later
+        const dateText = date;
+
+        // 4. customer name element
+        const customerNameElement = CustomerName.render(
+          customerName.imgURL,
+          customerName.name
+        );
+
+        // 5. delivery status element
+        const deliveryStatusElement = DeliveryStatus.render(status);
+
+        // 6. amount
+        const amountText = formatINR(amount);
+
+        this.bodyItems.push([
+          productLink.render(),
+          orderIdLink.render(),
+          dateText,
+          customerNameElement,
+          deliveryStatusElement,
+          amountText,
+        ]);
+      }
     );
 
-    // add elements to container 1
-    this.container1.append(this.titleElement, this.optionButton.render());
+    // list table element
+    this.ordersTable = new ListTable(title, headerTextItems, this.bodyItems);
+    this.ordersTable.tableHeader.addColumnClassName(
+      0,
+      "order_table-product_name"
+    );
 
-    // table element
-    this.table = document.createElement("table");
-    this.table.className = "order_table-table";
+    this.ordersTable.tableBody.addColumnClassName(
+      0,
+      "order_table-link",
+      "order_table-product_name"
+    );
 
-    // table header group
-    this.tableHeader = TableHeader.render(tableHeadingItems);
-
-    // table body group
-    this.tableBody = TableBody.render(tableBodyItems);
-
-    // add elements to table element
-    this.table.append(this.tableHeader, this.tableBody);
-
-    // add elements to global container
-    this.container.append(this.container1, this.table);
+    this.ordersTable.tableBody.addColumnClassName(1, "order_table-link");
   }
 
   render() {
-    return new ContentSection(this.container).render();
+    return new ContentSection(this.ordersTable.render()).render();
   }
 }
