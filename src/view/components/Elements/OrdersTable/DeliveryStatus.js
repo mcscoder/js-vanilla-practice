@@ -10,11 +10,11 @@ export class DeliveryStatus {
   static render(status) {
     // container element
     const container = document.createElement("div");
-    container.className = "order_table-table-body-row-data-4-container";
+    container.className = "order_table-delivery_status-container";
 
     // dot element
     const dot = document.createElement("div");
-    dot.className = `order_table-table-body-row-data-4-dot order_table-table-body-row-data-4-dot-${status}`;
+    dot.className = `order_table-delivery_status-dot order_table-delivery_status-dot-${status}`;
 
     // delivery status
     const statusText = document.createElement("p");
@@ -26,3 +26,36 @@ export class DeliveryStatus {
     return container;
   }
 }
+
+/*
+          // 4: delivery status
+          &-4 {
+            &-container {
+              display: inline-flex;
+              align-items: center;
+              gap: 0.5rem;
+            }
+
+            &-dot {
+              width: 0.5rem;
+              height: 0.5rem;
+              border-radius: 999px;
+
+              &-0 {
+                background-color: $bg-delivered;
+              }
+
+              &-1 {
+                background-color: $bg-canceled;
+              }
+
+              &-2 {
+                background-color: $bg-transport;
+              }
+
+              &-3 {
+                background-color: $bg-pending;
+              }
+            }
+          }
+*/
