@@ -2,12 +2,25 @@ import { chevronDownIcon } from "@/constants";
 
 export class OptionsBox {
   /**
+   * @callback onChangeCallBack
+   * @param {number} optionIndex - The selected index.
+   * @return {void}
+   */
+
+  /**
    * @param {string} defaultLabel - The default label to display when no option is selected.
    * @param {number} defaultIndex - The index of the default option to be selected initially.
    * @param {string[]} [options=[]] - An array of options to be displayed in the dropdown.
-   * @param {Function} [onChange=() => {}] - A callback function triggered when an option is selected.
+   * @param {onChangeCallBack} [onChange] - A callback function triggered when an option is selected.
    */
-  constructor(defaultLabel, defaultIndex, options = [], onChange = () => {}) {
+  constructor(
+    defaultLabel,
+    defaultIndex,
+    options = [],
+    onChange = (optionIndex) => {
+      optionIndex;
+    }
+  ) {
     this.defaultLabel = defaultLabel; // The default label displayed when no option is selected
     this.currentIndex = defaultIndex; // The index of the currently selected option
     this.options = options; // Array of options to be displayed

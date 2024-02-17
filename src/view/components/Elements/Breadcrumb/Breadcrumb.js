@@ -1,4 +1,4 @@
-import { breadcrumbs } from "@/constants";
+import { breadcrumbs, getPath } from "@/constants";
 import { Link } from "..";
 
 /** USAGE:
@@ -16,27 +16,35 @@ export class Breadcrumb {
     // breadcrumb title
     this.title = document.createElement("h2");
     this.title.className = "breadcrumb-title";
-    this.title.innerText = breadcrumbs[routePaths.slice(-1)];
+    this.title.textContent = breadcrumbs[routePaths.slice(-1)];
 
     // breadcrumb attributes
     this.breadcrumb = document.createElement("div");
     this.breadcrumb.className = "breadcrumb-attributes";
-    this.breadcrumb.append((document.createElement("p").innerText = "Home"));
+    this.breadcrumb.textContent = "Home";
 
-    // breadcrumbs separator
-    this.separator = document.createElement("span");
-    this.separator.innerText = ">";
-
-    // add breadcrumb attributes
-    this.routePaths.forEach((path) => {
-      const link = new Link(path).render();
-      link.innerText = breadcrumbs[path];
-      link.className = "breadcrumb-link";
-      this.breadcrumb.append(this.separator, link);
-    });
+    this.initBreadcrumbLink();
 
     // add breadcrumb to container
     this.container.append(this.title, this.breadcrumb);
+  }
+
+  /** @private */
+  initBreadcrumbLink() {
+    // add breadcrumb attributes
+    this.routePaths.forEach((path) => {
+      const link = new Link(getPath[path]()).render();
+      link.textContent = breadcrumbs[path];
+      link.className = "breadcrumb-link";
+      this.breadcrumb.append(this.getSeparator(), link);
+    });
+  }
+
+  getSeparator() {
+    // breadcrumbs separator
+    const separator = document.createElement("span");
+    separator.textContent = ">";
+    return separator;
   }
 
   render() {
