@@ -1,5 +1,5 @@
 import { routePaths } from "@/constants";
-import { Breadcrumb, CustomerDetailsSection } from "..";
+import { Breadcrumb, CustomerDetailsSection, OrderedProducts } from "..";
 
 export class OrderDetails {
   constructor() {
@@ -22,8 +22,15 @@ export class OrderDetails {
     // customer information details section
     this.userDetailsSection = new CustomerDetailsSection(6743, 3);
 
+    // ordered products
+    this.orderedProducts = new OrderedProducts();
+
     // add elements to global container
-    this.container.append(this.container1, this.userDetailsSection.render());
+    this.container.append(
+      this.container1,
+      this.userDetailsSection.render(),
+      this.orderedProducts.render()
+    );
   }
   render() {
     return this.container;
