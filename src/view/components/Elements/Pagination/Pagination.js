@@ -29,6 +29,7 @@ export class Pagination {
     );
     if (!this.currentPageIndex) {
       this.currentPageIndex = 0;
+      Router.setSearchParam(paginationURLSearchParamKey, 0);
     }
     console.log(this.currentPageIndex);
 
@@ -163,11 +164,7 @@ export class Pagination {
     this.nextButton.button.disabled = pageIndex === this.totalPage - 1;
     this.currentPageIndex = pageIndex;
 
-    if (pageIndex === 0) {
-      Router.deleteSearchParam(paginationURLSearchParamKey);
-    } else {
-      Router.setSearchParam(paginationURLSearchParamKey, pageIndex);
-    }
+    Router.setSearchParam(paginationURLSearchParamKey, pageIndex);
 
     // callback
     this.navigateTo(this.currentPageIndex);

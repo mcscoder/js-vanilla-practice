@@ -1,4 +1,4 @@
-import { DefaultLayout, Home, OrderDetails, Orders, Products } from "@/view";
+import { DefaultLayout, Home, Orders, Products } from "@/view";
 
 export const routes = [
   {
@@ -8,8 +8,8 @@ export const routes = [
       { path: "/", component: Home },
       { path: "/products", component: Products },
       { path: "/products/:categoryId", component: Products },
+      { path: "/orders/:orderId", component: Orders },
       { path: "/orders", component: Orders },
-      { path: "/order-details/:orderId", component: OrderDetails },
     ],
   },
 ];
