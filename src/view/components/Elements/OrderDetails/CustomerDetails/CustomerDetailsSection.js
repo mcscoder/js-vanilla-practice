@@ -141,7 +141,6 @@ export class CustomerDetailsSection {
     this.noteForCustomer = new InputContainer(
       "textarea",
       "Note",
-      "noteForCustomer",
       "Type some notes",
       "MAX_HEIGHT"
     );
