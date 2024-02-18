@@ -1,9 +1,10 @@
-import { TextArea } from ".";
+import { Input, TextArea } from ".";
 import { OptionsBox } from "../OptionsBox";
 
 export const inputTypes = {
   textarea: TextArea,
   selectBox: OptionsBox,
+  input: Input,
 };
 
 /**
