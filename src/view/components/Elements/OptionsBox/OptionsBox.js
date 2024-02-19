@@ -111,7 +111,7 @@ export class OptionsBox {
    * Renders the option buttons, highlighting the selected option.
    */
   renderOptions() {
-    const selectedButtonClassName = "select-options-button-current";
+    const selectedButtonClassName = "select-option-button-current";
     this.optionNodes.forEach((optionNode, index) => {
       if (index === this.currentIndex) {
         optionNode.classList.add(selectedButtonClassName);

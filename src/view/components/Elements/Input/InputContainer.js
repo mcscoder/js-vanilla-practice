@@ -14,17 +14,21 @@ export class InputContainer {
   /**
    * Creates an instance of InputContainer.
    * @param {keyof typeof inputTypes} inputType - The type of input.
+   * @param {string} containerClassName - The class name of the container.
    * @param {string} labelText - The text of label.
    * @param {...any} params - Additional parameters specific to the input type.
    */
-  constructor(inputType, labelText, ...params) {
+  constructor(inputType, labelText, containerClassName, ...params) {
     // leading class name: input-container
 
     this.id = labelText.replace(" ", "");
+    console.log(containerClassName);
 
     // Container element covering label and input
     this.container = document.createElement("div");
     this.container.className = "input-container";
+    containerClassName &&
+      this.container.classList.add(containerClassName.split(" "));
 
     // Label element
     this.label = document.createElement("label");
