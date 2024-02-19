@@ -1,27 +1,37 @@
 import { routePaths } from "@/constants";
-import { Breadcrumb } from "..";
+import { Breadcrumb, ContentSection, ProductDetailsForm } from "..";
+import { createContainer } from "@/utils";
 
 export class ProductDetails {
   constructor() {
-    // container element
-    this.container = document.createElement("div");
-    this.container.className = "product_details-container";
+    // leading class name: product_details
 
-    // container 1 element covering breadcrumb
-    this.container1 = document.createElement("div");
-    this.container1.className = "product_details-container-1";
-
-    // breadcrumb element
+    // container 1 children --------------------
+    // 1. breadcrumb element
     this.breadcrumb = new Breadcrumb(
       routePaths.products,
       routePaths.productDetails
     );
 
-    // add breadcrumb to container 1
-    this.container1.append(this.breadcrumb.render());
+    // container 1
+    this.container1 = createContainer(
+      "product_details-container-1",
+      this.breadcrumb.render()
+    );
 
-    // add elements to global container
-    this.container.append(this.container1);
+    // container 2 children --------------------
+    // 1. product details form
+    this.productDetailsForm = new ProductDetailsForm();
+
+    // container 2
+    this.container2 = new ContentSection(this.productDetailsForm.render());
+
+    // global container
+    this.container = createContainer(
+      "product_details-container",
+      this.container1,
+      this.container2.render()
+    );
   }
   render() {
     return this.container;

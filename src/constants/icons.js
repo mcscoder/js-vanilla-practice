@@ -17,6 +17,8 @@ import chevronDown from "@/assets/icons/chevronDown.svg";
 import chevronUp from "@/assets/icons/chevronUp.svg";
 import user from "@/assets/icons/user.svg";
 import masterCard from "@/assets/icons/masterCard.svg";
+import picture from "@/assets/icons/picture.svg";
+import checkCircle from "@/assets/icons/checkCircle.svg";
 
 const loadSvg = async (filePath) => {
   try {
@@ -48,6 +50,8 @@ export const [
   arrowDownIcon,
   userIcon,
   masterCardIcon,
+  pictureIcon,
+  checkCircleIcon,
 ] = await Promise.all([
   loadSvg(albums),
   loadSvg(dashboard),
@@ -68,4 +72,6 @@ export const [
   loadSvg(arrowDown),
   loadSvg(user),
   loadSvg(masterCard),
+  loadSvg(picture),
+  loadSvg(checkCircle),
 ]);
