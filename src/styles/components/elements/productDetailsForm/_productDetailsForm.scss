@@ -67,6 +67,11 @@
         border: 2px dashed rgba($color: $dark-gray, $alpha: 0.5);
         border-radius: 0.5rem;
         padding: 1rem;
+        cursor: pointer;
+
+        * {
+          pointer-events: none;
+        }
       }
 
       &-2 {

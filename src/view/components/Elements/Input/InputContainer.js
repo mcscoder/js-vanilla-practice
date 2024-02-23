@@ -22,7 +22,6 @@ export class InputContainer {
     // leading class name: input-container
 
     this.id = labelText.replace(" ", "");
-    console.log(containerClassName);
 
     // Container element covering label and input
     this.container = document.createElement("div");
