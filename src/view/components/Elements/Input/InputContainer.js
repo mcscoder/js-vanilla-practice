@@ -1,5 +1,6 @@
-import { Input, TextArea } from ".";
 import { OptionsBox } from "../OptionsBox";
+import { Input } from "./Input";
+import { TextArea } from "./TextArea";
 
 export const inputTypes = {
   textarea: TextArea,
