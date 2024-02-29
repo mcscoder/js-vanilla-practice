@@ -12,33 +12,60 @@ import {
   tagVariants,
 } from "../..";
 import { ContentSection } from "../../..";
+import { Order } from "@/model/dto"; // eslint-disable-line no-unused-vars
 
-/** @type {Array<{ title: string, description: string }>} */
-export const customerDescription = [
-  { title: "Full Name", description: "Shristi Singh" },
-  { title: "Email", description: "shristi@gmail.com" },
-  { title: "Phone", description: "+91 904 231 1212" },
-];
+/**
+ *
+ * @param {string} fullName
+ * @param {string} email
+ * @param {string} phone
+ * @returns {Array<{ title: string, description: string }>}
+ */
+export const customerInfo = (fullName, email, phone) => {
+  return [
+    { title: "Full Name", description: fullName },
+    { title: "Email", description: email },
+    { title: "Phone", description: phone },
+  ];
+};
 
-/** @type {Array<{ title: string, description: string }>} */
-export const orderInfo = [
-  { title: "Shipping", description: "Next express" },
-  { title: "Payment Method", description: "Paypal" },
-  { title: "Status", description: "Pending" },
-];
+/**
+ *
+ * @param {string} shipping
+ * @param {string} paymentMethod
+ * @param {string} status
+ * @returns {Array<{ title: string, description: string }>}
+ */
+export const orderInfo = (shipping, paymentMethod, status) => {
+  return [
+    { title: "Shipping", description: shipping },
+    { title: "Payment Method", description: paymentMethod },
+    { title: "Status", description: status },
+  ];
+};
 
-/** @type {Array<{ title: string, description: string }>} */
-export const deliverToInfo = [
-  {
-    title: "Address",
-    description: "Dharam Colony, Palam Vihar, Gurgaon, Haryana ",
-  },
-];
+/**
+ *
+ * @param {string} address
+ * @returns {Array<{ title: string, description: string }>}
+ */
+export const deliverToInfo = (address) => {
+  return [
+    {
+      title: "Address",
+      description: address,
+    },
+  ];
+};
 
 export class CustomerDetailsSection {
-  constructor(orderId, orderStatus) {
-    this.orderId = orderId;
-    this.orderStatus = orderStatus;
+  /**
+   *
+   * @param {Order} orderDetails
+   */
+  constructor(orderDetails) {
+    this.orderId = orderDetails.id;
+    this.orderStatus = orderDetails.orderStatusId;
 
     // leading class name: customer_details
 
@@ -49,12 +76,12 @@ export class CustomerDetailsSection {
     // order id element
     this.orderIdElement = document.createElement("h3");
     this.orderIdElement.className = "customer_details-order_id";
-    this.orderIdElement.textContent = `Order ID: #${orderId}`;
+    this.orderIdElement.textContent = `Order ID: #${this.orderId}`;
 
     // status tag element
     this.statusTag = new Tag(
-      deliveryStatusTypes[orderStatus],
-      tagVariants.orderDetails[orderStatus]
+      deliveryStatusTypes[this.orderStatus],
+      tagVariants.orderDetails[this.orderStatus]
     );
 
     // add elements to container 1
@@ -71,7 +98,7 @@ export class CustomerDetailsSection {
     // status select box
     this.statusSelectBox = new OptionsBox(
       deliveryStatusTypes[0],
-      orderStatus,
+      this.orderStatus,
       deliveryStatusTypes.slice(1),
       this.onChangeStatus.bind(this)
     );
@@ -114,7 +141,11 @@ export class CustomerDetailsSection {
     this.customerInf = new CustomerInformation(
       userIcon,
       "Customer",
-      customerDescription,
+      customerInfo(
+        `${orderDetails.userPaymentMethod.user.firstName} ${orderDetails.userPaymentMethod.user.lastName}`,
+        orderDetails.userPaymentMethod.user.email,
+        orderDetails.userPaymentMethod.user.phone
+      ),
       "View profile"
     );
 
@@ -122,7 +153,11 @@ export class CustomerDetailsSection {
     this.orderInfo = new CustomerInformation(
       bagHandleIcon,
       "Order Info",
-      orderInfo,
+      orderInfo(
+        orderDetails.shipping.name,
+        orderDetails.userPaymentMethod.paymentMethod.name,
+        orderDetails.orderStatus.name
+      ),
       "Download info"
     );
 
@@ -130,16 +165,21 @@ export class CustomerDetailsSection {
     this.deliveryInfo = new CustomerInformation(
       bagHandleIcon,
       "Deliver to",
-      deliverToInfo,
+      deliverToInfo(orderDetails.address),
       "View Profile"
     );
 
     // payment info
-    this.paymentInfo = new PaymentMethod(0, "5555500830030331", "MAI CONG SON");
+    this.paymentInfo = new PaymentMethod(
+      orderDetails.userPaymentMethod.paymentMethod.id,
+      orderDetails.userPaymentMethod.cardNumber,
+      orderDetails.userPaymentMethod.cardholderName
+    );
 
     // note text for customer
     this.noteForCustomer = new InputContainer("textarea", "Note", "", {
       placeholder: "Type some notes",
+      defaultValue: orderDetails.note,
     });
     this.noteForCustomer.container.classList.add(
       "customer_details-information-input_container"
