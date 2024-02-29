@@ -1,9 +1,11 @@
-import { TextArea } from ".";
 import { OptionsBox } from "../OptionsBox";
+import { Input } from "./Input";
+import { TextArea } from "./TextArea";
 
 export const inputTypes = {
   textarea: TextArea,
   selectBox: OptionsBox,
+  input: Input,
 };
 
 /**
@@ -13,31 +15,29 @@ export class InputContainer {
   /**
    * Creates an instance of InputContainer.
    * @param {keyof typeof inputTypes} inputType - The type of input.
+   * @param {string} containerClassName - The class name of the container.
    * @param {string} labelText - The text of label.
-   * @param {string|false} id - The ID of the container.
    * @param {...any} params - Additional parameters specific to the input type.
    */
-  constructor(inputType, labelText, id, ...params) {
+  constructor(inputType, labelText, containerClassName, ...params) {
     // leading class name: input-container
+
+    this.id = labelText.replace(" ", "");
 
     // Container element covering label and input
     this.container = document.createElement("div");
     this.container.className = "input-container";
+    containerClassName &&
+      this.container.classList.add(containerClassName.split(" "));
 
     // Label element
     this.label = document.createElement("label");
     this.label.className = "input-container-label";
     this.label.textContent = labelText;
 
-    // If ID is provided, set it for the label and initialize input with ID
-    if (id) {
-      this.label.htmlFor = id;
-      this.input = new inputTypes[inputType](id, ...params);
-    } else {
-      // If ID is not provided, initialize input without ID (for selectBox)
-      this.input = new inputTypes[inputType](...params);
-    }
-
+    this.label.htmlFor = this.id;
+    this.input = new inputTypes[inputType](...params);
+    this.input.render().id = this.id;
     this.input.render().classList.add("input-container-input_field");
 
     // add elements to container

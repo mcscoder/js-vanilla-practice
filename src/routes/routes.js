@@ -1,4 +1,11 @@
-import { DefaultLayout, Home, OrderDetails, Orders, Products } from "@/view";
+import {
+  DefaultLayout,
+  Home,
+  OrderDetails,
+  Orders,
+  ProductDetails,
+  Products,
+} from "@/view";
 
 export const routes = [
   {
@@ -10,6 +17,7 @@ export const routes = [
       { path: "/products/:categoryId", component: Products },
       { path: "/orders", component: Orders },
       { path: "/order-details/:orderId", component: OrderDetails },
+      { path: "/product-details/:productId", component: ProductDetails },
     ],
   },
 ];

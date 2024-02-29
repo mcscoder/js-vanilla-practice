@@ -138,13 +138,9 @@ export class CustomerDetailsSection {
     this.paymentInfo = new PaymentMethod(0, "5555500830030331", "MAI CONG SON");
 
     // note text for customer
-    this.noteForCustomer = new InputContainer(
-      "textarea",
-      "Note",
-      "noteForCustomer",
-      "Type some notes",
-      "MAX_HEIGHT"
-    );
+    this.noteForCustomer = new InputContainer("textarea", "Note", "", {
+      placeholder: "Type some notes",
+    });
     this.noteForCustomer.container.classList.add(
       "customer_details-information-input_container"
     );
