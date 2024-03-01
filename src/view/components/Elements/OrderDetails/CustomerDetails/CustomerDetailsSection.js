@@ -60,12 +60,27 @@ export const deliverToInfo = (address) => {
 
 export class CustomerDetailsSection {
   /**
+   * @callback onSaveCallBack
+   * @param {object} param0
+   * @param {number} param0.orderStatusId
+   * @param {string} param0.note
+   * @returns {void}
+   */
+  /**
    *
    * @param {Order} orderDetails
+   * @param {onSaveCallBack} onSave
    */
-  constructor(orderDetails) {
+  constructor(
+    orderDetails,
+    onSave = ({ orderStatusId, note }) => {
+      orderStatusId;
+      note;
+    }
+  ) {
     this.orderId = orderDetails.id;
-    this.orderStatus = orderDetails.orderStatusId;
+    this.orderStatusId = orderDetails.orderStatusId;
+    this.onSave = onSave;
 
     // leading class name: customer_details
 
@@ -80,8 +95,8 @@ export class CustomerDetailsSection {
 
     // status tag element
     this.statusTag = new Tag(
-      deliveryStatusTypes[this.orderStatus],
-      tagVariants.orderDetails[this.orderStatus]
+      deliveryStatusTypes[this.orderStatusId],
+      tagVariants.orderDetails[this.orderStatusId]
     );
 
     // add elements to container 1
@@ -98,7 +113,7 @@ export class CustomerDetailsSection {
     // status select box
     this.statusSelectBox = new OptionsBox(
       deliveryStatusTypes[0],
-      this.orderStatus,
+      this.orderStatusId,
       deliveryStatusTypes.slice(1),
       this.onChangeStatus.bind(this)
     );
@@ -203,13 +218,21 @@ export class CustomerDetailsSection {
     this.container.append(this.container1, this.container2);
   }
 
+  /**
+   *
+   * @param {number} optionIndex
+   */
   onChangeStatus(optionIndex) {
-    optionIndex;
+    this.orderStatusId = optionIndex;
   }
 
   onClickPrintButton() {}
 
-  onClickSaveButton() {}
+  onClickSaveButton() {
+    const orderStatusId = this.orderStatusId;
+    const note = this.noteForCustomer.input.render().value;
+    this.onSave({ orderStatusId, note });
+  }
 
   render() {
     return new ContentSection(this.container).render();

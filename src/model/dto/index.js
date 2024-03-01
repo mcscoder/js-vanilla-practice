@@ -1,6 +1,6 @@
 export * from "./Brand";
 export * from "./Category";
-export * from "./Image";
+export * from "./ProductImage";
 export * from "./Order";
 export * from "./OrderStatus";
 export * from "./PaymentMethod";
@@ -8,3 +8,4 @@ export * from "./Product";
 export * from "./Shipping";
 export * from "./User";
 export * from "./UserPaymentMethod";
+export * from "./OrderProduct";

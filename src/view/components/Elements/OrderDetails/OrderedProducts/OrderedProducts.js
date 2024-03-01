@@ -1,51 +1,19 @@
 import { ContentSection } from "@/view/components/Layouts";
 import { Link, ListTable, OrderSummary, ProductName } from "../..";
 import { formatINR } from "@/utils";
+import { Order } from "@/model/dto"; // eslint-disable-line no-unused-vars
 
 const headerTextItems = ["Product Name", "Order ID", "Quantity", "Total"];
 
-const orderedProducts = [
-  {
-    product: {
-      name: "Yasuo hasagi",
-      imgURL: "https://www.mobafire.com/images/champion/square/yasuo.png",
-    },
-    orderId: "696969",
-    quantity: 3,
-    price: 504.3,
-  },
-  {
-    product: {
-      name: "Yasuo hasagi",
-      imgURL: "https://www.mobafire.com/images/champion/square/yasuo.png",
-    },
-    orderId: "696969",
-    quantity: 1,
-    price: 504.3,
-  },
-  {
-    product: {
-      name: "Yasuo hasagi",
-      imgURL: "https://www.mobafire.com/images/champion/square/yasuo.png",
-    },
-    orderId: "696969",
-    quantity: 1,
-    price: 504.3,
-  },
-  {
-    product: {
-      name: "Yasuo hasagi",
-      imgURL: "https://www.mobafire.com/images/champion/square/yasuo.png",
-    },
-    orderId: "696969",
-    quantity: 1,
-    price: 504.3,
-  },
-];
-
 export class OrderedProducts {
-  constructor() {
+  /**
+   *
+   * @param {Order} orderDetails
+   */
+  constructor(orderDetails) {
     // leading class name: ordered_products
+
+    this.orderProducts = orderDetails.orderProducts;
 
     // container element covering ordered products table and summary
     this.container = document.createElement("div");
@@ -56,19 +24,22 @@ export class OrderedProducts {
 
     this.orderTotalPrice = 0;
 
-    orderedProducts.forEach(({ product, orderId, quantity, price }) => {
+    this.orderProducts.forEach((orderProduct) => {
       // 1. product name link
-      const productLink = ProductName.render(product.imgURL, product.name);
+      const productLink = ProductName.render(
+        orderProduct.product.productImages[0].imageURL,
+        orderProduct.product.name
+      );
 
       // 2. order id link
       const orderIdLink = new Link("#");
-      orderIdLink.link.text = `#${orderId}`;
+      orderIdLink.link.text = `#${orderProduct.orderId}`;
 
       // 3. quantity
-      const productQuantity = quantity;
+      const productQuantity = orderProduct.quantity;
 
       // 4. total price
-      const totalPrice = quantity * price;
+      const totalPrice = orderProduct.quantity * orderProduct.price;
       this.orderTotalPrice += totalPrice;
 
       this.bodyItems.push([

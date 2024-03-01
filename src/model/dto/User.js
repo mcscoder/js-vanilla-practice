@@ -1,4 +1,13 @@
 export class User {
+  /**
+   *
+   * @param {object} param0
+   * @param {number} param0.id
+   * @param {string} param0.firstName
+   * @param {string} param0.lastName
+   * @param {string} param0.email
+   * @param {string} param0.phone
+   */
   constructor({ id, firstName, lastName, email, phone }) {
     this.id = id;
     this.firstName = firstName;

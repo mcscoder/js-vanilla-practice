@@ -16,6 +16,9 @@ export class OrderDetails {
    * @private
    */
   initContent() {
+    // clear content
+    this.container.innerText = "";
+
     // container 1 element. cover breadcrumb
     this.container1 = document.createElement("div");
     this.container1.className = "order_details-container-1";
@@ -30,10 +33,13 @@ export class OrderDetails {
     this.container1.append(this.breadcrumb.render());
 
     // customer information details section
-    this.userDetailsSection = new CustomerDetailsSection(this.orderDetails);
+    this.userDetailsSection = new CustomerDetailsSection(
+      this.orderDetails,
+      this.controller.onSave.bind(this.controller)
+    );
 
     // ordered products
-    this.orderedProducts = new OrderedProducts();
+    this.orderedProducts = new OrderedProducts(this.orderDetails);
 
     // add elements to global container
     this.container.append(

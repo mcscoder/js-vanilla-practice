@@ -1,7 +1,17 @@
 import { DTOMethod } from "..";
-import { OrderStatus, Product, Shipping, UserPaymentMethod } from "."; // eslint-disable-line no-unused-vars
+import { OrderStatus, OrderProduct, Shipping, UserPaymentMethod } from "."; // eslint-disable-line no-unused-vars
 
 export class Order extends DTOMethod {
+  /**
+   *
+   * @param {object} param0
+   * @param {number} param0.id
+   * @param {string} param0.note
+   * @param {string} param0.address
+   * @param {number} param0.orderStatusId
+   * @param {number} param0.shippingId
+   * @param {number} param0.userPaymentMethodId
+   */
   constructor({
     id,
     note,
@@ -25,12 +35,12 @@ export class Order extends DTOMethod {
    * @param {OrderStatus} param0.orderStatus - The status of the order.
    * @param {Shipping} param0.shipping - The shipping details for the order.
    * @param {UserPaymentMethod} param0.userPaymentMethod - The payment method used by the user.
-   * @param {Product[]} param0.products - An array of products in the order.
+   * @param {OrderProduct[]} param0.orderProducts - An array of products in the order.
    */
-  response({ orderStatus, shipping, userPaymentMethod, products }) {
+  response({ orderStatus, shipping, userPaymentMethod, orderProducts }) {
     this.orderStatus = orderStatus;
     this.shipping = shipping;
     this.userPaymentMethod = userPaymentMethod;
-    this.products = products;
+    this.orderProducts = orderProducts;
   }
 }
