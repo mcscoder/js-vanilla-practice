@@ -5,4 +5,10 @@ export const apiEndpoint = {
   getOrders(orderId = "") {
     return `/api/orders/${orderId}`;
   },
+  getCategory(categoryId) {
+    return `/api/category/${categoryId}`;
+  },
+  getCategories() {
+    return `/api/categories`;
+  },
 };

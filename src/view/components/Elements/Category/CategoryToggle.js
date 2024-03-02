@@ -1,8 +1,15 @@
 import { chevronDownIcon, chevronUpIcon } from "@/constants";
-import { Category } from ".";
+import { Category } from "@/model/dto"; // eslint-disable-line no-unused-vars
+import { Category as CategoryView } from ".";
 
 export class CategoryToggle {
-  constructor() {
+  /**
+   *
+   * @param {Category[]} categories
+   */
+  constructor(categories) {
+    this.categories = categories;
+
     // initial toggle state
     this.toggleState = true;
 
@@ -45,29 +52,6 @@ export class CategoryToggle {
 
   // initializes category link items based on the toggle state
   initCategoryLinkItems() {
-    const categoryLinkItems = [
-      {
-        to: "1",
-        label: "Category 1",
-        categoryQuantity: 23,
-      },
-      {
-        to: "2",
-        label: "Category 2",
-        categoryQuantity: 23,
-      },
-      {
-        to: "3",
-        label: "Category 3",
-        categoryQuantity: 23,
-      },
-      {
-        to: "4",
-        label: "Category 4",
-        categoryQuantity: 23,
-      },
-    ];
-
     if (this.toggleState) {
       // category link container element
       this.categoryLink = document.createElement("nav");
@@ -75,9 +59,13 @@ export class CategoryToggle {
       this.container.appendChild(this.categoryLink);
 
       // add category link items to the container
-      categoryLinkItems.forEach(({ to, label, categoryQuantity }) => {
+      this.categories.forEach((category) => {
         this.categoryLink.appendChild(
-          new Category(to, label, categoryQuantity).render()
+          new CategoryView(
+            category.id,
+            category.name,
+            category.quantity
+          ).render()
         );
       });
     } else {

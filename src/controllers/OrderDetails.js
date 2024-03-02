@@ -9,8 +9,9 @@ import {
 } from "@/model/dto";
 import { Router } from "@/routes";
 import { apiEndpoint } from "@/utils";
+import { ControllerMethods } from ".";
 
-export class OrderDetailsController {
+export class OrderDetailsController extends ControllerMethods {
   /**
    * @callback dataFetchedCallBack
    * @param {Order} orderDetails
@@ -26,6 +27,7 @@ export class OrderDetailsController {
       orderDetails;
     }
   ) {
+    super();
     this.dataFetched = dataFetched;
     this.orderId = Router.getParams().orderId;
 

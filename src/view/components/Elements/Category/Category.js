@@ -4,9 +4,15 @@ import { urlChangedEvent } from "@/constants";
 
 // this is sidebar category items
 export class Category {
-  constructor(categoryId, label, categoryQuantity) {
-    this.categoryId = categoryId;
-    this.label = label;
+  /**
+   *
+   * @param {number} id
+   * @param {string} name
+   * @param {number} quantity
+   */
+  constructor(id, name, quantity) {
+    this.categoryId = id;
+    this.label = name;
     this.componentPath = "/products/:categoryId";
 
     // link
@@ -17,10 +23,10 @@ export class Category {
     // link label
     this.linkLabel = document.createElement("span");
     this.linkLabel.className = "category-link-label";
-    this.linkLabel.textContent = label;
+    this.linkLabel.textContent = name;
 
     // category link tag
-    this.tag = new Tag(categoryQuantity, this.getTagClassName());
+    this.tag = new Tag(quantity, this.getTagClassName());
 
     // add children to categoryLink
     this.categoryLink.append(this.linkLabel, this.tag.render());
@@ -37,7 +43,7 @@ export class Category {
     if (Router.matchPath(currentUrlPath, this.componentPath)) {
       const params = Router.extractParams(currentUrlPath, this.componentPath);
       const categoryId = params.categoryId;
-      if (categoryId === this.categoryId) {
+      if (parseInt(categoryId) === this.categoryId) {
         tagClassName = tagVariants.category.active;
       }
     }
