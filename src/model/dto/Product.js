@@ -12,6 +12,7 @@ export class Product extends DTOMethod {
    * @param {number} param0.regularPrice
    * @param {number} param0.salePrice
    * @param {string} param0.sku
+   * @param {number} param0.sales
    * @param {number} param0.categoryId
    * @param {number} param0.brandId
    */
@@ -23,6 +24,7 @@ export class Product extends DTOMethod {
     regularPrice,
     salePrice,
     sku,
+    sales,
     categoryId,
     brandId,
   }) {
@@ -34,6 +36,7 @@ export class Product extends DTOMethod {
     this.regularPrice = regularPrice;
     this.salePrice = salePrice;
     this.sku = sku;
+    this.sales = sales;
     this.categoryId = categoryId;
     this.brandId = brandId;
   }

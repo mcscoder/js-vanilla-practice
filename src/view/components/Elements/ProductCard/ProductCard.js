@@ -6,9 +6,15 @@ import {
   threeDotsHorizontalIcon,
 } from "@/constants";
 import { ContentSection } from "../..";
+import { Product } from "@/model/dto"; // eslint-disable-line no-unused-vars
 
 export class ProductCard {
-  static render(imgURL, name, category, price, description, sales, inStock) {
+  /**
+   *
+   * @param {Product} product
+   * @returns
+   */
+  static render(product) {
     // global container
     const container = document.createElement("div");
     container.className = "product_card-container";
@@ -20,7 +26,7 @@ export class ProductCard {
     // product image element
     const image = document.createElement("img");
     image.className = "product_card-image";
-    image.src = imgURL;
+    image.src = product.productImages[0].imageURL;
     image.width = 84;
     image.height = 84;
 
@@ -32,17 +38,17 @@ export class ProductCard {
     const productNameLink = new Link("#").render();
 
     productNameLink.className = "product_card-name";
-    productNameLink.textContent = name;
+    productNameLink.textContent = product.name;
 
     // product category
     const productCategory = document.createElement("p");
     productCategory.className = "product_card-category";
-    productCategory.textContent = category;
+    productCategory.textContent = product.category.name;
 
     // product price
     const productPrice = document.createElement("p");
     productPrice.className = "product_card-price";
-    productPrice.textContent = formatINR(price);
+    productPrice.textContent = formatINR(product.regularPrice);
 
     // add elements to container 1.1
     container1_1.append(productNameLink, productCategory, productPrice);
@@ -73,7 +79,7 @@ export class ProductCard {
     // description
     const descriptionContent = document.createElement("p");
     descriptionContent.className = "product_card-description-content";
-    descriptionContent.textContent = description;
+    descriptionContent.textContent = product.description;
 
     // add elements to container 2
     container2.append(descriptionTitle, descriptionContent);
@@ -108,7 +114,7 @@ export class ProductCard {
     // sales index
     const salesContent = document.createElement("p");
     salesContent.className = "product_card-status-content";
-    salesContent.textContent = sales;
+    salesContent.textContent = product.sales;
 
     // add elements to sales container 1
     salesContainer1.append(icon, salesContent);
@@ -152,7 +158,7 @@ export class ProductCard {
     // in stock content
     const inStockContent = document.createElement("p");
     inStockContent.className = "product_card-status-content";
-    inStockContent.textContent = inStock;
+    inStockContent.textContent = product.quantity;
 
     // add elements to in stock container 1
     inStockContainer1.append(statusbarOuter, inStockContent);

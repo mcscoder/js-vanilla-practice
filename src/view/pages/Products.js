@@ -7,12 +7,20 @@ import {
   buttonSizes,
   buttonVariants,
 } from "..";
+import { Product } from "@/model/dto"; // eslint-disable-line no-unused-vars
+import { ProductController } from "@/controllers";
 
 export class Products {
   constructor() {
-    console.log("products re-render");
+    this.productController = new ProductController(this.dataFetched.bind(this));
+
+    // global container
     this.container = document.createElement("div");
     this.container.className = "all_products-container";
+  }
+
+  initContent() {
+    this.container.innerText = "";
 
     // container 1 element. cover breadcrumb and add new product button
     this.container1 = document.createElement("div");
@@ -46,70 +54,28 @@ export class Products {
     this.container2_1.className = "all_products-container-2-1";
 
     this.container2_1.append(
-      ProductCard.render(
-        "https://www.mobafire.com/images/champion/square/yasuo.png",
-        "Yasuo hasagi",
-        "DAxuaa",
-        25.23,
-        "Yasuo 1v5 pentakill with kda 0/11/2 after his teammates call him is idiot yasuo",
-        343,
-        559
-      ),
-      ProductCard.render(
-        "https://www.mobafire.com/images/champion/square/yasuo.png",
-        "Yasuo hasagi",
-        "DAxuaa",
-        25.23,
-        "Yasuo 1v5 pentakill with kda 0/11/2 after his teammates call him is idiot yasuo",
-        343,
-        559
-      ),
-      ProductCard.render(
-        "https://www.mobafire.com/images/champion/square/yasuo.png",
-        "Yasuo hasagi",
-        "DAxuaa",
-        25.23,
-        "Yasuo 1v5 pentakill with kda 0/11/2 after his teammates call him is idiot yasuo",
-        343,
-        559
-      ),
-      ProductCard.render(
-        "https://www.mobafire.com/images/champion/square/yasuo.png",
-        "Yasuo hasagi",
-        "DAxuaa",
-        25.23,
-        "Yasuo 1v5 pentakill with kda 0/11/2 after his teammates call him is idiot yasuo",
-        343,
-        559
-      ),
-      ProductCard.render(
-        "https://www.mobafire.com/images/champion/square/yasuo.png",
-        "Yasuo hasagi",
-        "DAxuaa",
-        25.23,
-        "Yasuo 1v5 pentakill with kda 0/11/2 after his teammates call him is idiot yasuo",
-        343,
-        559
-      ),
-      ProductCard.render(
-        "https://www.mobafire.com/images/champion/square/yasuo.png",
-        "Yasuo hasagi",
-        "DAxuaa",
-        25.23,
-        "Yasuo 1v5 pentakill with kda 0/11/2 after his teammates call him is idiot yasuo",
-        343,
-        559
-      )
+      ...this.products.map((product) => {
+        return ProductCard.render(product);
+      })
     );
 
     // pagination element
-    this.pagination = new Pagination(25, 3, () => {});
+    this.pagination = new Pagination(this.products.length, 9, () => {});
 
     // add elements to container 2
     this.container2.append(this.container2_1, this.pagination.render());
 
     // add elements to global container
     this.container.append(this.container1, this.container2);
+  }
+
+  /**
+   *
+   * @param {Product[]} products
+   */
+  dataFetched(products) {
+    this.products = products;
+    this.initContent();
   }
 
   render() {
