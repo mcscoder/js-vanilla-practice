@@ -20,6 +20,7 @@
     @include font($text-xs, $font-semibold);
     padding: 0.5rem;
     border-radius: 0.5rem;
+    color: white;
 
     &-0 {
       background-color: $bg-delivered;

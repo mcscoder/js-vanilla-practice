@@ -8,11 +8,12 @@ export class User {
    * @param {string} param0.email
    * @param {string} param0.phone
    */
-  constructor({ id, firstName, lastName, email, phone }) {
+  constructor({ id, firstName, lastName, email, phone, avatar }) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.phone = phone;
+    this.avatar = avatar;
   }
 }
