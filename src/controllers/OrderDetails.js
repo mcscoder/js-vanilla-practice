@@ -38,29 +38,38 @@ export class OrderDetailsController extends ControllerMethods {
     fetch(apiEndpoint.getOrder(this.orderId))
       .then((res) => res.json())
       .then((data) => {
-        const orderStatus = new OrderStatus(data.orderStatus);
-        const shipping = new Shipping(data.shipping);
-        const userPaymentMethod = new UserPaymentMethod(data.userPaymentMethod);
-        const paymentMethod = new PaymentMethod(
-          data.userPaymentMethod.paymentMethod
-        );
-        const user = new User(data.userPaymentMethod.user);
-        userPaymentMethod.response({ paymentMethod, user });
-        const orderProducts = data.orderProducts.map((orderProduct) => {
-          const _orderProduct = new OrderProduct(orderProduct);
-          _orderProduct.response(orderProduct);
-          return _orderProduct;
-        });
-
-        const order = new Order(data);
-        order.response({
-          orderStatus,
-          shipping,
-          userPaymentMethod,
-          orderProducts,
-        });
-        this.dataFetched(order);
+        this.dataFetched(OrderDetailsController.extractOrderDetails(data));
       });
+  }
+
+  /**
+   *
+   * @param {object} data
+   * @returns {Order}
+   */
+  static extractOrderDetails(data) {
+    const orderStatus = new OrderStatus(data.orderStatus);
+    const shipping = new Shipping(data.shipping);
+    const userPaymentMethod = new UserPaymentMethod(data.userPaymentMethod);
+    const paymentMethod = new PaymentMethod(
+      data.userPaymentMethod.paymentMethod
+    );
+    const user = new User(data.userPaymentMethod.user);
+    userPaymentMethod.response({ paymentMethod, user });
+    const orderProducts = data.orderProducts.map((orderProduct) => {
+      const _orderProduct = new OrderProduct(orderProduct);
+      _orderProduct.response(orderProduct);
+      return _orderProduct;
+    });
+
+    const order = new Order(data);
+    order.response({
+      orderStatus,
+      shipping,
+      userPaymentMethod,
+      orderProducts,
+    });
+    return order;
   }
 
   /**
