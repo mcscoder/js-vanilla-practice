@@ -4,29 +4,46 @@ import {
   OptionsBox,
   OrdersTable,
   Pagination,
-  deliveryStatusTypes,
+  optionType, // eslint-disable-line no-unused-vars
 } from "..";
 import { Order } from "@/model/dto"; // eslint-disable-line no-unused-vars
 import { OrderListController } from "@/controllers";
+import { apiEndpoint } from "@/utils";
 
 export class Orders {
   constructor() {
-    this.orderListController = new OrderListController(
-      this.dataFetched.bind(this)
-    );
+    // use arrow function
+    // cause: with arrow functions there are no biding of `this`
+    // so `this` in this case will refer to global
+    (async () => {
+      await fetch(apiEndpoint.getOrderStatuses())
+        .then((res) => res.json())
+        .then((data) => {
+          /** @type {(typeof optionType)[]} */
+          this.orderStatuses = data.map(({ id, name }) => {
+            /** @type {typeof optionType} */
+            const status = {
+              value: id,
+              label: name,
+            };
+            return status;
+          });
+          // selection box
+          this.selectionBox = new OptionsBox(
+            { value: "", label: "Change Status" },
+            0,
+            this.orderStatuses,
+            this.onChangeStatus.bind(this)
+          );
+        });
 
-    this.statusOptions = ["Change Status", ...deliveryStatusTypes];
+      this.orderListController = new OrderListController(
+        this.dataFetched.bind(this)
+      );
+    })();
 
     this.container = document.createElement("div");
     this.container.className = "orders-container";
-
-    // selection box
-    this.selectionBox = new OptionsBox(
-      this.statusOptions[0],
-      0,
-      deliveryStatusTypes,
-      this.onChangeStatus.bind(this)
-    );
   }
 
   initContent() {
@@ -66,9 +83,13 @@ export class Orders {
     this.container.append(this.container1, this.container2, this.container3);
   }
 
-  onChangeStatus(optionIndex) {
-    if (optionIndex !== 0) {
-      this.orderListController.fetchData(optionIndex - 1);
+  /**
+   *
+   * @param {typeof optionType} param0
+   */
+  onChangeStatus({ value }) {
+    if (value !== "") {
+      this.orderListController.fetchData(value);
     } else {
       this.orderListController.fetchData();
     }

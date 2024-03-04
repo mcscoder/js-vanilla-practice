@@ -9,10 +9,12 @@ import {
   buttonSizes,
   buttonVariants,
   deliveryStatusTypes,
+  optionType, // eslint-disable-line no-unused-vars
   tagVariants,
 } from "../..";
 import { ContentSection } from "../../..";
 import { Order } from "@/model/dto"; // eslint-disable-line no-unused-vars
+import { apiEndpoint } from "@/utils";
 
 /**
  *
@@ -78,12 +80,22 @@ export class CustomerDetailsSection {
       note;
     }
   ) {
+    // leading class name: customer_details
+
+    this.orderDetails = orderDetails;
     this.orderId = orderDetails.id;
     this.orderStatusId = orderDetails.orderStatusId;
     this.onSave = onSave;
 
-    // leading class name: customer_details
+    // global container
+    this.container = document.createElement("div");
+    this.container.className = "customer_details-container";
 
+    // fetch content and initialize the content
+    this.fetchData();
+  }
+
+  initContent() {
     // container 1 element. cover order id and status tag
     this.container1 = document.createElement("div");
     this.container1.className = "customer_details-container-1";
@@ -112,9 +124,9 @@ export class CustomerDetailsSection {
 
     // status select box
     this.statusSelectBox = new OptionsBox(
-      deliveryStatusTypes[0],
+      "none",
       this.orderStatusId,
-      deliveryStatusTypes.slice(1),
+      this.orderStatuses,
       this.onChangeStatus.bind(this)
     );
 
@@ -157,9 +169,9 @@ export class CustomerDetailsSection {
       userIcon,
       "Customer",
       customerInfo(
-        `${orderDetails.userPaymentMethod.user.firstName} ${orderDetails.userPaymentMethod.user.lastName}`,
-        orderDetails.userPaymentMethod.user.email,
-        orderDetails.userPaymentMethod.user.phone
+        `${this.orderDetails.userPaymentMethod.user.firstName} ${this.orderDetails.userPaymentMethod.user.lastName}`,
+        this.orderDetails.userPaymentMethod.user.email,
+        this.orderDetails.userPaymentMethod.user.phone
       ),
       "View profile"
     );
@@ -169,9 +181,9 @@ export class CustomerDetailsSection {
       bagHandleIcon,
       "Order Info",
       orderInfo(
-        orderDetails.shipping.name,
-        orderDetails.userPaymentMethod.paymentMethod.name,
-        orderDetails.orderStatus.name
+        this.orderDetails.shipping.name,
+        this.orderDetails.userPaymentMethod.paymentMethod.name,
+        this.orderDetails.orderStatus.name
       ),
       "Download info"
     );
@@ -180,21 +192,21 @@ export class CustomerDetailsSection {
     this.deliveryInfo = new CustomerInformation(
       bagHandleIcon,
       "Deliver to",
-      deliverToInfo(orderDetails.address),
+      deliverToInfo(this.orderDetails.address),
       "View Profile"
     );
 
     // payment info
     this.paymentInfo = new PaymentMethod(
-      orderDetails.userPaymentMethod.paymentMethod.id,
-      orderDetails.userPaymentMethod.cardNumber,
-      orderDetails.userPaymentMethod.cardholderName
+      this.orderDetails.userPaymentMethod.paymentMethod.id,
+      this.orderDetails.userPaymentMethod.cardNumber,
+      this.orderDetails.userPaymentMethod.cardholderName
     );
 
     // note text for customer
     this.noteForCustomer = new InputContainer("textarea", "Note", "", {
       placeholder: "Type some notes",
-      defaultValue: orderDetails.note,
+      defaultValue: this.orderDetails.note,
     });
     this.noteForCustomer.container.classList.add(
       "customer_details-information-input_container"
@@ -211,19 +223,33 @@ export class CustomerDetailsSection {
 
     // add elements to container 2
     this.container2.append(this.container2_1, this.container2_2);
-
-    // global container
-    this.container = document.createElement("div");
-    this.container.className = "customer_details-container";
     this.container.append(this.container1, this.container2);
+  }
+
+  fetchData() {
+    fetch(apiEndpoint.getOrderStatuses())
+      .then((res) => res.json())
+      .then((data) => {
+        /** @type {(typeof optionType)[]} */
+        this.orderStatuses = data.map(({ id, name }) => {
+          /** @type {typeof optionType} */
+          const status = {
+            value: id,
+            label: name,
+          };
+          return status;
+        });
+        // load the content
+        this.initContent();
+      });
   }
 
   /**
    *
-   * @param {number} optionIndex
+   * @param {typeof optionType} param0
    */
-  onChangeStatus(optionIndex) {
-    this.orderStatusId = optionIndex;
+  onChangeStatus({ value }) {
+    this.orderStatusId = value;
   }
 
   onClickPrintButton() {}

@@ -21,4 +21,7 @@ export const apiEndpoint = {
   getProducts(categoryId = "") {
     return `/api/products/${categoryId}`;
   },
+  getOrderStatuses() {
+    return `/api/orderStatuses`;
+  },
 };

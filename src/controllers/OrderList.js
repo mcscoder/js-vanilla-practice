@@ -27,7 +27,6 @@ export class OrderListController extends ControllerMethods {
     fetch(apiEndpoint.getOrders(statusId))
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         /** @type {Order[]} */
         const orders = data.map((order) => {
           return OrderDetailsController.extractOrderDetails(order);

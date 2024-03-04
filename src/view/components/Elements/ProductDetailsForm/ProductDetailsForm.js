@@ -13,7 +13,11 @@ export class ProductDetailsForm {
     productName = "",
     description = "",
     categories = {
-      options: ["Yasuo", "Lee Sin", "Master Yi"],
+      options: [
+        { value: "mcsdeptrai", label: "Yasuo" },
+        { value: "mcscungdeptrai", label: "Lee Sin" },
+        { value: "mcsdeptraiqua", label: "Master Yi" },
+      ],
       defaultIndex: 0,
     },
     brandName = "",
@@ -42,7 +46,9 @@ export class ProductDetailsForm {
       "Select category",
       categories.defaultIndex,
       categories.options,
-      () => {}
+      ({ value, label }) => {
+        console.log(value, label);
+      }
     );
     // 4. Brand name input
     this.brandNameInput = new InputContainer("input", "Brand Name", "", {
