@@ -5,6 +5,11 @@ export const optionType = {
   label: "",
 };
 
+export const optionsBoxType = {
+  options: [optionType],
+  initialOption: 0,
+};
+
 export class OptionsBox {
   /**
    * @callback onChangeCallBack

@@ -24,4 +24,7 @@ export const apiEndpoint = {
   getOrderStatuses() {
     return `/api/orderStatuses`;
   },
+  getBrands() {
+    return `/api/brands`;
+  },
 };

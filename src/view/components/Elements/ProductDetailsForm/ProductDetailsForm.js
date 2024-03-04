@@ -1,4 +1,4 @@
-import { createContainer } from "@/utils";
+import { apiEndpoint, createContainer } from "@/utils";
 import {
   Button,
   InputContainer,
@@ -6,36 +6,39 @@ import {
   ProductThumbnail,
   buttonSizes,
   buttonVariants,
+  optionType, // eslint-disable-line no-unused-vars
+  optionsBoxType, // eslint-disable-line no-unused-vars
 } from "..";
+import { Product } from "@/model/dto"; // eslint-disable-line no-unused-vars
 
 export class ProductDetailsForm {
-  constructor(
-    productName = "",
-    description = "",
-    categories = {
-      options: [
-        { value: "mcsdeptrai", label: "Yasuo" },
-        { value: "mcscungdeptrai", label: "Lee Sin" },
-        { value: "mcsdeptraiqua", label: "Master Yi" },
-      ],
-      defaultIndex: 0,
-    },
-    brandName = "",
-    sku = "",
-    stockQuantity = "",
-    regularPrice = "",
-    salePrice = ""
-  ) {
+  /**
+   *
+   * @param {Product} product
+   */
+  constructor(product) {
     // leading class name: product_details_form
+
+    this.product = product;
+
+    // global container
+    this.container = createContainer("product_details_form-container");
+
+    // fetch data and initializes content
+    this.fetchData();
+  }
+
+  initContent() {
+    this.container.innerText = "";
 
     // container 1.1 children --------------------
     // 1. Product name input
     this.productNameInput = new InputContainer("input", "Product Name", "", {
-      defaultValue: productName,
+      defaultValue: this.product.name,
     });
     // 2. Description input
     this.descriptionInput = new InputContainer("textarea", "Description", "", {
-      defaultValue: description,
+      defaultValue: this.product.description,
       rows: 6,
     });
     // 3. Category select box
@@ -43,38 +46,46 @@ export class ProductDetailsForm {
       "selectBox",
       "Category",
       "",
-      "Select category",
-      categories.defaultIndex,
-      categories.options,
+      { value: "", label: "Select Category" },
+      this.categories.initialOption,
+      this.categories.options,
       ({ value, label }) => {
         console.log(value, label);
       }
     );
     // 4. Brand name input
-    this.brandNameInput = new InputContainer("input", "Brand Name", "", {
-      defaultValue: brandName,
-    });
+    this.brandNameSelectBox = new InputContainer(
+      "selectBox",
+      "Brand Name",
+      "",
+      { value: "", label: "Select Brand" },
+      this.brands.initialOption,
+      this.brands.options,
+      ({ value, label }) => {
+        console.log(value, label);
+      }
+    );
     // 5. SKU input
     this.skuInput = new InputContainer("input", "SKU", "flex-1", {
-      defaultValue: sku,
+      defaultValue: this.product.sku,
     });
     // 6. Stock Quantity input
     this.stockQuantityInput = new InputContainer(
       "input",
       "Stock Quantity",
       "flex-1",
-      { defaultValue: stockQuantity }
+      { defaultValue: this.product.quantity }
     );
     // 7. Regular Price input
     this.regularPriceInput = new InputContainer(
       "input",
       "Regular Price",
       "flex-1",
-      { defaultValue: regularPrice }
+      { defaultValue: this.product.regularPrice }
     );
     // 8. Sale Price input
     this.salePriceInput = new InputContainer("input", "Sale Price", "flex-1", {
-      defaultValue: salePrice,
+      defaultValue: this.product.salePrice,
     });
 
     // container 1.1
@@ -83,7 +94,7 @@ export class ProductDetailsForm {
       this.productNameInput.render(),
       this.descriptionInput.render(),
       this.categorySelectBox.render(),
-      this.brandNameInput.render(),
+      this.brandNameSelectBox.render(),
       createContainer(
         "product_details_form-container-1-1-group",
         this.skuInput.render(),
@@ -102,20 +113,7 @@ export class ProductDetailsForm {
       "https://www.mobafire.com/images/champion/square/yasuo.png"
     );
     // 2. Product gallery
-    this.productGallery = new ProductGallery([
-      {
-        fileName: "Yasuo.png",
-        imageURL: "https://www.mobafire.com/images/champion/square/yasuo.png",
-      },
-      {
-        fileName: "Yasuo.png",
-        imageURL: "https://www.mobafire.com/images/champion/square/yasuo.png",
-      },
-      {
-        fileName: "Yasuo.png",
-        imageURL: "https://www.mobafire.com/images/champion/square/yasuo.png",
-      },
-    ]);
+    this.productGallery = new ProductGallery(this.product.productImages);
 
     // container 1.2
     this.container1_2 = createContainer(
@@ -171,12 +169,60 @@ export class ProductDetailsForm {
       this.cancelButton.render()
     );
 
-    // global container
-    this.container = createContainer(
-      "product_details_form-container",
-      this.container1,
-      this.container2
-    );
+    // add elements to global container
+    this.container.append(this.container1, this.container2);
+  }
+
+  fetchData() {
+    (async () => {
+      await fetch(apiEndpoint.getCategories())
+        .then((res) => res.json())
+        .then((data) => {
+          let initialOption = 0;
+          /** @type {typeof optionsBoxType} */
+          this.categories = {
+            options: data.map((category, index) => {
+              if (category.id === this.product.categoryId) {
+                initialOption = index + 1;
+              }
+
+              /** @type {typeof optionType} */
+              const option = {
+                value: category.id,
+                label: category.name,
+              };
+              return option;
+            }),
+          };
+          this.categories.initialOption = initialOption;
+        });
+
+      await fetch(apiEndpoint.getBrands())
+        .then((res) => res.json())
+        .then((data) => {
+          let initialOption = 0;
+
+          /** @type {typeof optionsBoxType} */
+          this.brands = {
+            options: data.map((brand, index) => {
+              if (brand.id === this.product.brandId) {
+                initialOption = index + 1;
+              }
+
+              /** @type {optionType} */
+              const option = {
+                value: brand.id,
+                label: brand.name,
+              };
+              return option;
+            }),
+          };
+          this.brands.initialOption = initialOption;
+        });
+
+      // initializes content after all needed content has been fetched
+      this.initContent();
+    })();
   }
 
   render() {

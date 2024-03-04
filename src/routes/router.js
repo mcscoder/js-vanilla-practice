@@ -52,6 +52,11 @@ export class Router {
     return { childNode, componentPath, params };
   }
 
+  /**
+   * @returns {object}
+   * Usage: to get productId, we use
+   * const productId = Router.getParam().productId
+   */
   static getParams() {
     const urlPath = window.location.pathname;
     let [componentPath, params] = [null, null];
