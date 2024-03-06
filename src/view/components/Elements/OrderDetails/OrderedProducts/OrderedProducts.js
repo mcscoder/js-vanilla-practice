@@ -27,8 +27,9 @@ export class OrderedProducts {
     this.orderProducts.forEach((orderProduct) => {
       // 1. product name link
       const productLink = ProductName.render(
-        orderProduct.product.productImages[0].imageURL,
-        orderProduct.product.name
+        orderProduct.productId,
+        orderProduct.product.name,
+        orderProduct.product.productImages[0].imageURL
       );
 
       // 2. order id link
