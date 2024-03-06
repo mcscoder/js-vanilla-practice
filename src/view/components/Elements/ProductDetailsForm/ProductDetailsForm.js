@@ -9,17 +9,21 @@ import {
   optionType, // eslint-disable-line no-unused-vars
   optionsBoxType, // eslint-disable-line no-unused-vars
 } from "..";
-import { Product } from "@/model/dto"; // eslint-disable-line no-unused-vars
+import {
+  Product, // eslint-disable-line no-unused-vars
+} from "@/model/dto"; // eslint-disable-line no-unused-vars
 
 export class ProductDetailsForm {
   /**
    *
    * @param {Product} product
+   * @param {boolean} isAddNew
    */
-  constructor(product) {
+  constructor(product, isAddNew = false) {
     // leading class name: product_details_form
 
     this.product = product;
+    this.isAddNew = isAddNew;
 
     // global container
     this.container = createContainer("product_details_form-container");
@@ -49,8 +53,8 @@ export class ProductDetailsForm {
       { value: "", label: "Select Category" },
       this.categories.initialOption,
       this.categories.options,
-      ({ value, label }) => {
-        console.log(value, label);
+      ({ value }) => {
+        this.product.categoryId = value;
       }
     );
     // 4. Brand name input
@@ -61,8 +65,8 @@ export class ProductDetailsForm {
       { value: "", label: "Select Brand" },
       this.brands.initialOption,
       this.brands.options,
-      ({ value, label }) => {
-        console.log(value, label);
+      ({ value }) => {
+        this.product.brandId = value;
       }
     );
     // 5. SKU input
@@ -110,7 +114,7 @@ export class ProductDetailsForm {
     // container 1.2 children --------------------
     // 1. Product thumbnail
     this.outstandingThumbnail = new ProductThumbnail(
-      "https://www.mobafire.com/images/champion/square/yasuo.png"
+      this.product.productImages[0].imageURL
     );
     // 2. Product gallery
     this.productGallery = new ProductGallery(this.product.productImages);
@@ -130,43 +134,61 @@ export class ProductDetailsForm {
     );
 
     // container 2 children --------------------
-    // 1. Update button
-    this.updateButton = new Button(
-      "update",
-      null,
-      null,
-      buttonVariants.primary.filled,
-      buttonSizes.lg,
-      "product_details_form-function_button",
-      () => {}
-    );
-    // 2. Delete button
-    this.deleteButton = new Button(
-      "delete",
-      null,
-      null,
-      buttonVariants.secondary.filled,
-      buttonSizes.lg,
-      "product_details_form-function_button",
-      () => {}
-    );
-    // 3. Cancel button
-    this.cancelButton = new Button(
-      "cancel",
-      null,
-      null,
-      buttonVariants.secondary.outlined,
-      buttonSizes.lg,
-      "product_details_form-function_button",
-      () => {}
-    );
+    const buttons = [];
+    if (!this.isAddNew) {
+      // 1. Update button
+      this.updateButton = new Button(
+        "update",
+        null,
+        null,
+        buttonVariants.primary.filled,
+        buttonSizes.lg,
+        "product_details_form-function_button",
+        this.onClickUpdate.bind(this)
+      );
+      // 2. Delete button
+      this.deleteButton = new Button(
+        "delete",
+        null,
+        null,
+        buttonVariants.secondary.filled,
+        buttonSizes.lg,
+        "product_details_form-function_button",
+        this.onClickDelete.bind(this)
+      );
+      // 3. Cancel button
+      this.cancelButton = new Button(
+        "cancel",
+        null,
+        null,
+        buttonVariants.secondary.outlined,
+        buttonSizes.lg,
+        "product_details_form-function_button",
+        this.onClickCancel.bind(this)
+      );
+      buttons.push(
+        this.updateButton.render(),
+        this.deleteButton.render(),
+        this.cancelButton.render()
+      );
+    } else {
+      // 4. Add button
+      this.addButton = new Button(
+        "Add",
+        null,
+        null,
+        buttonVariants.primary.filled,
+        buttonSizes.lg,
+        "product_details_form-function_button",
+        this.onClickAdd.bind(this)
+      );
+      buttons.push(this.addButton.render());
+    }
 
     // container 2
     this.container2 = createContainer(
       "product_details_form-container-2",
-      this.updateButton.render(),
-      this.deleteButton.render(),
-      this.cancelButton.render()
+      ...buttons
     );
 
     // add elements to global container
@@ -175,6 +197,7 @@ export class ProductDetailsForm {
 
   fetchData() {
     (async () => {
+      // fetch categories data
       await fetch(apiEndpoint.getCategories())
         .then((res) => res.json())
         .then((data) => {
@@ -197,6 +220,7 @@ export class ProductDetailsForm {
           this.categories.initialOption = initialOption;
         });
 
+      // fetch brands data
       await fetch(apiEndpoint.getBrands())
         .then((res) => res.json())
         .then((data) => {
@@ -224,6 +248,43 @@ export class ProductDetailsForm {
       this.initContent();
     })();
   }
+
+  /** @private */
+  onClickUpdate() {
+    this.product.name = this.productNameInput.input.input.value;
+    this.product.description = this.descriptionInput.input.textArea.value;
+    this.product.sku = this.skuInput.input.input.value;
+    this.product.quantity = Number(this.stockQuantityInput.input.input.value);
+    this.product.regularPrice = Number(
+      this.regularPriceInput.input.input.value
+    );
+    this.product.salePrice = Number(this.salePriceInput.input.input.value);
+
+    this.onUpdate();
+  }
+
+  onUpdate() {}
+
+  /** @private */
+  onClickDelete() {
+    console.log("delete clicked");
+  }
+
+  onDelete() {}
+
+  /** @private */
+  onClickCancel() {
+    console.log("cancel clicked");
+  }
+
+  onCancel() {}
+
+  /** @private */
+  onClickAdd() {
+    console.log("add clicked");
+  }
+
+  onAdd() {}
 
   render() {
     return this.container;

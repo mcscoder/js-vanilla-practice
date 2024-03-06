@@ -17,6 +17,8 @@ export class ProductDetails {
   }
 
   initContent() {
+    this.container.innerText = "";
+
     // container 1 children --------------------
     // 1. breadcrumb element
     this.breadcrumb = new Breadcrumb(
@@ -33,6 +35,16 @@ export class ProductDetails {
     // container 2 children --------------------
     // 1. product details form
     this.productDetailsForm = new ProductDetailsForm(this.product);
+
+    this.productDetailsForm.onUpdate = () => {
+      this.productDetailsController.setProductGallery.call(
+        this.productDetailsController,
+        this.productDetailsForm.productGallery
+      );
+      this.productDetailsController.onUpdate.call(
+        this.productDetailsController
+      );
+    };
 
     // container 2
     this.container2 = new ContentSection(this.productDetailsForm.render());

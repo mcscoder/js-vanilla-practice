@@ -27,4 +27,13 @@ export const apiEndpoint = {
   getBrands() {
     return `/api/brands`;
   },
+  patchProduct(productId) {
+    return `/api/products/${productId}`;
+  },
+  deleteProductImage() {
+    return `/api/product-images`;
+  },
+  uploadProductImage(productId) {
+    return `/api/upload/product-image/${productId}`;
+  },
 };

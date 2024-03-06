@@ -1,6 +1,45 @@
 import { Brand, Category, ProductImage } from "."; // eslint-disable-line no-unused-vars
 import { DTOMethod } from "..";
 
+export const ProductRequestType = {
+  name: "",
+  description: "",
+  quantity: 0,
+  regularPrice: 0,
+  salePrice: 0,
+  sku: "",
+  sales: 0,
+  brandId: 0,
+  categoryId: 0,
+};
+
+/**
+ *
+ * @param {typeof ProductRequestType} param
+ * @returns {typeof ProductRequestType}
+ */
+export const getProductRequestBody = ({
+  name,
+  description,
+  quantity,
+  regularPrice,
+  salePrice,
+  sku,
+  categoryId,
+  brandId,
+}) => {
+  return {
+    name,
+    description,
+    quantity,
+    regularPrice,
+    salePrice,
+    sku,
+    categoryId,
+    brandId,
+  };
+};
+
 export class Product extends DTOMethod {
   /**
    *
@@ -52,5 +91,18 @@ export class Product extends DTOMethod {
     this.brand = brand;
     this.category = category;
     this.productImages = productImages;
+  }
+
+  getRequestBody() {
+    return {
+      name: this.name,
+      description: this.description,
+      quantity: this.quantity,
+      regularPrice: this.regularPrice,
+      salePrice: this.salePrice,
+      sku: this.sku,
+      categoryId: this.categoryId,
+      brandId: this.brandId,
+    };
   }
 }

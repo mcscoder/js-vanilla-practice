@@ -35,7 +35,7 @@ export class ProductCard {
     container1_1.className = "product_card-container-1-1";
 
     // product name
-    const productNameLink = new Link("#").render();
+    const productNameLink = new Link(`/product-details/${product.id}`).render();
 
     productNameLink.className = "product_card-name";
     productNameLink.textContent = product.name;

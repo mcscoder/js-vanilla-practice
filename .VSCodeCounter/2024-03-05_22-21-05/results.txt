@@ -1,0 +1,295 @@
+Date : 2024-03-05 22:21:05
+Directory : /home/mcs/Workspace/js/js-vanilla-practice
+Total : 196 files,  7198 codes, 1060 comments, 980 blanks, all 9238 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JavaScript         |        108 |      3,294 |      1,047 |        729 |      5,070 |
+| JSON               |          3 |      2,628 |          0 |          3 |      2,631 |
+| SCSS               |         60 |      1,155 |         13 |        237 |      1,405 |
+| XML                |         22 |         85 |          0 |          0 |         85 |
+| Markdown           |          1 |         15 |          0 |          9 |         24 |
+| HTML               |          1 |         13 |          0 |          1 |         14 |
+| JSON with Comments |          1 |          8 |          0 |          1 |          9 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                           | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                              |        196 |      7,198 |      1,060 |        980 |      9,238 |
+| . (Files)                                                                                                                      |          8 |      2,703 |          0 |         17 |      2,720 |
+| src                                                                                                                            |        188 |      4,495 |      1,060 |        963 |      6,518 |
+| src (Files)                                                                                                                    |          2 |          4 |          3 |          3 |         10 |
+| src/assets                                                                                                                     |         22 |         85 |          0 |          0 |         85 |
+| src/assets/icons                                                                                                               |         22 |         85 |          0 |          0 |         85 |
+| src/constants                                                                                                                  |          4 |        123 |          0 |         13 |        136 |
+| src/controllers                                                                                                                |          7 |        212 |         58 |         27 |        297 |
+| src/model                                                                                                                      |         15 |        204 |        124 |         28 |        356 |
+| src/model (Files)                                                                                                              |          1 |          2 |          0 |          1 |          3 |
+| src/model/common                                                                                                               |          2 |          5 |          0 |          2 |          7 |
+| src/model/dto                                                                                                                  |         12 |        197 |        124 |         25 |        346 |
+| src/routes                                                                                                                     |          3 |        158 |         22 |         27 |        207 |
+| src/styles                                                                                                                     |         59 |      1,154 |         13 |        236 |      1,403 |
+| src/styles (Files)                                                                                                             |          1 |          4 |          0 |          1 |          5 |
+| src/styles/abstracts                                                                                                           |          2 |         31 |          4 |          6 |         41 |
+| src/styles/base                                                                                                                |          4 |        125 |          8 |         25 |        158 |
+| src/styles/components                                                                                                          |         46 |        906 |          0 |        187 |      1,093 |
+| src/styles/components (Files)                                                                                                  |          1 |          2 |          0 |          1 |          3 |
+| src/styles/components/elements                                                                                                 |         38 |        831 |          0 |        174 |      1,005 |
+| src/styles/components/elements (Files)                                                                                         |          1 |         17 |          0 |          1 |         18 |
+| src/styles/components/elements/breadcrumb                                                                                      |          2 |         22 |          0 |          6 |         28 |
+| src/styles/components/elements/button                                                                                          |          2 |         41 |          0 |         11 |         52 |
+| src/styles/components/elements/category                                                                                        |          3 |         26 |          0 |          6 |         32 |
+| src/styles/components/elements/chart                                                                                           |          2 |          3 |          0 |          2 |          5 |
+| src/styles/components/elements/input                                                                                           |          2 |         24 |          0 |          6 |         30 |
+| src/styles/components/elements/link                                                                                            |          3 |         20 |          0 |          3 |         23 |
+| src/styles/components/elements/listTable                                                                                       |          2 |         45 |          0 |         10 |         55 |
+| src/styles/components/elements/optionsBox                                                                                      |          2 |         56 |          0 |          9 |         65 |
+| src/styles/components/elements/orderDetails                                                                                    |          3 |        134 |          0 |         27 |        161 |
+| src/styles/components/elements/orderStatCard                                                                                   |          2 |         47 |          0 |         10 |         57 |
+| src/styles/components/elements/ordersTable                                                                                     |          2 |         44 |          0 |         11 |         55 |
+| src/styles/components/elements/pagination                                                                                      |          2 |          8 |          0 |          2 |         10 |
+| src/styles/components/elements/productCard                                                                                     |          2 |        108 |          0 |         22 |        130 |
+| src/styles/components/elements/productDetailsForm                                                                              |          2 |        107 |          0 |         19 |        126 |
+| src/styles/components/elements/productStatCard                                                                                 |          2 |         68 |          0 |         14 |         82 |
+| src/styles/components/elements/saleGraph                                                                                       |          2 |         26 |          0 |          6 |         32 |
+| src/styles/components/elements/tag                                                                                             |          2 |         35 |          0 |          9 |         44 |
+| src/styles/components/layouts                                                                                                  |          7 |         73 |          0 |         12 |         85 |
+| src/styles/pages                                                                                                               |          6 |         88 |          1 |         17 |        106 |
+| src/utils                                                                                                                      |          5 |         74 |         25 |          7 |        106 |
+| src/view                                                                                                                       |         71 |      2,481 |        815 |        622 |      3,918 |
+| src/view (Files)                                                                                                               |          1 |          2 |          0 |          1 |          3 |
+| src/view/components                                                                                                            |         64 |      2,202 |        740 |        546 |      3,488 |
+| src/view/components (Files)                                                                                                    |          1 |          2 |          0 |          1 |          3 |
+| src/view/components/Elements                                                                                                   |         56 |      1,995 |        705 |        504 |      3,204 |
+| src/view/components/Elements (Files)                                                                                           |          1 |         18 |          0 |          1 |         19 |
+| src/view/components/Elements/Breadcrumb                                                                                        |          2 |         34 |         11 |         11 |         56 |
+| src/view/components/Elements/Button                                                                                            |          2 |         49 |         12 |          9 |         70 |
+| src/view/components/Elements/Category                                                                                          |          3 |         93 |         29 |         25 |        147 |
+| src/view/components/Elements/Chart                                                                                             |          2 |        154 |         31 |         24 |        209 |
+| src/view/components/Elements/DragDropUploader                                                                                  |          2 |         36 |         21 |         10 |         67 |
+| src/view/components/Elements/Input                                                                                             |          4 |         60 |         27 |         17 |        104 |
+| src/view/components/Elements/Link                                                                                              |          3 |         60 |         21 |         18 |         99 |
+| src/view/components/Elements/ListTable                                                                                         |          4 |        111 |         65 |         33 |        209 |
+| src/view/components/Elements/OptionsBox                                                                                        |          2 |        108 |         46 |         26 |        180 |
+| src/view/components/Elements/OrderDetails                                                                                      |          9 |        378 |        119 |        100 |        597 |
+| src/view/components/Elements/OrderDetails (Files)                                                                              |          1 |          2 |          0 |          1 |          3 |
+| src/view/components/Elements/OrderDetails/CustomerDetails                                                                      |          4 |        268 |         84 |         59 |        411 |
+| src/view/components/Elements/OrderDetails/OrderedProducts                                                                      |          4 |        108 |         35 |         40 |        183 |
+| src/view/components/Elements/OrderStatCard                                                                                     |          2 |         61 |         15 |         21 |         97 |
+| src/view/components/Elements/OrdersTable                                                                                       |          4 |         82 |         75 |         29 |        186 |
+| src/view/components/Elements/Pagination                                                                                        |          3 |        129 |         45 |         30 |        204 |
+| src/view/components/Elements/ProductCard                                                                                       |          2 |         98 |         46 |         39 |        183 |
+| src/view/components/Elements/ProductDetailsForm                                                                                |          4 |        316 |         65 |         52 |        433 |
+| src/view/components/Elements/ProductStatCard                                                                                   |          3 |         90 |         22 |         29 |        141 |
+| src/view/components/Elements/SaleGraph                                                                                         |          2 |         95 |         35 |         25 |        155 |
+| src/view/components/Elements/Tag                                                                                               |          2 |         23 |         20 |          5 |         48 |
+| src/view/components/Layouts                                                                                                    |          7 |        205 |         35 |         41 |        281 |
+| src/view/pages                                                                                                                 |          6 |        277 |         75 |         75 |        427 |
++--------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                                                       | language           | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| /home/mcs/Workspace/js/js-vanilla-practice/.eslintrc.cjs                                                                       | JavaScript         |         23 |          0 |          1 |         24 |
+| /home/mcs/Workspace/js/js-vanilla-practice/.prettierrc                                                                         | JSON               |         12 |          0 |          1 |         13 |
+| /home/mcs/Workspace/js/js-vanilla-practice/README.md                                                                           | Markdown           |         15 |          0 |          9 |         24 |
+| /home/mcs/Workspace/js/js-vanilla-practice/index.html                                                                          | HTML               |         13 |          0 |          1 |         14 |
+| /home/mcs/Workspace/js/js-vanilla-practice/jsconfig.json                                                                       | JSON with Comments |          8 |          0 |          1 |          9 |
+| /home/mcs/Workspace/js/js-vanilla-practice/package-lock.json                                                                   | JSON               |      2,584 |          0 |          1 |      2,585 |
+| /home/mcs/Workspace/js/js-vanilla-practice/package.json                                                                        | JSON               |         32 |          0 |          1 |         33 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/assets/icons/addCircle.svg                                                      | XML                |          5 |          0 |          0 |          5 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/assets/icons/albums.svg                                                         | XML                |          5 |          0 |          0 |          5 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/assets/icons/arrowDown.svg                                                      | XML                |          3 |          0 |          0 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/assets/icons/arrowUp.svg                                                        | XML                |          3 |          0 |          0 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/assets/icons/bagHandle.svg                                                      | XML                |          4 |          0 |          0 |          4 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/assets/icons/calendar.svg                                                       | XML                |         14 |          0 |          0 |         14 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/assets/icons/checkCircle.svg                                                    | XML                |          3 |          0 |          0 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/assets/icons/chevronDown.svg                                                    | XML                |          3 |          0 |          0 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/assets/icons/chevronForward.svg                                                 | XML                |          3 |          0 |          0 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/assets/icons/chevronUp.svg                                                      | XML                |          3 |          0 |          0 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/assets/icons/dashboard.svg                                                      | XML                |          3 |          0 |          0 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/assets/icons/documentText.svg                                                   | XML                |          4 |          0 |          0 |          4 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/assets/icons/logo.svg                                                           | XML                |          4 |          0 |          0 |          4 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/assets/icons/masterCard.svg                                                     | XML                |          5 |          0 |          0 |          5 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/assets/icons/notifications.svg                                                  | XML                |          3 |          0 |          0 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/assets/icons/picture.svg                                                        | XML                |          3 |          0 |          0 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/assets/icons/printer.svg                                                        | XML                |          3 |          0 |          0 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/assets/icons/search.svg                                                         | XML                |          3 |          0 |          0 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/assets/icons/threeDotsHorizontal.svg                                            | XML                |          3 |          0 |          0 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/assets/icons/threeDotsVertical.svg                                              | XML                |          3 |          0 |          0 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/assets/icons/user.svg                                                           | XML                |          4 |          0 |          0 |          4 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/assets/icons/xMark.svg                                                          | XML                |          1 |          0 |          0 |          1 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/constants/common.js                                                             | JavaScript         |          8 |          0 |          5 |         13 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/constants/icons.js                                                              | JavaScript         |         78 |          0 |          3 |         81 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/constants/index.js                                                              | JavaScript         |          3 |          0 |          1 |          4 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/constants/routes.js                                                             | JavaScript         |         34 |          0 |          4 |         38 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/controllers/ControllerMethods.js                                                | JavaScript         |          3 |          0 |          1 |          4 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/controllers/DefaultLayout.js                                                    | JavaScript         |         24 |         10 |          3 |         37 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/controllers/OrderDetails.js                                                     | JavaScript         |         74 |         21 |          7 |        102 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/controllers/OrderList.js                                                        | JavaScript         |         25 |         10 |          3 |         38 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/controllers/Product.js                                                          | JavaScript         |         33 |          9 |          4 |         46 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/controllers/ProductDetails.js                                                   | JavaScript         |         47 |          8 |          8 |         63 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/controllers/index.js                                                            | JavaScript         |          6 |          0 |          1 |          7 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/main.js                                                                         | JavaScript         |          3 |          3 |          2 |          8 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/main.scss                                                                       | SCSS               |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/model/common/DTOMethod.js                                                       | JavaScript         |          4 |          0 |          1 |          5 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/model/common/index.js                                                           | JavaScript         |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/model/dto/Brand.js                                                              | JavaScript         |          6 |          6 |          1 |         13 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/model/dto/Category.js                                                           | JavaScript         |         11 |         11 |          3 |         25 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/model/dto/Order.js                                                              | JavaScript         |         26 |         18 |          3 |         47 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/model/dto/OrderProduct.js                                                       | JavaScript         |         14 |         13 |          3 |         30 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/model/dto/OrderStatus.js                                                        | JavaScript         |          6 |          6 |          1 |         13 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/model/dto/PaymentMethod.js                                                      | JavaScript         |          6 |          6 |          1 |         13 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/model/dto/Product.js                                                            | JavaScript         |         77 |         26 |          6 |        109 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/model/dto/ProductImage.js                                                       | JavaScript         |          8 |          8 |          1 |         17 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/model/dto/Shipping.js                                                           | JavaScript         |          6 |          6 |          1 |         13 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/model/dto/User.js                                                               | JavaScript         |         10 |          9 |          1 |         20 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/model/dto/UserPaymentMethod.js                                                  | JavaScript         |         16 |         15 |          3 |         34 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/model/dto/index.js                                                              | JavaScript         |         11 |          0 |          1 |         12 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/model/index.js                                                                  | JavaScript         |          2 |          0 |          1 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/routes/index.js                                                                 | JavaScript         |          2 |          0 |          1 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/routes/router.js                                                                | JavaScript         |        134 |         22 |         24 |        180 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/routes/routes.js                                                                | JavaScript         |         22 |          0 |          2 |         24 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/_index.scss                                                              | SCSS               |          4 |          0 |          1 |          5 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/abstracts/_index.scss                                                    | SCSS               |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/abstracts/_variables.scss                                                | SCSS               |         30 |          4 |          5 |         39 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/base/_common.scss                                                        | SCSS               |         68 |          0 |         11 |         79 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/base/_index.scss                                                         | SCSS               |          3 |          0 |          1 |          4 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/base/_reset.scss                                                         | SCSS               |         19 |          0 |          4 |         23 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/base/_typography.scss                                                    | SCSS               |         35 |          8 |          9 |         52 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/_index.scss                                                   | SCSS               |          2 |          0 |          1 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/_index.scss                                          | SCSS               |         17 |          0 |          1 |         18 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/breadcrumb/_breadcrumb.scss                          | SCSS               |         21 |          0 |          5 |         26 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/breadcrumb/_index.scss                               | SCSS               |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/button/_button.scss                                  | SCSS               |         40 |          0 |         10 |         50 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/button/_index.scss                                   | SCSS               |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/category/_category.scss                              | SCSS               |          8 |          0 |          2 |         10 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/category/_categoryToggle.scss                        | SCSS               |         16 |          0 |          3 |         19 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/category/_index.scss                                 | SCSS               |          2 |          0 |          1 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/chart/_chart.scss                                    | SCSS               |          2 |          0 |          1 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/chart/_index.scss                                    | SCSS               |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/input/_index.scss                                    | SCSS               |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/input/_input.scss                                    | SCSS               |         23 |          0 |          5 |         28 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/link/_index.scss                                     | SCSS               |          2 |          0 |          1 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/link/_link.scss                                      | SCSS               |          5 |          0 |          0 |          5 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/link/_navLink.scss                                   | SCSS               |         13 |          0 |          2 |         15 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/listTable/_index.scss                                | SCSS               |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/listTable/_listTable.scss                            | SCSS               |         44 |          0 |          9 |         53 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/optionsBox/_index.scss                               | SCSS               |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/optionsBox/_optionsBox.scss                          | SCSS               |         55 |          0 |          8 |         63 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/orderDetails/_customerDetails.scss                   | SCSS               |         86 |          0 |         16 |        102 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/orderDetails/_index.scss                             | SCSS               |          2 |          0 |          1 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/orderDetails/_orderedProducts.scss                   | SCSS               |         46 |          0 |         10 |         56 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/orderStatCard/_index.scss                            | SCSS               |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/orderStatCard/_orderStatCard.scss                    | SCSS               |         46 |          0 |          9 |         55 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/ordersTable/_index.scss                              | SCSS               |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/ordersTable/_ordersTable.scss                        | SCSS               |         43 |          0 |         10 |         53 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/pagination/_index.scss                               | SCSS               |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/pagination/_pagination.scss                          | SCSS               |          7 |          0 |          1 |          8 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/productCard/_index.scss                              | SCSS               |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/productCard/_productCard.scss                        | SCSS               |        107 |          0 |         21 |        128 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/productDetailsForm/_index.scss                       | SCSS               |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/productDetailsForm/_productDetailsForm.scss          | SCSS               |        106 |          0 |         18 |        124 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/productStatCard/_index.scss                          | SCSS               |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/productStatCard/_productStatCard.scss                | SCSS               |         67 |          0 |         13 |         80 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/saleGraph/_index.scss                                | SCSS               |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/saleGraph/_saleGraph.scss                            | SCSS               |         25 |          0 |          5 |         30 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/tag/_index.scss                                      | SCSS               |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/elements/tag/_tag.scss                                        | SCSS               |         34 |          0 |          8 |         42 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/layouts/_contentSection.scss                                  | SCSS               |          5 |          0 |          0 |          5 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/layouts/_defaultLayout.scss                                   | SCSS               |         10 |          0 |          2 |         12 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/layouts/_footer.scss                                          | SCSS               |         17 |          0 |          4 |         21 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/layouts/_header.scss                                          | SCSS               |          8 |          0 |          1 |          9 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/layouts/_index.scss                                           | SCSS               |          6 |          0 |          1 |          7 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/layouts/_main.scss                                            | SCSS               |         11 |          0 |          2 |         13 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/components/layouts/_navSidebar.scss                                      | SCSS               |         16 |          0 |          2 |         18 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/pages/_Home.scss                                                         | SCSS               |         20 |          0 |          4 |         24 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/pages/_index.scss                                                        | SCSS               |          5 |          0 |          1 |          6 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/pages/_orderDetails.scss                                                 | SCSS               |         11 |          0 |          2 |         13 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/pages/_orders.scss                                                       | SCSS               |         20 |          0 |          4 |         24 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/pages/_productDetails.scss                                               | SCSS               |         11 |          0 |          2 |         13 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/styles/pages/_products.scss                                                     | SCSS               |         21 |          1 |          4 |         26 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/utils/api.js                                                                    | JavaScript         |         29 |          4 |          1 |         34 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/utils/htmlElement.js                                                            | JavaScript         |         18 |         16 |          2 |         36 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/utils/index.js                                                                  | JavaScript         |          4 |          0 |          1 |          5 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/utils/money.js                                                                  | JavaScript         |          7 |          1 |          1 |          9 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/utils/number.js                                                                 | JavaScript         |         16 |          4 |          2 |         22 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/Breadcrumb/Breadcrumb.js                               | JavaScript         |         33 |         11 |         10 |         54 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/Breadcrumb/index.js                                    | JavaScript         |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/Button/Button.js                                       | JavaScript         |         48 |         12 |          8 |         68 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/Button/index.js                                        | JavaScript         |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/Category/Category.js                                   | JavaScript         |         36 |         12 |          9 |         57 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/Category/CategoryToggle.js                             | JavaScript         |         55 |         17 |         15 |         87 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/Category/index.js                                      | JavaScript         |          2 |          0 |          1 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/Chart/Chart.js                                         | JavaScript         |        153 |         31 |         23 |        207 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/Chart/index.js                                         | JavaScript         |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/DragDropUploader/DragDropUploader.js                   | JavaScript         |         35 |         21 |          9 |         65 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/DragDropUploader/index.js                              | JavaScript         |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/Input/Input.js                                         | JavaScript         |         13 |          6 |          2 |         21 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/Input/InputContainer.js                                | JavaScript         |         28 |         14 |          9 |         51 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/Input/TextArea.js                                      | JavaScript         |         16 |          7 |          5 |         28 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/Input/index.js                                         | JavaScript         |          3 |          0 |          1 |          4 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/Link/Link.js                                           | JavaScript         |         17 |          9 |          5 |         31 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/Link/NavLink.js                                        | JavaScript         |         41 |         12 |         12 |         65 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/Link/index.js                                          | JavaScript         |          2 |          0 |          1 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/ListTable/ListTable.js                                 | JavaScript         |         38 |         19 |         12 |         69 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/ListTable/TableBody.js                                 | JavaScript         |         39 |         24 |         11 |         74 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/ListTable/TableHeader.js                               | JavaScript         |         31 |         22 |          9 |         62 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/ListTable/index.js                                     | JavaScript         |          3 |          0 |          1 |          4 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/OptionsBox/OptionsBox.js                               | JavaScript         |        107 |         46 |         25 |        178 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/OptionsBox/index.js                                    | JavaScript         |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/OrderDetails/CustomerDetails/CustomerDetailsSection.js | JavaScript         |        176 |         60 |         31 |        267 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/OrderDetails/CustomerDetails/CustomerInformation.js    | JavaScript         |         35 |         14 |         12 |         61 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/OrderDetails/CustomerDetails/PaymentMethod.js          | JavaScript         |         54 |         10 |         15 |         79 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/OrderDetails/CustomerDetails/index.js                  | JavaScript         |          3 |          0 |          1 |          4 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/OrderDetails/OrderedProducts/OrderSummary.js           | JavaScript         |         37 |         14 |         12 |         63 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/OrderDetails/OrderedProducts/OrderedProducts.js        | JavaScript         |         51 |         16 |         20 |         87 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/OrderDetails/OrderedProducts/ProductName.js            | JavaScript         |         17 |          5 |          7 |         29 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/OrderDetails/OrderedProducts/index.js                  | JavaScript         |          3 |          0 |          1 |          4 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/OrderDetails/index.js                                  | JavaScript         |          2 |          0 |          1 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/OrderStatCard/OrderStatCard.js                         | JavaScript         |         60 |         15 |         20 |         95 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/OrderStatCard/index.js                                 | JavaScript         |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/OrdersTable/CustomerName.js                            | JavaScript         |         17 |         21 |          7 |         45 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/OrdersTable/DeliveryStatus.js                          | JavaScript         |         18 |         37 |          7 |         62 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/OrdersTable/OrdersTable.js                             | JavaScript         |         44 |         17 |         14 |         75 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/OrdersTable/index.js                                   | JavaScript         |          3 |          0 |          1 |          4 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/Pagination/Pagination.js                               | JavaScript         |        126 |         45 |         28 |        199 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/Pagination/PaginationButton.js                         | JavaScript         |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/Pagination/index.js                                    | JavaScript         |          2 |          0 |          1 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/ProductCard/ProductCard.js                             | JavaScript         |         97 |         46 |         38 |        181 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/ProductCard/index.js                                   | JavaScript         |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/ProductDetailsForm/ProductDetailsForm.js               | JavaScript         |        222 |         41 |         30 |        293 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/ProductDetailsForm/ProductGallery.js                   | JavaScript         |         75 |         23 |         15 |        113 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/ProductDetailsForm/ProductThumbnail.js                 | JavaScript         |         16 |          1 |          6 |         23 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/ProductDetailsForm/index.js                            | JavaScript         |          3 |          0 |          1 |          4 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/ProductStatCard/ProductItem.js                         | JavaScript         |         32 |         11 |         13 |         56 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/ProductStatCard/ProductStatCard.js                     | JavaScript         |         56 |         11 |         15 |         82 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/ProductStatCard/index.js                               | JavaScript         |          2 |          0 |          1 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/SaleGraph/SaleGraph.js                                 | JavaScript         |         94 |         35 |         24 |        153 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/SaleGraph/index.js                                     | JavaScript         |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/Tag/Tag.js                                             | JavaScript         |         22 |         20 |          4 |         46 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/Tag/index.js                                           | JavaScript         |          1 |          0 |          1 |          2 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Elements/index.js                                               | JavaScript         |         18 |          0 |          1 |         19 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Layouts/ContentSection.js                                       | JavaScript         |         10 |         10 |          1 |         21 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Layouts/DefaultLayout.js                                        | JavaScript         |         28 |          4 |          8 |         40 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Layouts/Footer.js                                               | JavaScript         |         43 |          2 |          9 |         54 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Layouts/Header.js                                               | JavaScript         |         45 |          5 |         10 |         60 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Layouts/Main.js                                                 | JavaScript         |          9 |          1 |          2 |         12 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Layouts/NavSidebar.js                                           | JavaScript         |         64 |         13 |         10 |         87 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/Layouts/index.js                                                | JavaScript         |          6 |          0 |          1 |          7 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/components/index.js                                                        | JavaScript         |          2 |          0 |          1 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/index.js                                                                   | JavaScript         |          2 |          0 |          1 |          3 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/pages/Home.js                                                              | JavaScript         |         72 |         10 |         16 |         98 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/pages/OrderDetails.js                                                      | JavaScript         |         38 |         14 |         12 |         64 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/pages/Orders.js                                                            | JavaScript         |         69 |         24 |         18 |        111 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/pages/ProductDetails.js                                                    | JavaScript         |         37 |         13 |         13 |         63 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/pages/Products.js                                                          | JavaScript         |         56 |         14 |         15 |         85 |
+| /home/mcs/Workspace/js/js-vanilla-practice/src/view/pages/index.js                                                             | JavaScript         |          5 |          0 |          1 |          6 |
+| /home/mcs/Workspace/js/js-vanilla-practice/vite.config.js                                                                      | JavaScript         |         16 |          0 |          2 |         18 |
+| Total                                                                                                                          |                    |      7,198 |      1,060 |        980 |      9,238 |
++--------------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

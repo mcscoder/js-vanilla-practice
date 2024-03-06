@@ -2,7 +2,7 @@ import { Brand, Product, ProductImage } from "@/model/dto";
 import { ControllerMethods } from "./ControllerMethods";
 import { apiEndpoint } from "@/utils";
 import { Router } from "@/routes";
-import { Category } from "@/view";
+import { Category, ProductGallery } from "@/view"; // eslint-disable-line no-unused-vars
 
 export class ProductDetailsController extends ControllerMethods {
   /**
@@ -29,7 +29,7 @@ export class ProductDetailsController extends ControllerMethods {
     fetch(apiEndpoint.getProduct(productId))
       .then((res) => res.json())
       .then((data) => {
-        const product = new Product(data);
+        this.product = new Product(data);
 
         const brand = new Brand(data.brand);
         const category = new Category(data.category);
@@ -38,9 +38,60 @@ export class ProductDetailsController extends ControllerMethods {
           return productImageObj;
         });
 
-        product.response({ brand, category, productImages });
+        this.product.response({ brand, category, productImages });
 
-        this.dataFetched(product);
+        this.dataFetched(this.product);
       });
+  }
+
+  /**
+   *
+   * @param {ProductGallery} productGallery
+   */
+  setProductGallery(productGallery) {
+    this.productGallery = productGallery;
+  }
+
+  onUpdate() {
+    (async () => {
+      // update product information
+      const body = this.product.getRequestBody();
+      await fetch(apiEndpoint.patchProduct(this.product.id), {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      }).then((res) => {
+        if (!res.ok) {
+          throw new Error("Can't fetch data");
+        }
+      });
+
+      // update product images
+      // 1. delete product images
+      await fetch(apiEndpoint.deleteProductImage(), {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(this.productGallery.deleteImageIds),
+      });
+
+      // 2. upload new image
+      const formData = new FormData();
+      this.productGallery.newImages.forEach((file) => {
+        if (file) {
+          formData.append("files", file);
+        }
+      });
+      await fetch(apiEndpoint.uploadProductImage(this.product.id), {
+        method: "POST",
+        body: formData,
+      });
+
+      alert("Save success");
+      this.fetchData();
+    })();
   }
 }
