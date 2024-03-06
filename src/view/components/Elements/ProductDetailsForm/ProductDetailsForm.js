@@ -147,14 +147,14 @@ export class ProductDetailsForm {
         this.onClickUpdate.bind(this)
       );
       // 2. Delete button
-      this.deleteButton = new Button(
-        "delete",
+      this.deprecatedButton = new Button(
+        "deprecated",
         null,
         null,
         buttonVariants.secondary.filled,
         buttonSizes.lg,
         "product_details_form-function_button",
-        this.onClickDelete.bind(this)
+        this.onClickDeprecated.bind(this)
       );
       // 3. Cancel button
       this.cancelButton = new Button(
@@ -168,7 +168,7 @@ export class ProductDetailsForm {
       );
       buttons.push(
         this.updateButton.render(),
-        this.deleteButton.render(),
+        this.deprecatedButton.render(),
         this.cancelButton.render()
       );
     } else {
@@ -266,11 +266,11 @@ export class ProductDetailsForm {
   onUpdate() {}
 
   /** @private */
-  onClickDelete() {
-    console.log("delete clicked");
+  onClickDeprecated() {
+    this.onDeprecated();
   }
 
-  onDelete() {}
+  onDeprecated() {}
 
   /** @private */
   onClickCancel() {

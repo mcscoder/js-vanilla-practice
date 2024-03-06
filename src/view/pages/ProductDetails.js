@@ -46,6 +46,12 @@ export class ProductDetails {
       );
     };
 
+    this.productDetailsForm.onDeprecated = () => {
+      this.productDetailsController.onDeprecated.call(
+        this.productDetailsController
+      );
+    };
+
     // container 2
     this.container2 = new ContentSection(this.productDetailsForm.render());
 

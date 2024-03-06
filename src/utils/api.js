@@ -36,4 +36,7 @@ export const apiEndpoint = {
   uploadProductImage(productId) {
     return `/api/upload/product-image/${productId}`;
   },
+  patchDeprecatedProduct(productId) {
+    return `/api/product/${productId}`;
+  },
 };

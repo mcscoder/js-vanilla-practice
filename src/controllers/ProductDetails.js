@@ -94,4 +94,15 @@ export class ProductDetailsController extends ControllerMethods {
       this.fetchData();
     })();
   }
+
+  onDeprecated() {
+    fetch(apiEndpoint.patchDeprecatedProduct(this.product.id), {
+      method: "PATCH",
+    }).then((res) => {
+      if (res.ok) {
+        alert("Product has been deprecated");
+        Router.pushState("/products");
+      }
+    });
+  }
 }
