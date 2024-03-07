@@ -19,3 +19,12 @@ export const creditCardFormat = (number) => {
   }
   return result.split("").reverse().join("");
 };
+
+/**
+ *
+ * @param {Event} e
+ */
+export const handleNumberInput = (e) => {
+  const regex = /\D/g;
+  e.target.value = e.target.value.replace(regex, "");
+};

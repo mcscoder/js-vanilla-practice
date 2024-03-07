@@ -1,4 +1,4 @@
-import { apiEndpoint, createContainer } from "@/utils";
+import { apiEndpoint, createContainer, handleNumberInput } from "@/utils";
 import {
   Button,
   InputContainer,
@@ -12,6 +12,7 @@ import {
 import {
   Product, // eslint-disable-line no-unused-vars
 } from "@/model/dto"; // eslint-disable-line no-unused-vars
+import { productDetailsDefault } from "@/constants";
 
 export class ProductDetailsForm {
   /**
@@ -78,18 +79,19 @@ export class ProductDetailsForm {
       "input",
       "Stock Quantity",
       "flex-1",
-      { defaultValue: this.product.quantity }
+      { defaultValue: this.product.quantity, onchange: handleNumberInput }
     );
     // 7. Regular Price input
     this.regularPriceInput = new InputContainer(
       "input",
       "Regular Price",
       "flex-1",
-      { defaultValue: this.product.regularPrice }
+      { defaultValue: this.product.regularPrice, onchange: handleNumberInput }
     );
     // 8. Sale Price input
     this.salePriceInput = new InputContainer("input", "Sale Price", "flex-1", {
       defaultValue: this.product.salePrice,
+      onchange: handleNumberInput,
     });
 
     // container 1.1
@@ -114,7 +116,9 @@ export class ProductDetailsForm {
     // container 1.2 children --------------------
     // 1. Product thumbnail
     this.outstandingThumbnail = new ProductThumbnail(
-      this.product.productImages[0].imageURL
+      this.product.productImages
+        ? this.product.productImages[0].imageURL
+        : productDetailsDefault
     );
     // 2. Product gallery
     this.productGallery = new ProductGallery(this.product.productImages);
@@ -249,8 +253,10 @@ export class ProductDetailsForm {
     })();
   }
 
-  /** @private */
-  onClickUpdate() {
+  /**
+   * Sync data from input form to the product object (this.product)
+   */
+  syncDataToObject() {
     this.product.name = this.productNameInput.input.input.value;
     this.product.description = this.descriptionInput.input.textArea.value;
     this.product.sku = this.skuInput.input.input.value;
@@ -259,10 +265,17 @@ export class ProductDetailsForm {
       this.regularPriceInput.input.input.value
     );
     this.product.salePrice = Number(this.salePriceInput.input.input.value);
+  }
 
+  /** @private */
+  onClickUpdate() {
+    this.syncDataToObject();
     this.onUpdate();
   }
 
+  /**
+   * This will be overwrite by object
+   */
   onUpdate() {}
 
   /** @private */
@@ -270,6 +283,9 @@ export class ProductDetailsForm {
     this.onDeprecated();
   }
 
+  /**
+   * This will be overwrite by object
+   */
   onDeprecated() {}
 
   /** @private */
@@ -277,13 +293,20 @@ export class ProductDetailsForm {
     console.log("cancel clicked");
   }
 
+  /**
+   * This will be overwrite by object
+   */
   onCancel() {}
 
   /** @private */
   onClickAdd() {
-    console.log("add clicked");
+    this.syncDataToObject();
+    this.onAdd();
   }
 
+  /**
+   * This will be overwrite by object
+   */
   onAdd() {}
 
   render() {

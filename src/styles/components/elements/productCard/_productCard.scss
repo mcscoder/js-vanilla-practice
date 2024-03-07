@@ -67,6 +67,7 @@
 
     &-content {
       @include font($text-sm, $font-normal);
+      @include line-clamp(2);
       opacity: 0.6;
     }
   }

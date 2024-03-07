@@ -39,4 +39,7 @@ export const apiEndpoint = {
   patchDeprecatedProduct(productId) {
     return `/api/product/${productId}`;
   },
+  postProduct() {
+    return `/api/products`;
+  },
 };

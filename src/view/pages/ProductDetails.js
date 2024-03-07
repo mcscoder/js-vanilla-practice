@@ -3,17 +3,20 @@ import { Breadcrumb, ContentSection, ProductDetailsForm } from "..";
 import { createContainer } from "@/utils";
 import { ProductDetailsController } from "@/controllers";
 import { Product } from "@/model/dto"; // eslint-disable-line no-unused-vars
+import { Router } from "@/routes";
 
 export class ProductDetails {
   constructor() {
     // leading class name: product_details
 
-    this.productDetailsController = new ProductDetailsController(
-      this.dataFetched.bind(this)
-    );
+    this.productId = Router.getParams().productId;
 
     // global container
     this.container = createContainer("product_details-container");
+
+    this.productDetailsController = new ProductDetailsController(
+      this.dataFetched.bind(this)
+    );
   }
 
   initContent() {
@@ -22,8 +25,9 @@ export class ProductDetails {
     // container 1 children --------------------
     // 1. breadcrumb element
     this.breadcrumb = new Breadcrumb(
-      routePaths.products,
-      routePaths.productDetails
+      this.productId
+        ? (routePaths.products, routePaths.productDetails)
+        : routePaths.addProduct
     );
 
     // container 1
@@ -34,7 +38,10 @@ export class ProductDetails {
 
     // container 2 children --------------------
     // 1. product details form
-    this.productDetailsForm = new ProductDetailsForm(this.product);
+    this.productDetailsForm = new ProductDetailsForm(
+      this.product,
+      this.productId === undefined
+    );
 
     this.productDetailsForm.onUpdate = () => {
       this.productDetailsController.setProductGallery.call(
@@ -50,6 +57,14 @@ export class ProductDetails {
       this.productDetailsController.onDeprecated.call(
         this.productDetailsController
       );
+    };
+
+    this.productDetailsForm.onAdd = () => {
+      this.productDetailsController.setProductGallery.call(
+        this.productDetailsController,
+        this.productDetailsForm.productGallery
+      );
+      this.productDetailsController.onAdd.call(this.productDetailsController);
     };
 
     // container 2

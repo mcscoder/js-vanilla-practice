@@ -55,7 +55,7 @@ export class ProductGallery {
     this.container2 = createContainer(
       "product_details_form-gallery-container-2"
     );
-    productImages.forEach(({ id, imageName, imageURL }) => {
+    productImages?.forEach(({ id, imageName, imageURL }) => {
       this.renderPreviewImage({
         id,
         imageName,

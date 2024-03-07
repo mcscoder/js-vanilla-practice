@@ -147,7 +147,7 @@ export class ProductCard {
     // inner status bar
     // inner status bar width based on ratio of current-products/max-products
     // simulation ratio
-    const ratio = 50;
+    const ratio = (100 * product.quantity) / 1000;
     const statusbarInner = document.createElement("div");
     statusbarInner.className = "product_card-status-status_bar-inner";
     statusbarInner.style = `width: ${ratio}%`;
