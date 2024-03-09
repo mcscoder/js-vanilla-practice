@@ -43,7 +43,7 @@ export class Router {
       } else {
         componentPath = route1.path;
         if (Router.matchPath(urlPath, componentPath)) {
-          childNode = new route1.component().render();
+          childNode = route1.component.render();
           params = Router.extractParams(urlPath, componentPath);
           return { childNode, componentPath, params };
         }
