@@ -95,6 +95,7 @@
       padding: 1rem;
       background-color: $gray-light;
       border-radius: 0.5rem;
+      position: relative;
 
       &-image {
         width: 64px;
@@ -105,6 +106,13 @@
         flex: 1;
         @include font($text-base, $font-semibold);
         @include line-clamp(1);
+      }
+
+      &-delete_btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(30%, -30%);
       }
     }
   }

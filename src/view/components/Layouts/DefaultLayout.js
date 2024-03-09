@@ -1,7 +1,10 @@
+import { DefaultLayoutController } from "@/controllers";
 import { NavSidebar, Header, Footer, Main } from ".";
 
 export class DefaultLayout {
   constructor() {
+    this.defaultLayoutController = new DefaultLayoutController();
+
     // Global container
     this.globalContainer = document.createElement("div");
     this.globalContainer.className = "global-container";
@@ -9,6 +12,9 @@ export class DefaultLayout {
     // Navigation sidebar
     this.navSidebar = new NavSidebar();
     this.globalContainer.append(this.navSidebar.render());
+    this.defaultLayoutController.fetchCategoryData(
+      this.navSidebar.categoryDataFetched.bind(this.navSidebar)
+    );
 
     // Content container
     this.contentContainer = document.createElement("div");

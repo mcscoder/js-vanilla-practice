@@ -1,10 +1,23 @@
 import { routePaths } from "@/constants";
 import { Breadcrumb, CustomerDetailsSection, OrderedProducts } from "..";
+import { OrderDetailsController } from "@/controllers";
+import { Order } from "@/model/dto"; // eslint-disable-line no-unused-vars
 
 export class OrderDetails {
   constructor() {
+    this.controller = new OrderDetailsController(this.dataFetched.bind(this));
+
+    // global container
     this.container = document.createElement("div");
     this.container.className = "order_details-container";
+  }
+
+  /**
+   * @private
+   */
+  initContent() {
+    // clear content
+    this.container.innerText = "";
 
     // container 1 element. cover breadcrumb
     this.container1 = document.createElement("div");
@@ -20,10 +33,13 @@ export class OrderDetails {
     this.container1.append(this.breadcrumb.render());
 
     // customer information details section
-    this.userDetailsSection = new CustomerDetailsSection(6743, 3);
+    this.userDetailsSection = new CustomerDetailsSection(
+      this.orderDetails,
+      this.controller.onSave.bind(this.controller)
+    );
 
     // ordered products
-    this.orderedProducts = new OrderedProducts();
+    this.orderedProducts = new OrderedProducts(this.orderDetails);
 
     // add elements to global container
     this.container.append(
@@ -32,6 +48,15 @@ export class OrderDetails {
       this.orderedProducts.render()
     );
   }
+
+  /**
+   * @param {Order} orderDetails
+   */
+  dataFetched(orderDetails) {
+    this.orderDetails = orderDetails;
+    this.initContent();
+  }
+
   render() {
     return this.container;
   }

@@ -6,6 +6,7 @@ export const routePaths = {
   orders: "/orders",
   orderDetails: "/order-details/:orderId",
   productDetails: "/product-details/:productId",
+  addProduct: "/add-product",
 };
 
 export const getPath = {
@@ -26,6 +27,7 @@ export const getPath = {
     );
     return routePaths.productDetails.replace(":productId", productId);
   },
+  [routePaths.addProduct]: () => routePaths.addProduct,
 };
 
 export const breadcrumbs = {
@@ -34,4 +36,5 @@ export const breadcrumbs = {
   [routePaths.orders]: "Order List",
   [routePaths.orderDetails]: "Order Details",
   [routePaths.productDetails]: "Product Details",
+  [routePaths.addProduct]: "Add New Product",
 };

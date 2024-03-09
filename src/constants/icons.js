@@ -19,6 +19,7 @@ import user from "@/assets/icons/user.svg";
 import masterCard from "@/assets/icons/masterCard.svg";
 import picture from "@/assets/icons/picture.svg";
 import checkCircle from "@/assets/icons/checkCircle.svg";
+import xMark from "@/assets/icons/xMark.svg";
 
 const loadSvg = async (filePath) => {
   try {
@@ -52,6 +53,7 @@ export const [
   masterCardIcon,
   pictureIcon,
   checkCircleIcon,
+  xMarkIcon,
 ] = await Promise.all([
   loadSvg(albums),
   loadSvg(dashboard),
@@ -74,4 +76,5 @@ export const [
   loadSvg(masterCard),
   loadSvg(picture),
   loadSvg(checkCircle),
+  loadSvg(xMark),
 ]);

@@ -12,23 +12,24 @@ export const createContainer = (className, ...children) => {
 
 /**
  * @callback onLoadendCallback
- * @param {string} fileName
- * @param {string} imageURL
+ * @param {object} param0
+ * @param {string} param0.imageName
+ * @param {string} param0.imageURL
  */
 /**
  * Generates a preview of an image file.
  * @param {File} file - The image file to generate a preview for.
- * @param {onLoadendCallback} onloadend
+ * @param {onLoadendCallback} onLoadend
  */
 export const extractImageFile = (
   file,
-  onLoadend = (fileName, imageURL) => {
-    fileName, imageURL;
+  onLoadend = ({ imageName, imageURL }) => {
+    imageName, imageURL;
   }
 ) => {
   const reader = new FileReader();
   reader.readAsDataURL(file);
   reader.onloadend = () => {
-    onLoadend(file.name, reader.result);
+    onLoadend({ imageName: file.name, imageURL: reader.result });
   };
 };

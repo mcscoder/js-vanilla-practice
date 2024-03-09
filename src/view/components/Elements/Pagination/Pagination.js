@@ -9,15 +9,20 @@ import { Router } from "@/routes";
 
 export class Pagination {
   /**
+   * @callback navigateToCallBack
+   * @param {number} pageIndex
+   * @param {number} limit
+   */
+  /**
    * @param {number} total - The total number of items to be paginated.
    * @param {number} limit - The number of items to be displayed per page.
-   * @param {function} [navigateTo = (page) => {}] - Callback function to handle page navigation.
+   * @param {navigateToCallBack} navigateTo - Callback function to handle page navigation.
    */
   constructor(
     total,
     limit,
-    navigateTo = (page) => {
-      page;
+    navigateTo = (pageIndex, limit) => {
+      pageIndex, limit;
     }
   ) {
     this.total = total;
@@ -30,7 +35,7 @@ export class Pagination {
     if (!this.currentPageIndex) {
       this.currentPageIndex = 0;
     }
-    console.log(this.currentPageIndex);
+    this.navigation();
 
     /**
      * Calculates the total number of pages based on the total number of items and the limit per page.
@@ -153,6 +158,10 @@ export class Pagination {
 
     // Add the "next" button for navigating to the next page
     this.container.append(this.nextButton.render());
+
+    // Handle disable "next" button if current page index === total page
+    this.nextButton.button.disabled =
+      this.currentPageIndex === this.totalPage - 1;
   }
 
   /** @private */
@@ -160,7 +169,6 @@ export class Pagination {
     if (pageIndex > this.totalPage - 1) {
       return;
     }
-    this.nextButton.button.disabled = pageIndex === this.totalPage - 1;
     this.currentPageIndex = pageIndex;
 
     if (pageIndex === 0) {
@@ -170,7 +178,7 @@ export class Pagination {
     }
 
     // callback
-    this.navigateTo(this.currentPageIndex);
+    this.navigation();
 
     // handle navigating
     this.navigationButtons.forEach((item, index) => {
@@ -190,6 +198,10 @@ export class Pagination {
   /** @private */
   onClickNextButton() {
     this.onClickNavigationButton(this.currentPageIndex + 1);
+  }
+
+  navigation() {
+    this.navigateTo(this.currentPageIndex * this.limit, this.limit);
   }
 
   render() {

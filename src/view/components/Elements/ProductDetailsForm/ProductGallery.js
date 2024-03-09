@@ -1,21 +1,24 @@
-import { checkCircleIcon, pictureIcon } from "@/constants";
+import { pictureIcon, xMarkIcon } from "@/constants";
 import { createContainer, extractImageFile } from "@/utils";
 import { ProductThumbnail } from ".";
-import { DragDropUploader } from "..";
+import { Button, DragDropUploader, buttonSizes, buttonVariants } from "..";
+import { ProductImage } from "@/model/dto"; // eslint-disable-line no-unused-vars
 
 export class ProductGallery {
   /**
    * @typedef {object} ImageObject
    * @property {string} imageURL - The URL of the image.
-   * @property {string} fileName - The file name of the image.
+   * @property {string} imageTitle - The file name of the image.
    */
 
   /**
-   * @param {ImageObject} image - An object representing a single image.
-   * @param {ImageObject[]} images - An array of ImageObject representing multiple images.
+   * @param {ProductImage[]} productImages - An array of ImageObject representing multiple images.
    */
-  constructor(images) {
+  constructor(productImages) {
     // leading class name: product_details_form-gallery
+
+    this.newImages = [];
+    this.deleteImageIds = [];
 
     // container 1 children --------------------
     // 1. Picture icon
@@ -32,9 +35,11 @@ export class ProductGallery {
       "product_details_form-gallery-container-1",
       (files) => {
         const fileList = [...files];
-        fileList.forEach((file) => {
-          extractImageFile(file, (fileName, imageURL) => {
-            this.renderPreviewImage.call(this, { fileName, imageURL });
+        this.newImages.push(...fileList);
+        console.log(this.newImages);
+        fileList.forEach((file, index) => {
+          extractImageFile(file, ({ imageName, imageURL }) => {
+            this.renderPreviewImage.call(this, { imageName, imageURL }, index);
           });
         });
       },
@@ -50,7 +55,13 @@ export class ProductGallery {
     this.container2 = createContainer(
       "product_details_form-gallery-container-2"
     );
-    images.forEach(this.renderPreviewImage.bind(this));
+    productImages?.forEach(({ id, imageName, imageURL }) => {
+      this.renderPreviewImage({
+        id,
+        imageName,
+        imageURL,
+      });
+    });
 
     // global container
     this.container = createContainer(
@@ -60,8 +71,17 @@ export class ProductGallery {
     );
   }
 
-  /** @private */
-  renderPreviewImage({ fileName, imageURL }) {
+  /**
+   * @param {object} param0
+   * @param {number} param0.id
+   * @param {string} param0.imageName
+   * @param {string} param0.imageURL
+   * @private
+   */
+  renderPreviewImage(
+    { id = undefined, imageName, imageURL },
+    newImageIndex = undefined
+  ) {
     const image = new ProductThumbnail(imageURL);
     image.container.classList.add(
       "product_details_form-gallery-image_item-image"
@@ -69,20 +89,42 @@ export class ProductGallery {
 
     const name = document.createElement("p");
     name.className = "product_details_form-gallery-image_item-file_name";
-    name.textContent = fileName;
+    name.textContent = imageName;
 
-    const ok = createContainer("icon-container");
-    ok.innerHTML = checkCircleIcon;
+    const deleteButton = new Button(
+      null,
+      xMarkIcon,
+      null,
+      buttonVariants.iconOnly,
+      buttonSizes.iconOnly,
+      "product_details_form-gallery-image_item-delete_btn",
+      this.onClickDelete.bind(this, this.imageNodes.length, {
+        id,
+        newImageIndex,
+      })
+    );
 
     const uploadedItemContainer = createContainer(
       "product_details_form-gallery-image_item",
       image.render(),
       name,
-      ok
+      deleteButton.render()
     );
 
     this.imageNodes.push(uploadedItemContainer);
     this.container2.append(uploadedItemContainer);
+  }
+
+  onClickDelete(imageNodeIndex, { id, newImageIndex }) {
+    this.imageNodes[imageNodeIndex].style.display = "none";
+
+    if (id !== undefined) {
+      this.deleteImageIds.push(id);
+      console.log("delete old image");
+    } else {
+      this.newImages[newImageIndex] = undefined;
+      console.log("delete new image");
+    }
   }
 
   render() {

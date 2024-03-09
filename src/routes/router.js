@@ -53,6 +53,34 @@ export class Router {
   }
 
   /**
+   * @returns {object}
+   * Usage: to get productId, we use
+   * const productId = Router.getParam().productId
+   */
+  static getParams() {
+    const urlPath = window.location.pathname;
+    let [componentPath, params] = [null, null];
+
+    for (const route1 of routes) {
+      if (route1.children) {
+        for (const route2 of route1.children) {
+          componentPath = `${route1.path}${route2.path}`;
+          if (Router.matchPath(urlPath, componentPath)) {
+            params = Router.extractParams(urlPath, componentPath);
+            return params;
+          }
+        }
+      } else {
+        componentPath = route1.path;
+        if (Router.matchPath(urlPath, componentPath)) {
+          params = Router.extractParams(urlPath, componentPath);
+          return params;
+        }
+      }
+    }
+  }
+
+  /**
    * @param {string} url
    * @param {string} path
    * @param {boolean} isEqualLength

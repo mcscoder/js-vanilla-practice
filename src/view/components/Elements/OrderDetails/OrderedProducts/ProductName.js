@@ -1,11 +1,11 @@
 import { Link } from "../..";
 
 export class ProductName {
-  static render(imgURL, name) {
+  static render(productId, name, imgURL) {
     // leading class name: ordered_products-product_name
 
     // container element covering product image and title
-    const container = new Link("#").render();
+    const container = new Link(`/product-details/${productId}`).render();
     container.className =
       "ordered_products-product_name-container ordered_products-link";
 

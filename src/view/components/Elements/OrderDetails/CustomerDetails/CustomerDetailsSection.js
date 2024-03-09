@@ -9,39 +9,93 @@ import {
   buttonSizes,
   buttonVariants,
   deliveryStatusTypes,
+  optionType, // eslint-disable-line no-unused-vars
   tagVariants,
 } from "../..";
 import { ContentSection } from "../../..";
+import { Order } from "@/model/dto"; // eslint-disable-line no-unused-vars
+import { apiEndpoint } from "@/utils";
 
-/** @type {Array<{ title: string, description: string }>} */
-export const customerDescription = [
-  { title: "Full Name", description: "Shristi Singh" },
-  { title: "Email", description: "shristi@gmail.com" },
-  { title: "Phone", description: "+91 904 231 1212" },
-];
+/**
+ *
+ * @param {string} fullName
+ * @param {string} email
+ * @param {string} phone
+ * @returns {Array<{ title: string, description: string }>}
+ */
+export const customerInfo = (fullName, email, phone) => {
+  return [
+    { title: "Full Name", description: fullName },
+    { title: "Email", description: email },
+    { title: "Phone", description: phone },
+  ];
+};
 
-/** @type {Array<{ title: string, description: string }>} */
-export const orderInfo = [
-  { title: "Shipping", description: "Next express" },
-  { title: "Payment Method", description: "Paypal" },
-  { title: "Status", description: "Pending" },
-];
+/**
+ *
+ * @param {string} shipping
+ * @param {string} paymentMethod
+ * @param {string} status
+ * @returns {Array<{ title: string, description: string }>}
+ */
+export const orderInfo = (shipping, paymentMethod, status) => {
+  return [
+    { title: "Shipping", description: shipping },
+    { title: "Payment Method", description: paymentMethod },
+    { title: "Status", description: status },
+  ];
+};
 
-/** @type {Array<{ title: string, description: string }>} */
-export const deliverToInfo = [
-  {
-    title: "Address",
-    description: "Dharam Colony, Palam Vihar, Gurgaon, Haryana ",
-  },
-];
+/**
+ *
+ * @param {string} address
+ * @returns {Array<{ title: string, description: string }>}
+ */
+export const deliverToInfo = (address) => {
+  return [
+    {
+      title: "Address",
+      description: address,
+    },
+  ];
+};
 
 export class CustomerDetailsSection {
-  constructor(orderId, orderStatus) {
-    this.orderId = orderId;
-    this.orderStatus = orderStatus;
-
+  /**
+   * @callback onSaveCallBack
+   * @param {object} param0
+   * @param {number} param0.orderStatusId
+   * @param {string} param0.note
+   * @returns {void}
+   */
+  /**
+   *
+   * @param {Order} orderDetails
+   * @param {onSaveCallBack} onSave
+   */
+  constructor(
+    orderDetails,
+    onSave = ({ orderStatusId, note }) => {
+      orderStatusId;
+      note;
+    }
+  ) {
     // leading class name: customer_details
 
+    this.orderDetails = orderDetails;
+    this.orderId = orderDetails.id;
+    this.orderStatusId = orderDetails.orderStatusId;
+    this.onSave = onSave;
+
+    // global container
+    this.container = document.createElement("div");
+    this.container.className = "customer_details-container";
+
+    // fetch content and initialize the content
+    this.fetchData();
+  }
+
+  initContent() {
     // container 1 element. cover order id and status tag
     this.container1 = document.createElement("div");
     this.container1.className = "customer_details-container-1";
@@ -49,12 +103,12 @@ export class CustomerDetailsSection {
     // order id element
     this.orderIdElement = document.createElement("h3");
     this.orderIdElement.className = "customer_details-order_id";
-    this.orderIdElement.textContent = `Order ID: #${orderId}`;
+    this.orderIdElement.textContent = `Order ID: #${this.orderId}`;
 
     // status tag element
     this.statusTag = new Tag(
-      deliveryStatusTypes[orderStatus],
-      tagVariants.orderDetails[orderStatus]
+      deliveryStatusTypes[this.orderStatusId],
+      tagVariants.orderDetails[this.orderStatusId]
     );
 
     // add elements to container 1
@@ -70,9 +124,9 @@ export class CustomerDetailsSection {
 
     // status select box
     this.statusSelectBox = new OptionsBox(
-      deliveryStatusTypes[0],
-      orderStatus,
-      deliveryStatusTypes.slice(1),
+      "none",
+      this.orderStatusId,
+      this.orderStatuses,
       this.onChangeStatus.bind(this)
     );
 
@@ -114,7 +168,11 @@ export class CustomerDetailsSection {
     this.customerInf = new CustomerInformation(
       userIcon,
       "Customer",
-      customerDescription,
+      customerInfo(
+        `${this.orderDetails.userPaymentMethod.user.firstName} ${this.orderDetails.userPaymentMethod.user.lastName}`,
+        this.orderDetails.userPaymentMethod.user.email,
+        this.orderDetails.userPaymentMethod.user.phone
+      ),
       "View profile"
     );
 
@@ -122,7 +180,11 @@ export class CustomerDetailsSection {
     this.orderInfo = new CustomerInformation(
       bagHandleIcon,
       "Order Info",
-      orderInfo,
+      orderInfo(
+        this.orderDetails.shipping.name,
+        this.orderDetails.userPaymentMethod.paymentMethod.name,
+        this.orderDetails.orderStatus.name
+      ),
       "Download info"
     );
 
@@ -130,16 +192,21 @@ export class CustomerDetailsSection {
     this.deliveryInfo = new CustomerInformation(
       bagHandleIcon,
       "Deliver to",
-      deliverToInfo,
+      deliverToInfo(this.orderDetails.address),
       "View Profile"
     );
 
     // payment info
-    this.paymentInfo = new PaymentMethod(0, "5555500830030331", "MAI CONG SON");
+    this.paymentInfo = new PaymentMethod(
+      this.orderDetails.userPaymentMethod.paymentMethod.id,
+      this.orderDetails.userPaymentMethod.cardNumber,
+      this.orderDetails.userPaymentMethod.cardholderName
+    );
 
     // note text for customer
     this.noteForCustomer = new InputContainer("textarea", "Note", "", {
       placeholder: "Type some notes",
+      defaultValue: this.orderDetails.note,
     });
     this.noteForCustomer.container.classList.add(
       "customer_details-information-input_container"
@@ -156,20 +223,42 @@ export class CustomerDetailsSection {
 
     // add elements to container 2
     this.container2.append(this.container2_1, this.container2_2);
-
-    // global container
-    this.container = document.createElement("div");
-    this.container.className = "customer_details-container";
     this.container.append(this.container1, this.container2);
   }
 
-  onChangeStatus(optionIndex) {
-    optionIndex;
+  fetchData() {
+    fetch(apiEndpoint.getOrderStatuses())
+      .then((res) => res.json())
+      .then((data) => {
+        /** @type {(typeof optionType)[]} */
+        this.orderStatuses = data.map(({ id, name }) => {
+          /** @type {typeof optionType} */
+          const status = {
+            value: id,
+            label: name,
+          };
+          return status;
+        });
+        // load the content
+        this.initContent();
+      });
+  }
+
+  /**
+   *
+   * @param {typeof optionType} param0
+   */
+  onChangeStatus({ value }) {
+    this.orderStatusId = value;
   }
 
   onClickPrintButton() {}
 
-  onClickSaveButton() {}
+  onClickSaveButton() {
+    const orderStatusId = this.orderStatusId;
+    const note = this.noteForCustomer.input.render().value;
+    this.onSave({ orderStatusId, note });
+  }
 
   render() {
     return new ContentSection(this.container).render();

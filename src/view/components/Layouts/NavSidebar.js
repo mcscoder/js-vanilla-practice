@@ -5,32 +5,44 @@ import {
   logoIcon,
 } from "@/constants";
 import { CategoryToggle, NavLink } from "..";
+import { Category } from "@/model/dto"; // eslint-disable-line no-unused-vars
 
 export class NavSidebar {
   constructor() {
     // sidebar container element
-    this.sidebarContainer = document.createElement("span");
-    this.sidebarContainer.className = "primary-sidebar";
+    this.container = document.createElement("span");
+    this.container.className = "primary-sidebar";
+  }
 
+  /** @private */
+  initContent() {
     // logo container element
     this.logoContainer = document.createElement("span");
     this.logoContainer.className = "center";
     this.logoContainer.innerHTML = logoIcon;
 
     // add logo element
-    this.sidebarContainer.appendChild(this.logoContainer);
+    this.container.appendChild(this.logoContainer);
 
     // navigation links container element
     this.navLinkContainer = document.createElement("nav");
     this.navLinkContainer.className = "nav-container";
-    this.sidebarContainer.appendChild(this.navLinkContainer);
+    this.container.appendChild(this.navLinkContainer);
 
     // initializes navigation links
     this.initNavigationLink();
 
     // category toggle
-    this.categoryToggle = new CategoryToggle().render();
-    this.sidebarContainer.appendChild(this.categoryToggle);
+    this.categoryToggle = new CategoryToggle(this.categories).render();
+    this.container.appendChild(this.categoryToggle);
+  }
+  /**
+   *
+   * @param {Category[]} categories
+   */
+  categoryDataFetched(categories) {
+    this.categories = categories;
+    this.initContent();
   }
 
   // initializes navigation links with predefined data
@@ -69,6 +81,6 @@ export class NavSidebar {
   }
 
   render() {
-    return this.sidebarContainer;
+    return this.container;
   }
 }
