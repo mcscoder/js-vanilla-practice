@@ -18,6 +18,10 @@
 
     &-label {
       @include font-heading($text-xl);
+
+      @include mobile-large {
+        @include font-heading($text-base);
+      }
     }
 
     &-input_field {

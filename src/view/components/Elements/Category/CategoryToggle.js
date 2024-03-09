@@ -14,7 +14,7 @@ export class CategoryToggle {
     this.toggleState = true;
 
     // container element
-    this.container = document.createElement("span");
+    this.container = document.createElement("div");
     this.container.className = "category-toggle-container";
 
     // heading button element
@@ -23,7 +23,7 @@ export class CategoryToggle {
     this.container.appendChild(this.heading);
 
     // heading label element
-    this.headingLabel = document.createElement("span");
+    this.headingLabel = document.createElement("div");
     this.headingLabel.className = "category-toggle-container-heading-label";
     this.headingLabel.textContent = "Categories";
     this.heading.appendChild(this.headingLabel);
@@ -40,7 +40,7 @@ export class CategoryToggle {
 
   // gets the heading icon element based on the toggle state
   getHeadingIcon() {
-    const headingIcon = document.createElement("span");
+    const headingIcon = document.createElement("div");
     headingIcon.innerHTML = this.toggleState ? chevronUpIcon : chevronDownIcon;
     return headingIcon.firstChild;
   }

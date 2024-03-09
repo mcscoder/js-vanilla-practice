@@ -17,7 +17,7 @@ export class CustomerName {
     userAvatar.className = "order_table-customer_name-avatar";
 
     // user name element
-    const userName = document.createElement("span");
+    const userName = document.createElement("div");
     userName.textContent = name;
 
     // add elements to container

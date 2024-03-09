@@ -11,15 +11,22 @@
       padding-bottom: 1rem;
       border-bottom: 1px solid rgba($color: $dark-gray, $alpha: 0.2);
     }
+
+    &-2 {
+      overflow: auto;
+      overflow-x: auto;
+    }
   }
   &-table {
     border-spacing: 0 0.5rem;
+    width: 100%;
 
     th,
     td {
       border-bottom: 1px solid rgba($color: $dark-gray, $alpha: 0.2);
       padding: 1rem 0.5rem;
       text-align: center;
+      white-space: nowrap;
     }
 
     &-product_cell {

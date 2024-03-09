@@ -6,6 +6,7 @@ import {
   buttonSizes,
   buttonVariants,
 } from "..";
+import { createContainer } from "@/utils";
 
 export class ListTable {
   /**
@@ -59,8 +60,11 @@ export class ListTable {
     // add elements to table
     this.table.append(this.tableHeader.render(), this.tableBody.render());
 
+    // container 2 covering table
+    this.container2 = createContainer("list_table-container-2", this.table);
+
     // add elements to global container
-    this.container.append(this.container1, this.table);
+    this.container.append(this.container1, this.container2);
   }
   render() {
     return this.container;

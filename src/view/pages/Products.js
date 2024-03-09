@@ -13,6 +13,8 @@ import { Router } from "@/routes";
 
 export class Products {
   constructor() {
+    // leading class name: all_products
+
     this.productController = new ProductController(this.dataFetched.bind(this));
 
     // global container
@@ -37,7 +39,7 @@ export class Products {
       null,
       buttonVariants.primary.filled,
       buttonSizes.lg,
-      "",
+      "all_products-add_new_btn",
       Router.pushState.bind(null, "/add-product")
     );
     // add elements to container 1

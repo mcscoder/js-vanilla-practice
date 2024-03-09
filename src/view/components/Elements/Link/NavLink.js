@@ -15,12 +15,12 @@ export class NavLink {
     this.navLink.className = this.getNavLinkClassName();
 
     // navigation link icon
-    this.navLinkIcon = document.createElement("span");
+    this.navLinkIcon = document.createElement("div");
     this.navLinkIcon.innerHTML = startIcon;
     this.navLinkIcon = this.navLinkIcon.firstChild;
 
     // navigation link text
-    this.navLinkLabel = document.createElement("span");
+    this.navLinkLabel = document.createElement("div");
     this.navLinkLabel.textContent = this.label;
 
     // add icon and text to navigation link element

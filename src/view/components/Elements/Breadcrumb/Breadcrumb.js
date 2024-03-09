@@ -42,7 +42,7 @@ export class Breadcrumb {
 
   getSeparator() {
     // breadcrumbs separator
-    const separator = document.createElement("span");
+    const separator = document.createElement("div");
     separator.textContent = ">";
     return separator;
   }

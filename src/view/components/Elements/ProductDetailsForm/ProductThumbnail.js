@@ -1,7 +1,7 @@
 import { createContainer } from "@/utils";
 
 export class ProductThumbnail {
-  constructor(imgURL = undefined) {
+  constructor(imgURL = undefined, className = "") {
     // leading class name: product_details_form-thumbnail
 
     this.image = document.createElement("img");
@@ -9,11 +9,14 @@ export class ProductThumbnail {
     this.image.src = imgURL;
 
     this.imageContainer = createContainer(
-      "product_details_form-thumbnail-container",
+      "product_details_form-thumbnail-image-container",
       this.image
     );
 
-    this.container = createContainer("", this.imageContainer);
+    this.container = createContainer(
+      `product_details_form-thumbnail-container ${className}`,
+      this.imageContainer
+    );
   }
 
   render() {

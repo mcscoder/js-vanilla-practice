@@ -3,9 +3,11 @@ import { Button, buttonSizes, buttonVariants } from "..";
 
 export class Header {
   constructor() {
+    // leading class name: primary_header
+
     // primary header
     this.header = document.createElement("header");
-    this.header.className = "primary-header";
+    this.header.className = "primary_header";
 
     // search button element
     this.search = new Button(
@@ -14,8 +16,9 @@ export class Header {
       null,
       buttonVariants.iconOnly,
       buttonSizes.iconOnly,
+      "",
       this.onSearchClick.bind(this)
-    ).render();
+    );
 
     // notification button element
     this.notification = new Button(
@@ -24,8 +27,9 @@ export class Header {
       null,
       buttonVariants.iconOnly,
       buttonSizes.iconOnly,
+      "",
       this.onNotificationClick.bind(this)
-    ).render();
+    );
 
     // account button element
     this.account = new Button(
@@ -34,11 +38,16 @@ export class Header {
       chevronDownIcon,
       buttonVariants.primary.outlined,
       buttonSizes.sm,
+      "",
       this.onAccountClick.bind(this)
-    ).render();
+    );
 
     // add children
-    this.header.append(this.search, this.notification, this.account);
+    this.header.append(
+      this.search.render(),
+      this.notification.render(),
+      this.account.render()
+    );
   }
 
   onSearchClick() {

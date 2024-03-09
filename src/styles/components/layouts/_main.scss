@@ -6,6 +6,14 @@
   background-color: $gray;
   gap: 100px; // gap between main and footer
 
+  @include pc-small {
+    padding: 1.5rem;
+  }
+
+  @include mobile-large {
+    padding: 1.5rem 0.5rem;
+  }
+
   #main {
     flex: 1;
   }

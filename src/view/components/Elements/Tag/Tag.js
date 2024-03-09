@@ -34,7 +34,7 @@ export const tagVariants = {
 export class Tag {
   constructor(label, variant) {
     // tag container
-    this.container = document.createElement("span");
+    this.container = document.createElement("div");
     this.container.className = variant;
     this.container.textContent = label;
   }
