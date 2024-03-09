@@ -54,7 +54,7 @@ export class SaleGraph {
       this.initChart(
         Chart.MonthlyChart(
           [50, 100, 50, 75, 60, 310],
-          this.container2.clientWidth,
+          Math.max(this.container2.clientWidth, 750),
           250
         )
       );
@@ -134,7 +134,7 @@ export class SaleGraph {
       Chart.InitChart(
         [50, 100, 50, 75, 60, 310],
         type,
-        this.container2.clientWidth,
+        Math.max(this.container2.clientWidth, 750),
         250
       )
     );

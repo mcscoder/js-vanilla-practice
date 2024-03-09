@@ -1,15 +1,51 @@
-.primary-sidebar {
+.primary_sidebar {
   position: sticky;
   top: 0;
   width: $sidebar-width;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  row-gap: 3rem;
-  padding: 2rem 1.5rem;
   border-right: 1px solid rgba($color: $dark-gray, $alpha: 0.2);
+  background-color: white;
+  z-index: 1;
+  transition-duration: 0.3s;
 
-  .nav-container {
+  @include pc-small {
+    position: fixed;
+  }
+
+  &.sidebar-hide {
+    @include pc-small {
+      transform: translateX(-100%);
+    }
+  }
+
+  &-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 2rem 1.5rem;
+    position: relative;
+  }
+
+  &-show_sidebar {
+    &-container {
+      position: absolute;
+      top: 1.5rem;
+      left: 100%;
+      padding: 0.5rem;
+      border: 1px solid rgba($color: $dark-gray, $alpha: 0.2);
+      border-left: none;
+      border-top-right-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+      background-color: white;
+      display: none;
+
+      @include pc-small {
+        display: flex;
+      }
+    }
+  }
+
+  &-nav_container {
     display: flex;
     flex-direction: column;
     row-gap: 1rem;

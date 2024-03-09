@@ -118,7 +118,8 @@ export class ProductDetailsForm {
     this.outstandingThumbnail = new ProductThumbnail(
       this.product.productImages
         ? this.product.productImages[0].imageURL
-        : productDetailsDefault
+        : productDetailsDefault,
+      "product_details_form-gallery-big_thumbnail"
     );
     // 2. Product gallery
     this.productGallery = new ProductGallery(this.product.productImages);

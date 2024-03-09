@@ -45,9 +45,9 @@ export class Button {
     this.buttonLabel.append(label);
 
     // svg icon
-    this.startIcon = document.createElement("span");
+    this.startIcon = document.createElement("div");
     this.startIcon.innerHTML = startIcon;
-    this.endIcon = document.createElement("span");
+    this.endIcon = document.createElement("div");
     this.endIcon.innerHTML = endIcon;
 
     // add children

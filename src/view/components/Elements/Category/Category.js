@@ -21,7 +21,7 @@ export class Category {
     this.categoryLink.className = "category-link";
 
     // link label
-    this.linkLabel = document.createElement("span");
+    this.linkLabel = document.createElement("div");
     this.linkLabel.className = "category-link-label";
     this.linkLabel.textContent = name;
 

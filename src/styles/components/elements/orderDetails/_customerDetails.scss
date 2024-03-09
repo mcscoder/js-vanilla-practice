@@ -2,6 +2,7 @@
   &-container {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
 
     &-1 {
       display: flex;
@@ -24,6 +25,14 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 1.5rem 1rem;
+
+        @include tablet {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include mobile-large {
+          grid-template-columns: repeat(1, 1fr);
+        }
       }
     }
   }
@@ -96,6 +105,10 @@
 
     &-input_container {
       grid-column: 2 span;
+
+      @include mobile-large {
+        grid-column: 1 span;
+      }
     }
   }
 }

@@ -8,6 +8,10 @@
       display: flex;
       gap: 3rem;
 
+      @include tablet {
+        flex-direction: column;
+      }
+
       &-1 {
         flex: 2;
         display: flex;
@@ -25,6 +29,10 @@
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
+
+        @include tablet {
+          flex-direction: row;
+        }
       }
     }
 
@@ -32,16 +40,14 @@
       display: flex;
       justify-content: end;
       gap: 1rem;
+
+      @include tablet {
+        flex-direction: column;
+      }
     }
   }
 
   &-thumbnail {
-    &-container {
-      position: relative;
-      padding-top: 100%;
-      width: 100%;
-    }
-
     &-image {
       position: absolute;
       top: 0;
@@ -50,6 +56,11 @@
       object-fit: cover;
       object-position: center;
       border-radius: 0.5rem;
+      &-container {
+        position: relative;
+        padding-top: 100%;
+        width: 100%;
+      }
     }
   }
 
@@ -58,6 +69,9 @@
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
+      @include tablet {
+        flex: 1;
+      }
 
       &-1 {
         display: flex;
@@ -79,6 +93,15 @@
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
+      }
+    }
+
+    &-big_thumbnail {
+      @include tablet {
+        flex: 1;
+      }
+      @include mobile-large {
+        display: none
       }
     }
 
@@ -119,5 +142,9 @@
 
   &-function_button {
     width: 200px;
+
+    @include tablet {
+      width: 100%;
+    }
   }
 }

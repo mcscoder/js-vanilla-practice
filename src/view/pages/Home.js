@@ -6,6 +6,7 @@ import {
   ProductStatCard,
   SaleGraph,
 } from "..";
+import { OrderListController } from "@/controllers";
 
 const productStatItems = [
   {
@@ -33,6 +34,12 @@ export class Home {
     this.container = document.createElement("div");
     this.container.className = "dashboard-container";
 
+    this.orderListController = new OrderListController(
+      this.dataFetched.bind(this)
+    );
+  }
+
+  initContent() {
     // container 1 element. this will cover breadcrumb and calendar
     this.container1 = document.createElement("div");
     this.container1.className = "dashboard-container-1";
@@ -80,7 +87,7 @@ export class Home {
 
     this.container3.append(this.saleGraph, this.bestSellerStat);
 
-    this.recentOrdersTable = new OrdersTable("Recent Orders");
+    this.recentOrdersTable = new OrdersTable("Recent Orders", this.orders);
 
     // add elements to container
     this.container.append(
@@ -89,6 +96,14 @@ export class Home {
       this.container3,
       this.recentOrdersTable.render()
     );
+  }
+
+  /**
+   *
+   */
+  dataFetched(orders) {
+    this.orders = orders;
+    this.initContent();
   }
 
   render() {

@@ -1,40 +1,78 @@
 import {
   albumsIcon,
+  barsIcon,
   dashboardIcon,
   documentTextIcon,
   logoIcon,
 } from "@/constants";
-import { CategoryToggle, NavLink } from "..";
+import {
+  Button,
+  CategoryToggle,
+  NavLink,
+  buttonSizes,
+  buttonVariants,
+} from "..";
 import { Category } from "@/model/dto"; // eslint-disable-line no-unused-vars
+import { createContainer } from "@/utils";
 
 export class NavSidebar {
   constructor() {
+    // leading class name: primary_sidebar
+
     // sidebar container element
-    this.container = document.createElement("span");
-    this.container.className = "primary-sidebar";
+    this.container = document.createElement("div");
+    this.container.className = "primary_sidebar sidebar-hide";
+    window.addEventListener("mainContainerClicked", () => {
+      this.container.classList.add("sidebar-hide");
+    });
+    window.addEventListener("urlChanged", () => {
+      this.container.classList.add("sidebar-hide");
+    });
   }
 
   /** @private */
   initContent() {
+    this.container.innerText = "";
+
+    // show sidebar button element
+    this.showSidebar = new Button(
+      null,
+      barsIcon,
+      null,
+      buttonVariants.iconOnly,
+      buttonSizes.iconOnly,
+      "primary_sidebar-show_sidebar-btn",
+      this.onClickShowSidebar.bind(this)
+    );
+
     // logo container element
-    this.logoContainer = document.createElement("span");
+    this.logoContainer = document.createElement("div");
     this.logoContainer.className = "center";
     this.logoContainer.innerHTML = logoIcon;
 
-    // add logo element
-    this.container.appendChild(this.logoContainer);
-
     // navigation links container element
     this.navLinkContainer = document.createElement("nav");
-    this.navLinkContainer.className = "nav-container";
-    this.container.appendChild(this.navLinkContainer);
+    this.navLinkContainer.className = "primary_sidebar-nav_container";
 
     // initializes navigation links
     this.initNavigationLink();
 
     // category toggle
     this.categoryToggle = new CategoryToggle(this.categories).render();
-    this.container.appendChild(this.categoryToggle);
+
+    // content container
+    this.sidebarContainer = createContainer(
+      "primary_sidebar-container",
+      createContainer(
+        "primary_sidebar-show_sidebar-container",
+        this.showSidebar.render()
+      ),
+      this.logoContainer,
+      this.navLinkContainer,
+      this.categoryToggle
+    );
+
+    this.container.append(this.sidebarContainer);
   }
   /**
    *
@@ -78,6 +116,10 @@ export class NavSidebar {
       );
       this.navLinkContainer.append(navLink.render());
     });
+  }
+
+  onClickShowSidebar() {
+    this.container.classList.toggle("sidebar-hide");
   }
 
   render() {

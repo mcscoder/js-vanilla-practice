@@ -28,6 +28,10 @@ export class DefaultLayout {
 
     this.mainContainer = document.createElement("div");
     this.mainContainer.className = "main-container";
+    this.contentContainer.addEventListener("click", () => {
+      window.dispatchEvent(new CustomEvent("mainContainerClicked"));
+    });
+
     this.mainContainer.append(this.main.render(), this.footer.render());
     this.contentContainer.append(this.header.render(), this.mainContainer);
   }

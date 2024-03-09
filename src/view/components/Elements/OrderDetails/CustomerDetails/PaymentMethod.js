@@ -45,7 +45,7 @@ export class PaymentMethod {
       iconContainer.className = "icon-container";
       iconContainer.innerHTML = type.svgIcon;
 
-      const paymentMethodName = document.createElement("span");
+      const paymentMethodName = document.createElement("div");
       paymentMethodName.textContent = type.name;
 
       this.paymentMethod.append(iconContainer, paymentMethodName);

@@ -17,7 +17,7 @@ export class ProductName {
     productImage.className = "ordered_products-product_name-image";
 
     // product title
-    const productTitle = document.createElement("span");
+    const productTitle = document.createElement("div");
     productTitle.textContent = name;
 
     // add product image and title

@@ -46,7 +46,7 @@ export class OptionsBox {
     });
 
     // Create an element to display the selected option's text
-    this.selectedText = document.createElement("span");
+    this.selectedText = document.createElement("div");
     this.selectedText.className = "select-selected_text";
 
     // Create an icon container for the dropdown arrow
