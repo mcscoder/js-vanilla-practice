@@ -9,6 +9,13 @@ export class DefaultLayout {
     this.globalContainer = document.createElement("div");
     this.globalContainer.className = "global-container";
 
+    // initializes content upon successful login
+    window.addEventListener("logging", () => {
+      this.initContent();
+    });
+  }
+
+  initContent() {
     // Navigation sidebar
     this.navSidebar = new NavSidebar();
     this.globalContainer.append(this.navSidebar.render());

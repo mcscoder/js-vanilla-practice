@@ -1,14 +1,69 @@
+import { LoginController } from "@/controllers";
 import { routes } from ".";
+import { Admin } from "@/model/dto";
 
 export class Router {
   constructor() {
-    Router.routeToMatchingComponent();
     window.addEventListener("popstate", () => {
       window.dispatchEvent(new CustomEvent("urlChanged"));
     });
     window.addEventListener("urlChanged", () => {
       Router.routeToMatchingComponent();
     });
+
+    // get data from local storage
+    let admin = localStorage.getItem("admin");
+    if (admin) {
+      LoginController.authentication(new Admin(JSON.parse(admin)), {
+        isKeepLogged: true, // true cause data is from local storage
+        autoNavigate: false,
+        isAlert: false,
+        result: this.authenticationResult,
+      });
+      return;
+    }
+
+    // get data from session storage
+    admin = sessionStorage.getItem("admin");
+    if (admin) {
+      LoginController.authentication(new Admin(JSON.parse(admin)), {
+        isKeepLogged: false, // false cause data is from session storage
+        autoNavigate: false,
+        isAlert: false,
+        result: this.authenticationResult,
+      });
+      return;
+    }
+
+    // if pathname is not included below, direct to `/login`
+    // if pathname is included, direct to current pathname
+    const path = ["/login", "/register"].some(
+      (item) => item === location.pathname
+    )
+      ? location.pathname
+      : "/login";
+    Router.pushState(path);
+  }
+
+  /**
+   *
+   * @param {boolean} isAuthenticated
+   */
+  authenticationResult(isAuthenticated) {
+    if (isAuthenticated) {
+      // prevent access authentication page if it's already authenticated
+      const path = ["/login", "/register"].some(
+        (item) => item === location.pathname
+      )
+        ? "/"
+        : location.pathname;
+      Router.pushState(path);
+    } else {
+      // if there is data from local or session storage
+      // but that is failed at authentication
+      // then direct it to `/login` page
+      Router.pushState("/login");
+    }
   }
 
   static routeToMatchingComponent() {

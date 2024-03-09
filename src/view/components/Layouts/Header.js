@@ -1,5 +1,6 @@
 import { chevronDownIcon, notificationsIcon, searchIcon } from "@/constants";
 import { Button, buttonSizes, buttonVariants } from "..";
+import { Admin } from "@/model/dto";
 
 export class Header {
   constructor() {
@@ -31,9 +32,14 @@ export class Header {
       this.onNotificationClick.bind(this)
     );
 
+    let admin = new Admin(
+      JSON.parse(
+        localStorage.getItem("admin") || sessionStorage.getItem("admin")
+      ) || {}
+    );
     // account button element
     this.account = new Button(
-      "admin",
+      `${admin.firstName} ${admin.lastName}`,
       null,
       chevronDownIcon,
       buttonVariants.primary.outlined,

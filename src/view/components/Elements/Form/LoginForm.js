@@ -34,10 +34,13 @@ export class LoginForm extends Form {
     // form children --------------------
     // 1. Email input field
     this.emailInput = new Input({ placeholder: "Email" }, "form-input");
+    this.emailInput.input.required = true;
     // 2. Password input field
     this.passwordInput = new Input({ placeholder: "Password" }, "form-input");
+    this.passwordInput.input.type = "password";
+    this.passwordInput.input.required = true;
     // 3. Keep login
-    this.checkbox = new Checkbox("keepLogin", "form-checkbox", [
+    this.keepLoggedCheckbox = new Checkbox("keepLogin", "form-checkbox", [
       "Keep me logged in",
     ]);
 
@@ -56,7 +59,7 @@ export class LoginForm extends Form {
     this.form.append(
       this.emailInput.render(),
       this.passwordInput.render(),
-      this.checkbox.render(),
+      this.keepLoggedCheckbox.render(),
       this.loginButton.render()
     );
 

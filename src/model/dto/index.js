@@ -9,3 +9,4 @@ export * from "./Shipping";
 export * from "./User";
 export * from "./UserPaymentMethod";
 export * from "./OrderProduct";
+export * from "./Admin";
