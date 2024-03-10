@@ -13,8 +13,9 @@ import {
   Product, // eslint-disable-line no-unused-vars
 } from "@/model/dto"; // eslint-disable-line no-unused-vars
 import { productDetailsDefault } from "@/constants";
+import { Form } from "../Form";
 
-export class ProductDetailsForm {
+export class ProductDetailsForm extends Form {
   /**
    *
    * @param {Product} product
@@ -23,11 +24,14 @@ export class ProductDetailsForm {
   constructor(product, isAddNew = false) {
     // leading class name: product_details_form
 
+    super();
+
     this.product = product;
     this.isAddNew = isAddNew;
 
     // global container
-    this.container = createContainer("product_details_form-container");
+    this.container = this.form;
+    this.container.className = "product_details_form-container";
 
     // fetch data and initializes content
     this.fetchData();
@@ -40,11 +44,13 @@ export class ProductDetailsForm {
     // 1. Product name input
     this.productNameInput = new InputContainer("input", "Product Name", "", {
       defaultValue: this.product.name,
+      required: true,
     });
     // 2. Description input
     this.descriptionInput = new InputContainer("textarea", "Description", "", {
       defaultValue: this.product.description,
       rows: 6,
+      required: true,
     });
     // 3. Category select box
     this.categorySelectBox = new InputContainer(
@@ -73,25 +79,35 @@ export class ProductDetailsForm {
     // 5. SKU input
     this.skuInput = new InputContainer("input", "SKU", "flex-1", {
       defaultValue: this.product.sku,
+      required: true,
     });
     // 6. Stock Quantity input
     this.stockQuantityInput = new InputContainer(
       "input",
       "Stock Quantity",
       "flex-1",
-      { defaultValue: this.product.quantity, onchange: handleNumberInput }
+      {
+        defaultValue: this.product.quantity,
+        onchange: handleNumberInput,
+        required: true,
+      }
     );
     // 7. Regular Price input
     this.regularPriceInput = new InputContainer(
       "input",
       "Regular Price",
       "flex-1",
-      { defaultValue: this.product.regularPrice, onchange: handleNumberInput }
+      {
+        defaultValue: this.product.regularPrice,
+        onchange: handleNumberInput,
+        required: true,
+      }
     );
     // 8. Sale Price input
     this.salePriceInput = new InputContainer("input", "Sale Price", "flex-1", {
       defaultValue: this.product.salePrice,
       onchange: handleNumberInput,
+      required: true,
     });
 
     // container 1.1
@@ -268,10 +284,31 @@ export class ProductDetailsForm {
     this.product.salePrice = Number(this.salePriceInput.input.input.value);
   }
 
+  /**
+   * @returns {boolean}
+   */
+  isFormValidity() {
+    if (!this.product.categoryId) {
+      alert("You must select a category");
+      return false;
+    }
+    if (!this.product.brandId) {
+      alert("You must select a brand");
+      return false;
+    }
+    if (this.productGallery.numberOfImages === 0) {
+      alert("You must specific at least an image");
+      return false;
+    }
+    return this.form.checkValidity();
+  }
+
   /** @private */
   onClickUpdate() {
-    this.syncDataToObject();
-    this.onUpdate();
+    if (this.isFormValidity()) {
+      this.syncDataToObject();
+      this.onUpdate();
+    }
   }
 
   /**
@@ -301,8 +338,10 @@ export class ProductDetailsForm {
 
   /** @private */
   onClickAdd() {
-    this.syncDataToObject();
-    this.onAdd();
+    if (this.isFormValidity()) {
+      this.syncDataToObject();
+      this.onAdd();
+    }
   }
 
   /**
