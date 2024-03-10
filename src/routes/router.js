@@ -206,7 +206,6 @@ export class Router {
     action(searchParams);
 
     if (url.search !== searchParams.toString()) {
-      console.log("something");
       url.search = searchParams.toString();
       window.history.pushState(null, null, url);
     }

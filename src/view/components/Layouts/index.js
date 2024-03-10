@@ -5,3 +5,4 @@ export * from "./Main";
 export * from "./NavSidebar";
 export * from "./ContentSection";
 export * from "./LoginLayout";
+export * from "./Overlay";

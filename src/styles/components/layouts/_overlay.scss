@@ -1,0 +1,16 @@
+.overlay {
+  &-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba($color: black, $alpha: 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

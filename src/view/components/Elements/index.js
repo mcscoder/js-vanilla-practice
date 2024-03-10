@@ -17,3 +17,4 @@ export * from "./ListTable";
 export * from "./ProductDetailsForm";
 export * from "./DragDropUploader";
 export * from "./Form";
+export * from "./Search";
