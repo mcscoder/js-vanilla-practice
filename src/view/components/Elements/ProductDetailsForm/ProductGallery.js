@@ -17,6 +17,8 @@ export class ProductGallery {
   constructor(productImages) {
     // leading class name: product_details_form-gallery
 
+    this.numberOfImages = 0;
+
     this.newImages = [];
     this.deleteImageIds = [];
 
@@ -37,6 +39,7 @@ export class ProductGallery {
         const fileList = [...files];
         this.newImages.push(...fileList);
         console.log(this.newImages);
+        // display preview image as base64
         fileList.forEach((file, index) => {
           extractImageFile(file, ({ imageName, imageURL }) => {
             this.renderPreviewImage.call(this, { imageName, imageURL }, index);
@@ -73,10 +76,18 @@ export class ProductGallery {
 
   /**
    * @param {object} param0
-   * @param {number} param0.id
+   * @param {number|undefined} param0.id - Only images already in the database have this attribute.
    * @param {string} param0.imageName
    * @param {string} param0.imageURL
+   * @param {number|undefined} newImageIndex - Only new images that just added have this attribute
    * @private
+   *
+   * Explain: There are only 2 cases that this method is called
+   * 1. To render images that fetched from database
+   * - In this case `id` attribute would be provided
+   *
+   * 2. To render images that just added by user
+   * - In this case `newImageIndex` would be provided
    */
   renderPreviewImage(
     { id = undefined, imageName, imageURL },
@@ -113,18 +124,28 @@ export class ProductGallery {
 
     this.imageNodes.push(uploadedItemContainer);
     this.container2.append(uploadedItemContainer);
+
+    // increase an image
+    this.numberOfImages += 1;
   }
 
   onClickDelete(imageNodeIndex, { id, newImageIndex }) {
+    // delete deleted image from UI
     this.imageNodes[imageNodeIndex].style.display = "none";
 
     if (id !== undefined) {
+      // if `id` is provided, delete the image already in the database
+      // these `id` will be use for delete images from database
       this.deleteImageIds.push(id);
       console.log("delete old image");
     } else {
+      // if `is` is not provided this would be consider a new image
+      // set that element in file list to `undefined` that will be ignore when fetch api
       this.newImages[newImageIndex] = undefined;
       console.log("delete new image");
     }
+
+    this.numberOfImages -= 1;
   }
 
   render() {

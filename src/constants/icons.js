@@ -24,6 +24,7 @@ import bars from "@/assets/icons/bars.svg";
 import google from "@/assets/icons/google.svg";
 import apple from "@/assets/icons/apple.svg";
 import facebook from "@/assets/icons/facebook.svg";
+import logout from "@/assets/icons/logout.svg";
 
 const loadSvg = async (filePath) => {
   try {
@@ -62,6 +63,7 @@ export const [
   googleIcon,
   appleIcon,
   facebookIcon,
+  logoutIcon,
 ] = await Promise.all([
   loadSvg(albums),
   loadSvg(dashboard),
@@ -89,4 +91,5 @@ export const [
   loadSvg(google),
   loadSvg(apple),
   loadSvg(facebook),
+  loadSvg(logout),
 ]);
