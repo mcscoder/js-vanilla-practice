@@ -21,12 +21,13 @@ export class Login {
       e.preventDefault();
 
       if (!isRegister) {
+        console.log(this.formData.keepLoggedCheckbox.checkbox.checked);
         LoginController.authentication(
           new Admin({
             email: this.formData.emailInput.input.value,
             password: this.formData.passwordInput.input.value,
           }),
-          this.formData.keepLoggedCheckbox.checkbox.checked
+          { isKeepLogged: this.formData.keepLoggedCheckbox.checkbox.checked }
         );
       } else {
         LoginController.register(

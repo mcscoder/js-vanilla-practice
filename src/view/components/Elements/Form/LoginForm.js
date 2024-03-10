@@ -1,4 +1,8 @@
-import { createContainer } from "@/utils";
+import {
+  createContainer,
+  handleEmailFormat,
+  handlePasswordFormat,
+} from "@/utils";
 import { OtherMethods, Checkbox } from ".";
 import { Link, Input, Button, buttonSizes, buttonVariants } from "..";
 import { chevronForwardIcon } from "@/constants";
@@ -33,12 +37,24 @@ export class LoginForm extends Form {
 
     // form children --------------------
     // 1. Email input field
-    this.emailInput = new Input({ placeholder: "Email" }, "form-input");
-    this.emailInput.input.required = true;
+    this.emailInput = new Input(
+      {
+        placeholder: "Email",
+        required: true,
+        onchange: () => handleEmailFormat(this.emailInput.input),
+      },
+      "form-input"
+    );
     // 2. Password input field
-    this.passwordInput = new Input({ placeholder: "Password" }, "form-input");
-    this.passwordInput.input.type = "password";
-    this.passwordInput.input.required = true;
+    this.passwordInput = new Input(
+      {
+        placeholder: "Password",
+        required: true,
+        type: "password",
+        onchange: () => handlePasswordFormat(this.passwordInput.input),
+      },
+      "form-input"
+    );
     // 3. Keep login
     this.keepLoggedCheckbox = new Checkbox("keepLogin", "form-checkbox", [
       "Keep me logged in",
@@ -67,7 +83,6 @@ export class LoginForm extends Form {
 
     // remind
     this.remind = document.createElement("p");
-    this.remind.className = "form-login-remind";
 
     this.termAndCondition = new Link("#");
     this.termAndCondition.link.className = "form-link";
@@ -78,12 +93,20 @@ export class LoginForm extends Form {
       "."
     );
 
+    this.register = document.createElement("p");
+
+    this.registerLink = new Link("/register");
+    this.registerLink.link.className = "form-link";
+    this.registerLink.link.textContent = "Register";
+    this.register.append("Need an account? ", this.registerLink.render());
+
     // add elements to global container
     this.container.append(
       this.container1,
       this.form,
       this.otherMethods.render(),
-      this.remind
+      this.remind,
+      this.register
     );
   }
 

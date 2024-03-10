@@ -1,4 +1,8 @@
-import { createContainer } from "@/utils";
+import {
+  createContainer,
+  handleEmailFormat,
+  handlePasswordFormat,
+} from "@/utils";
 import { Form } from "./Form";
 import { OtherMethods, Checkbox } from ".";
 import { chevronForwardIcon } from "@/constants";
@@ -16,13 +20,19 @@ export class RegisterForm extends Form {
     this.title1 = document.createElement("h1");
     this.title1.className = "form-title-1";
     this.title1.textContent = "Register";
-    // 2. Title 2.1
+    // 2. Login link
+    this.login = document.createElement("p");
+    this.loginLink = new Link("/login");
+    this.loginLink.link.className = "form-link";
+    this.loginLink.link.textContent = "Login";
+    this.login.append("Already have an account? ", this.loginLink.render());
+    // 3. Title 2.1
     this.title2_1 = document.createElement("p");
     this.title2_1.className = "form-title-2";
     this.title2_1.textContent = "Sign up with";
-    // 3. Other methods
+    // 4. Other methods
     this.otherMethods = new OtherMethods();
-    // 4. Title 2.2
+    // 5. Title 2.2
     this.title2_2 = document.createElement("p");
     this.title2_2.className = "form-title-2";
     this.title2_2.textContent = "OR";
@@ -31,6 +41,7 @@ export class RegisterForm extends Form {
     this.container1 = createContainer(
       "form-register-container-1",
       this.title1,
+      this.login,
       this.title2_1,
       this.otherMethods.render(),
       this.title2_2
@@ -57,12 +68,21 @@ export class RegisterForm extends Form {
     this.title3_2.textContent = "Login Details";
     // 5. Email input
     this.emailInput = new Input(
-      { placeholder: "Email", required: true },
+      {
+        placeholder: "Email",
+        required: true,
+        onchange: () => handleEmailFormat(this.emailInput.input),
+      },
       "form-input"
     );
     // 6. Password input
     this.passwordInput = new Input(
-      { placeholder: "Password", type: "password", required: true },
+      {
+        placeholder: "Password",
+        type: "password",
+        required: true,
+        onchange: () => handlePasswordFormat(this.passwordInput.input),
+      },
       "form-input"
     );
     // 7. Term & conditions checkbox
@@ -77,11 +97,7 @@ export class RegisterForm extends Form {
       ".",
     ]);
     this.termConditionCheckbox.checkbox.required = true;
-    // 8. Keep me logged in checkbox
-    this.keepLoggedCheckbox = new Checkbox("keepLogged", "form-checkbox", [
-      "Keep me logged in",
-    ]);
-    // 9. Register button
+    // 8. Register button
     this.registerButton = new Button(
       "Register",
       null,
@@ -101,7 +117,6 @@ export class RegisterForm extends Form {
       this.emailInput.render(),
       this.passwordInput.render(),
       this.termConditionCheckbox.render(),
-      this.keepLoggedCheckbox.render(),
       this.registerButton.render()
     );
 
