@@ -42,4 +42,10 @@ export const apiEndpoint = {
   postProduct() {
     return `/api/products`;
   },
+  adminAuthentication() {
+    return `/api/admin-authentication`;
+  },
+  register() {
+    return `/api/admins`;
+  },
 };

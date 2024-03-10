@@ -98,7 +98,7 @@ export class Product extends DTOMethod {
     this.productImages = productImages;
   }
 
-  getRequestBody() {
+  getAuthenticationBody() {
     return {
       name: this.name,
       description: this.description,

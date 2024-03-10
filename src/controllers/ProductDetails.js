@@ -90,7 +90,7 @@ export class ProductDetailsController extends ControllerMethods {
   onUpdate() {
     (async () => {
       // update product information
-      const body = this.product.getRequestBody();
+      const body = this.product.getAuthenticationBody();
       await fetch(apiEndpoint.patchProduct(this.product.id), {
         method: "PATCH",
         headers: {
