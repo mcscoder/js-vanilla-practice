@@ -1,10 +1,19 @@
 import { chevronDownIcon, notificationsIcon, searchIcon } from "@/constants";
-import { Button, buttonSizes, buttonVariants } from "..";
+import {
+  Button,
+  Overlay,
+  SearchOverlay,
+  buttonSizes,
+  buttonVariants,
+} from "..";
 import { Admin } from "@/model/dto";
+import { Router } from "@/routes";
 
 export class Header {
   constructor() {
     // leading class name: primary_header
+
+    this.overlay = new Overlay();
 
     // primary header
     this.header = document.createElement("header");
@@ -57,7 +66,11 @@ export class Header {
   }
 
   onSearchClick() {
-    console.log("onSearchClick");
+    const searchOverlay = new SearchOverlay();
+    searchOverlay.display(true);
+    searchOverlay.onSearchSubmit(() => {
+      Router.pushState(`/products?search=${searchOverlay.input.input.value}`);
+    });
   }
 
   onNotificationClick() {

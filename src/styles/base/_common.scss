@@ -72,7 +72,7 @@
 .gap {
   @for $i from 0 through 10 {
     &-#{$i} {
-      gap: $i * 4;
+      gap: $i * 4px;
     }
   }
 }

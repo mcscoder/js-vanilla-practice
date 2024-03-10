@@ -24,7 +24,12 @@ export class ProductController extends ControllerMethods {
 
   fetchData() {
     const categoryId = Router.getParams().categoryId || "";
-    fetch(apiEndpoint.getProducts(categoryId))
+    let url = `${apiEndpoint.getProducts(categoryId)}`;
+    const search = Router.getSearchParam("search");
+    if (search) {
+      url += `?search=${search}`;
+    }
+    fetch(url)
       .then((res) => res.json())
       .then((data) => {
         /** @type {Product[]} */
