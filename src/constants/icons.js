@@ -25,6 +25,10 @@ import google from "@/assets/icons/google.svg";
 import apple from "@/assets/icons/apple.svg";
 import facebook from "@/assets/icons/facebook.svg";
 import logout from "@/assets/icons/logout.svg";
+import checkSuccess from "@/assets/icons/checkSuccess.svg";
+import errorCircle from "@/assets/icons/errorCircle.svg";
+import infoCircle from "@/assets/icons/infoCircle.svg";
+import warning from "@/assets/icons/warning.svg";
 
 const loadSvg = async (filePath) => {
   try {
@@ -64,6 +68,10 @@ export const [
   appleIcon,
   facebookIcon,
   logoutIcon,
+  checkSuccessIcon,
+  errorCircleIcon,
+  infoCircleIcon,
+  warningIcon,
 ] = await Promise.all([
   loadSvg(albums),
   loadSvg(dashboard),
@@ -92,4 +100,8 @@ export const [
   loadSvg(apple),
   loadSvg(facebook),
   loadSvg(logout),
+  loadSvg(checkSuccess),
+  loadSvg(errorCircle),
+  loadSvg(infoCircle),
+  loadSvg(warning),
 ]);
