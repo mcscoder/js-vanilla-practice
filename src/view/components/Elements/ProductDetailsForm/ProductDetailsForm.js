@@ -4,6 +4,7 @@ import {
   InputContainer,
   ProductGallery,
   ProductThumbnail,
+  Toast,
   buttonSizes,
   buttonVariants,
   optionType, // eslint-disable-line no-unused-vars
@@ -289,15 +290,18 @@ export class ProductDetailsForm extends Form {
    */
   isFormValidity() {
     if (!this.product.categoryId) {
-      alert("You must select a category");
+      Toast.render({ message: "You must select a category", type: "ERROR" });
       return false;
     }
     if (!this.product.brandId) {
-      alert("You must select a brand");
+      Toast.render({ message: "You must select a brand", type: "ERROR" });
       return false;
     }
     if (this.productGallery.numberOfImages === 0) {
-      alert("You must specific at least an image");
+      Toast.render({
+        message: "You must specific at least an image",
+        type: "ERROR",
+      });
       return false;
     }
     return this.form.checkValidity();

@@ -8,7 +8,7 @@ import {
 import { ControllerMethods } from "./ControllerMethods";
 import { apiEndpoint } from "@/utils";
 import { Router } from "@/routes";
-import { Category, ProductGallery } from "@/view"; // eslint-disable-line no-unused-vars
+import { Category, ProductGallery, Toast } from "@/view"; // eslint-disable-line no-unused-vars
 
 export class ProductDetailsController extends ControllerMethods {
   /**
@@ -105,7 +105,7 @@ export class ProductDetailsController extends ControllerMethods {
 
       await this.updateImages();
 
-      alert("Save success");
+      Toast.render({ message: "Update product success", type: "SUCCESS" });
       this.fetchData();
     })();
   }
@@ -115,7 +115,10 @@ export class ProductDetailsController extends ControllerMethods {
       method: "PATCH",
     }).then((res) => {
       if (res.ok) {
-        alert("Product has been deprecated");
+        Toast.render({
+          message: "Product has been deprecated",
+          type: "SUCCESS",
+        });
         Router.pushState("/products");
       }
     });
@@ -137,7 +140,7 @@ export class ProductDetailsController extends ControllerMethods {
         });
 
       await this.updateImages();
-      alert("Product has been added");
+      Toast.render({ message: "Product has been added", type: "SUCCESS" });
       Router.pushState("/products");
     })();
   }
