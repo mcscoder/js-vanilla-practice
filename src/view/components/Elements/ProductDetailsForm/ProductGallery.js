@@ -1,7 +1,13 @@
 import { pictureIcon, xMarkIcon } from "@/constants";
 import { createContainer, extractImageFile } from "@/utils";
 import { ProductThumbnail } from ".";
-import { Button, DragDropUploader, buttonSizes, buttonVariants } from "..";
+import {
+  Button,
+  DragDropUploader,
+  Toast,
+  buttonSizes,
+  buttonVariants,
+} from "..";
 import { ProductImage } from "@/model/dto"; // eslint-disable-line no-unused-vars
 
 export class ProductGallery {
@@ -45,6 +51,7 @@ export class ProductGallery {
             this.renderPreviewImage.call(this, { imageName, imageURL }, index);
           });
         });
+        Toast.render({ message: "Image has been added", type: "SUCCESS" });
       },
       this.picture,
       this.description
@@ -146,6 +153,8 @@ export class ProductGallery {
     }
 
     this.numberOfImages -= 1;
+
+    Toast.render({ message: "Image has been deleted", type: "SUCCESS" });
   }
 
   render() {
