@@ -77,6 +77,10 @@ export class LoginController {
         }
         // trigger callback with true value, cause authenticating was failed
         result(false);
+
+        // remove user data when authentication is failed
+        localStorage.removeItem("admin");
+        sessionStorage.removeItem("admin");
       });
   }
   /**
