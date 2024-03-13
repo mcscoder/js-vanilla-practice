@@ -6,6 +6,7 @@ import {
 } from "@/constants";
 import {
   Button,
+  ConfirmToast,
   ContentSection,
   Overlay,
   SearchOverlay,
@@ -91,9 +92,18 @@ export class Header {
       buttonSizes.sm,
       "",
       () => {
-        localStorage.removeItem("admin");
-        sessionStorage.removeItem("admin");
-        location.reload();
+        ConfirmToast.render({
+          title: "Logout",
+          message: "Are you logging out?",
+          confirmationLabel: "Yes",
+          onClickConfirm: (isConfirmed) => {
+            if (isConfirmed) {
+              localStorage.removeItem("admin");
+              sessionStorage.removeItem("admin");
+              location.reload();
+            }
+          },
+        });
       }
     );
     // 1.3. Dropdown container
