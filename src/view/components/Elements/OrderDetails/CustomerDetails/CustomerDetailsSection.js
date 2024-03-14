@@ -1,6 +1,7 @@
 import { bagHandleIcon, printerIcon, userIcon } from "@/constants";
 import {
   Button,
+  ConfirmToast,
   CustomerInformation,
   InputContainer,
   OptionsBox,
@@ -255,9 +256,18 @@ export class CustomerDetailsSection {
   onClickPrintButton() {}
 
   onClickSaveButton() {
-    const orderStatusId = this.orderStatusId;
-    const note = this.noteForCustomer.input.render().value;
-    this.onSave({ orderStatusId, note });
+    ConfirmToast.render({
+      title: "Update order",
+      message: "Are you sure? this action cannot be undone",
+      confirmationLabel: "Update",
+      onClickConfirm: (isConfirmed) => {
+        if (isConfirmed) {
+          const orderStatusId = this.orderStatusId;
+          const note = this.noteForCustomer.input.render().value;
+          this.onSave({ orderStatusId, note });
+        }
+      },
+    });
   }
 
   render() {

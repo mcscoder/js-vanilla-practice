@@ -10,6 +10,7 @@ import {
 import { Router } from "@/routes";
 import { apiEndpoint } from "@/utils";
 import { ControllerMethods } from ".";
+import { Toast } from "@/view";
 
 export class OrderDetailsController extends ControllerMethods {
   /**
@@ -94,7 +95,7 @@ export class OrderDetailsController extends ControllerMethods {
       if (!res.ok) {
         throw new Error("Can't fetch data");
       }
-      alert("Save success");
+      Toast.render({ message: "Order has been updated", type: "SUCCESS" });
       this.fetchData();
     });
   }

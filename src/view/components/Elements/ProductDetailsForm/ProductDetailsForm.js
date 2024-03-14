@@ -1,6 +1,7 @@
 import { apiEndpoint, createContainer, handleNumberInput } from "@/utils";
 import {
   Button,
+  ConfirmToast,
   InputContainer,
   ProductGallery,
   ProductThumbnail,
@@ -310,8 +311,17 @@ export class ProductDetailsForm extends Form {
   /** @private */
   onClickUpdate() {
     if (this.isFormValidity()) {
-      this.syncDataToObject();
-      this.onUpdate();
+      ConfirmToast.render({
+        title: "Update product",
+        message: "Are you sure? this action cannot be undone",
+        confirmationLabel: "Update",
+        onClickConfirm: (isConfirmed) => {
+          if (isConfirmed) {
+            this.syncDataToObject();
+            this.onUpdate();
+          }
+        },
+      });
     }
   }
 
@@ -322,7 +332,16 @@ export class ProductDetailsForm extends Form {
 
   /** @private */
   onClickDeprecated() {
-    this.onDeprecated();
+    ConfirmToast.render({
+      title: "Discontinue product",
+      message: "Are you sure? this action cannot be undone",
+      confirmationLabel: "Discontinue",
+      onClickConfirm: (isConfirmed) => {
+        if (isConfirmed) {
+          this.onDeprecated();
+        }
+      },
+    });
   }
 
   /**
@@ -343,8 +362,18 @@ export class ProductDetailsForm extends Form {
   /** @private */
   onClickAdd() {
     if (this.isFormValidity()) {
-      this.syncDataToObject();
-      this.onAdd();
+      ConfirmToast.render({
+        title: "Add product",
+        message: "Are you sure? this action cannot be undone",
+        confirmationLabel: "Add itttttt!",
+        cancelLabel: "Hold on",
+        onClickConfirm: (isConfirmed) => {
+          if (isConfirmed) {
+            this.syncDataToObject();
+            this.onAdd();
+          }
+        },
+      });
     }
   }
 

@@ -1,6 +1,7 @@
 import { Admin } from "@/model/dto"; // eslint-disable-line no-unused-vars
 import { Router } from "@/routes";
 import { apiEndpoint } from "@/utils";
+import { Toast } from "@/view";
 
 export class LoginController {
   /**
@@ -73,7 +74,7 @@ export class LoginController {
       })
       .catch((message) => {
         if (isAlert) {
-          alert(message);
+          Toast.render({ message, type: "ERROR" });
         }
         // trigger callback with true value, cause authenticating was failed
         result(false);
@@ -105,7 +106,7 @@ export class LoginController {
         }
       })
       .then(() => {
-        alert("Register success");
+        Toast.render({ message: "Register success", type: "ERROR" });
         Router.pushState("/login");
       })
       .catch((error) => {
