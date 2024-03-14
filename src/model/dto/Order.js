@@ -11,6 +11,7 @@ export class Order extends DTOMethod {
    * @param {number} param0.orderStatusId
    * @param {number} param0.shippingId
    * @param {number} param0.userPaymentMethodId
+   * @param {number} param0.createdAt
    */
   constructor({
     id,
@@ -19,6 +20,7 @@ export class Order extends DTOMethod {
     orderStatusId,
     shippingId,
     userPaymentMethodId,
+    createdAt,
   }) {
     super();
     this.id = id;
@@ -27,6 +29,7 @@ export class Order extends DTOMethod {
     this.orderStatusId = orderStatusId;
     this.shippingId = shippingId;
     this.userPaymentMethodId = userPaymentMethodId;
+    this.createdAt = createdAt;
   }
 
   /**
