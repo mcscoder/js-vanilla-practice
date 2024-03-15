@@ -48,4 +48,7 @@ export const apiEndpoint = {
   register() {
     return `/api/admins`;
   },
+  getBestSellerProducts() {
+    return `/api/products-best-sellers`;
+  },
 };
