@@ -2,10 +2,16 @@ import { threeDotsVerticalIcon } from "@/constants";
 import { Button, buttonSizes, buttonVariants } from "..";
 import { ProductItem } from ".";
 import { ContentSection } from "../..";
+import { Product } from "@/model/dto"; // eslint-disable-line no-unused-vars
 
 export class ProductStatCard {
-  constructor(title, productItems = []) {
-    this.productItems = productItems;
+  /**
+   *
+   * @param {string} title
+   * @param {Product[]} products
+   */
+  constructor(title, products) {
+    this.products = products;
 
     // container element
     this.container = document.createElement("div");
@@ -64,13 +70,8 @@ export class ProductStatCard {
   }
 
   initProducts() {
-    this.productItems.forEach(({ imgURL, title, currentPrice, sales }) => {
-      const productItem = ProductItem.render(
-        imgURL,
-        title,
-        currentPrice,
-        sales
-      );
+    this.products.forEach((product) => {
+      const productItem = ProductItem.render(product);
       this.productContainer.append(productItem);
     });
   }

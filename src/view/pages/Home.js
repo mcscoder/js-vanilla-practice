@@ -7,27 +7,7 @@ import {
   SaleGraph,
 } from "..";
 import { OrderListController } from "@/controllers";
-
-const productStatItems = [
-  {
-    imgURL: "https://www.mobafire.com/images/champion/square/yasuo.png",
-    title: "Yasuo hasagi",
-    currentPrice: 124.5,
-    sales: 123,
-  },
-  {
-    imgURL: "https://www.mobafire.com/images/champion/square/yasuo.png",
-    title: "Yasuo hasagi",
-    currentPrice: 124.5,
-    sales: 123,
-  },
-  {
-    imgURL: "https://www.mobafire.com/images/champion/square/yasuo.png",
-    title: "Yasuo hasagi",
-    currentPrice: 124.5,
-    sales: 123,
-  },
-];
+import { apiEndpoint } from "@/utils";
 
 export class Home {
   constructor() {
@@ -81,7 +61,7 @@ export class Home {
     // best seller stat element
     this.bestSellerStat = new ProductStatCard(
       "Best seller",
-      productStatItems
+      this.bestSellerProducts
     ).render();
     this.bestSellerStat.classList.add("flex-1");
 
@@ -99,11 +79,16 @@ export class Home {
   }
 
   /**
-   *
+   * @param {Order[]} orders
    */
   dataFetched(orders) {
     this.orders = orders;
-    this.initContent();
+    fetch(apiEndpoint.getBestSellerProducts())
+      .then((res) => res.json())
+      .then((data) => {
+        this.bestSellerProducts = data;
+        this.initContent();
+      });
   }
 
   render() {
