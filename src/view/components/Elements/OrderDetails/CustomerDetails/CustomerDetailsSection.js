@@ -1,4 +1,9 @@
-import { bagHandleIcon, printerIcon, userIcon } from "@/constants";
+import {
+  bagHandleIcon,
+  calendarIcon,
+  printerIcon,
+  userIcon,
+} from "@/constants";
 import {
   Button,
   ConfirmToast,
@@ -15,7 +20,7 @@ import {
 } from "../..";
 import { ContentSection } from "../../..";
 import { Order } from "@/model/dto"; // eslint-disable-line no-unused-vars
-import { apiEndpoint } from "@/utils";
+import { apiEndpoint, createContainer, formatDate } from "@/utils";
 
 /**
  *
@@ -123,6 +128,17 @@ export class CustomerDetailsSection {
     this.container2_1 = document.createElement("div");
     this.container2_1.className = "customer_details-container-2-1";
 
+    // date
+    this.calendarIcon = createContainer("icon-container");
+    this.calendarIcon.innerHTML = calendarIcon;
+    this.date = document.createElement("p");
+    this.date.textContent = formatDate(this.orderDetails.createdAt);
+    this.dateContainer = createContainer(
+      "customer_details-date",
+      this.calendarIcon,
+      this.date
+    );
+
     // status select box
     this.statusSelectBox = new OptionsBox(
       "none",
@@ -155,6 +171,7 @@ export class CustomerDetailsSection {
 
     // add elements to container 2.1
     this.container2_1.append(
+      this.dateContainer,
       this.statusSelectBox.render(),
       this.printButton.render(),
       this.saveButton.render()

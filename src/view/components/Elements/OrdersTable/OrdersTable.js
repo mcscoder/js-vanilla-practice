@@ -1,7 +1,7 @@
 import { Order } from "@/model/dto"; // eslint-disable-line no-unused-vars
 import { CustomerName, DeliveryStatus, Link, ListTable } from "..";
 import { ContentSection } from "../..";
-import { formatINR } from "@/utils";
+import { formatDate, formatINR } from "@/utils";
 
 /** @type {string[]} */
 export const headerTextItems = [
@@ -35,7 +35,7 @@ export class OrdersTable {
       // will be refactor later because date now is not string anymore
       // date will be a number or any date format depends on database format
       // that should be convert to expected format later
-      const dateText = "Nov 8th,2023";
+      const dateText = formatDate(order.createdAt);
 
       // 3. customer name element
       const customerNameElement = CustomerName.render(

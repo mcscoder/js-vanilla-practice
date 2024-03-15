@@ -47,6 +47,14 @@
     background-color: $gray-light;
   }
 
+  &-date {
+    @include font($text-base, $font-semibold);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+  }
+
   &-information {
     &-container {
       display: flex;
